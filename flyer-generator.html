@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Flyer Generator — CluoPrints</title>
+<meta name="description" content="Free flyer generator. Type your headline, details and contact, preview your flyer, and download it as a PNG. Runs entirely in your browser — nothing is uploaded.">
+<style>
+body{font-family:Arial,Helvetica,sans-serif;max-width:760px;margin:0 auto;padding:20px;color:#222;line-height:1.5}
+h1{font-size:26px}
+label{display:block;margin:12px 0 4px;font-weight:bold}
+input,select,textarea{width:100%;padding:9px;font-size:16px;box-sizing:border-box}
+textarea{height:96px}
+button{background:#1f3864;color:#fff;border:0;padding:12px 22px;font-size:17px;cursor:pointer;margin:12px 8px 0 0}
+button:hover{background:#2e5596}
+.flyer{width:400px;max-width:100%;aspect-ratio:1/1.414;border:1px solid #bbb;margin-top:24px;display:flex;flex-direction:column;overflow:hidden;background:#fff}
+.flyer .band{padding:26px 24px}
+.flyer .headline{font-size:34px;font-weight:bold;line-height:1.15;margin:0}
+.flyer .sub{font-size:18px;margin:14px 0 0}
+.flyer .body{padding:20px 24px;font-size:15px;line-height:1.6;flex:1;white-space:pre-line}
+.flyer .foot{padding:18px 24px;border-top:3px solid #eee;font-size:14px;line-height:1.6}
+.note{background:#eef3fb;border:1px solid #b9c9e2;padding:12px;margin-top:24px}
+a{color:#1f3864}
+footer{margin-top:36px;border-top:1px solid #ddd;padding-top:12px;font-size:14px;color:#555}
+@media print{body{max-width:none} .no-print{display:none} .flyer{margin-top:0}}
+</style>
+</head>
+<body>
+<h1>Free Flyer Generator</h1>
+<p class="no-print">Type your message, preview your flyer, then download it as a PNG image or print it. Portrait flyer format (A5 ratio).</p>
+
+<div class="no-print">
+<label for="fHead">Headline</label>
+<input id="fHead" value="Summer Sale">
+<label for="fSub">Subheadline</label>
+<input id="fSub" value="Up to 50% off storewide">
+<label for="fBody">Details</label>
+<textarea id="fBody">Fresh flavors, friendly prices, and something for everyone.
+Bring the family — kids eat free on weekends.</textarea>
+<label for="fWhen">Date / venue</label>
+<input id="fWhen" value="Saturday, June 20 • 10 AM – 6 PM • Main Street">
+<label for="fContact">Contact</label>
+<input id="fContact" value="info@example.com • www.example.com">
+<label for="fTheme">Color theme</label>
+<select id="fTheme">
+  <option value="navy">Navy + Gold</option>
+  <option value="red">Red + Dark</option>
+  <option value="green">Green + Amber</option>
+  <option value="teal">Teal + Orange</option>
+</select>
+<label for="fLayout">Layout</label>
+<select id="fLayout">
+  <option value="banner">Headline banner on top</option>
+  <option value="classic">Classic headline on white</option>
+</select>
+<button type="button" onclick="downloadPNG()">Download flyer (PNG)</button>
+<button type="button" onclick="window.print()">Print</button>
+</div>
+
+<div class="flyer" id="flyer">
+  <div class="band" id="flyerBand">
+    <p class="headline" id="pHead"></p>
+    <p class="sub" id="pSub"></p>
+  </div>
+  <div class="body" id="pBody"></div>
+  <div class="foot">
+    <div id="pWhen"></div>
+    <div id="pContact"></div>
+  </div>
+</div>
+
+<div class="note no-print">
+<strong>Privacy:</strong> Everything runs in your browser. Nothing you type is uploaded or stored.
+Want this printed in bulk with your real logo? Contact <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>.
+</div>
+
+<footer>
+Free tool by <a href="https://cluoprints.com">CluoPrints</a> · Contact: <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>
+</footer>
+
+<script>
+var THEMES = {
+  navy:  { main: "#1f3864", accent: "#f2b705" },
+  red:   { main: "#b91c1c", accent: "#222222" },
+  green: { main: "#14532d", accent: "#f59e0b" },
+  teal:  { main: "#0f766e", accent: "#f97316" }
+};
+function val(id) { return document.getElementById(id).value; }
+function render() {
+  var t = THEMES[document.getElementById("fTheme").value] || THEMES.navy;
+  var layout = document.getElementById("fLayout").value;
+  var band = document.getElementById("flyerBand");
+  var head = document.getElementById("pHead");
+  var sub = document.getElementById("pSub");
+  head.textContent = val("fHead");
+  sub.textContent = val("fSub");
+  document.getElementById("pBody").textContent = val("fBody");
+  document.getElementById("pWhen").textContent = val("fWhen");
+  document.getElementById("pContact").textContent = val("fContact");
+  if (layout === "banner") {
+    band.style.background = t.main;
+    head.style.color = "#ffffff";
+    sub.style.color = "#eeeeee";
+  } else {
+    band.style.background = "#ffffff";
+    head.style.color = t.main;
+    sub.style.color = "#444444";
+  }
+  document.getElementById("flyer").style.borderTop = "6px solid " + t.accent;
+}
+function wrapLines(ctx, text, maxWidth) {
+  var lines = [];
+  text.split("\n").forEach(function (para) {
+    var words = para.split(/\s+/).filter(Boolean);
+    if (words.length === 0) { lines.push(""); return; }
+    var line = words[0];
+    for (var i = 1; i < words.length; i++) {
+      var test = line + " " + words[i];
+      if (ctx.measureText(test).width > maxWidth) { lines.push(line); line = words[i]; }
+      else { line = test; }
+    }
+    lines.push(line);
+  });
+  return lines;
+}
+function fitFont(ctx, text, maxWidth, startSize, weight) {
+  var size = startSize;
+  ctx.font = (weight ? weight + " " : "") + size + "px Arial";
+  while (ctx.measureText(text).width > maxWidth && size > 20) {
+    size -= 4;
+    ctx.font = (weight ? weight + " " : "") + size + "px Arial";
+  }
+  return size;
+}
+function downloadPNG() {
+  var t = THEMES[document.getElementById("fTheme").value] || THEMES.navy;
+  var layout = document.getElementById("fLayout").value;
+  var head = val("fHead"), sub = val("fSub"), body = val("fBody");
+  var when = val("fWhen"), contact = val("fContact");
+  var W = 1240, H = 1754;
+  var c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  var ctx = c.getContext("2d");
+  ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = t.accent; ctx.fillRect(0, 0, W, 16);
+  var y = 0;
+  if (layout === "banner") {
+    ctx.fillStyle = t.main; ctx.fillRect(0, 16, W, 560);
+    ctx.fillStyle = "#ffffff";
+    fitFont(ctx, head, 1080, 120, "bold");
+    var hl = wrapLines(ctx, head, 1080);
+    y = 180;
+    hl.forEach(function (l) { ctx.fillText(l, 80, y); y += 140; });
+    ctx.fillStyle = "#eeeeee";
+    fitFont(ctx, sub, 1080, 54, "");
+    wrapLines(ctx, sub, 1080).forEach(function (l) { ctx.fillText(l, 80, y); y += 72; });
+    y = 576 + 60;
+  } else {
+    ctx.fillStyle = t.main;
+    fitFont(ctx, head, 1080, 120, "bold");
+    y = 190;
+    wrapLines(ctx, head, 1080).forEach(function (l) { ctx.fillText(l, 80, y); y += 140; });
+    ctx.fillStyle = "#444444";
+    fitFont(ctx, sub, 1080, 54, "");
+    wrapLines(ctx, sub, 1080).forEach(function (l) { ctx.fillText(l, 80, y); y += 72; });
+    y += 40;
+    ctx.fillStyle = t.accent; ctx.fillRect(80, y, 200, 10);
+    y += 80;
+  }
+  ctx.fillStyle = "#333333";
+  ctx.font = "46px Arial";
+  wrapLines(ctx, body, 1080).forEach(function (l) { ctx.fillText(l, 80, y); y += 66; });
+  y += 60;
+  ctx.fillStyle = t.main; ctx.fillRect(80, y, 1080, 4);
+  y += 80;
+  ctx.fillStyle = "#222222";
+  ctx.font = "bold 44px Arial";
+  wrapLines(ctx, when, 1080).forEach(function (l) { ctx.fillText(l, 80, y); y += 62; });
+  ctx.fillStyle = "#555555";
+  ctx.font = "40px Arial";
+  wrapLines(ctx, contact, 1080).forEach(function (l) { ctx.fillText(l, 80, y); y += 58; });
+  var a = document.createElement("a");
+  a.download = "flyer.png";
+  a.href = c.toDataURL("image/png");
+  a.click();
+}
+["fHead", "fSub", "fBody", "fWhen", "fContact", "fTheme", "fLayout"].forEach(function (id) {
+  document.getElementById(id).addEventListener("input", render);
+  document.getElementById(id).addEventListener("change", render);
+});
+render();
+</script>
+</body>
+</html>

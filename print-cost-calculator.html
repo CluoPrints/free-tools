@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Print Cost Calculator — CluoPrints</title>
+<meta name="description" content="Free print cost calculator. Enter your supplier's unit price, quantity, markup, shipping and tax to get a total and per-unit price. Runs entirely in your browser.">
+<style>
+body{font-family:Arial,Helvetica,sans-serif;max-width:720px;margin:0 auto;padding:20px;color:#222;line-height:1.5}
+h1{font-size:26px} h2{font-size:19px;margin-top:32px}
+label{display:block;margin:12px 0 4px;font-weight:bold}
+input,select{width:100%;padding:9px;font-size:16px;box-sizing:border-box}
+button{background:#1f3864;color:#fff;border:0;padding:12px 22px;font-size:17px;cursor:pointer;margin-top:16px}
+button:hover{background:#2e5596}
+table{border-collapse:collapse;width:100%;margin-top:16px}
+td{border:1px solid #ccc;padding:8px 10px}
+td:last-child{text-align:right;font-weight:bold}
+.total td{background:#eef3fb;font-size:18px}
+.note{background:#fff8e1;border:1px solid #f0d878;padding:12px;margin-top:20px}
+a{color:#1f3864}
+footer{margin-top:36px;border-top:1px solid #ddd;padding-top:12px;font-size:14px;color:#555}
+</style>
+</head>
+<body>
+<h1>Free Print Cost Calculator</h1>
+<p>Estimate the total and per-unit price of a print job. Enter your supplier's real unit price — this calculator contains no invented price lists.</p>
+
+<label for="product">Product</label>
+<select id="product">
+  <option>Business cards</option>
+  <option>Flyers</option>
+  <option>Postcards</option>
+  <option>Posters</option>
+  <option>Brochures</option>
+  <option>Stickers / labels</option>
+  <option>Other print product</option>
+</select>
+
+<label for="qty">Quantity</label>
+<input id="qty" type="number" min="1" step="1" value="500">
+
+<label for="unit">Unit cost (your supplier's price per piece)</label>
+<input id="unit" type="number" min="0" step="0.01" placeholder="e.g. 0.25">
+
+<label for="markup">Markup (%)</label>
+<input id="markup" type="number" min="0" step="1" value="30">
+
+<label for="shipping">Shipping</label>
+<input id="shipping" type="number" min="0" step="0.01" value="0">
+
+<label for="tax">Tax (%)</label>
+<input id="tax" type="number" min="0" step="0.01" value="0">
+
+<button type="button" onclick="calc()">Calculate</button>
+
+<table id="results">
+  <tr><td>Production cost</td><td id="rProduction">—</td></tr>
+  <tr><td>Markup</td><td id="rMarkup">—</td></tr>
+  <tr><td>Shipping</td><td id="rShipping">—</td></tr>
+  <tr><td>Tax</td><td id="rTax">—</td></tr>
+  <tr class="total"><td>Total</td><td id="rTotal">—</td></tr>
+  <tr class="total"><td>Per unit</td><td id="rPerUnit">—</td></tr>
+</table>
+
+<p><a id="emailBtn" href="mailto:info@cluoprints.com?subject=Print%20estimate%20request">Email this estimate to CluoPrints for a formal quote</a></p>
+
+<div class="note">
+<strong>Honest note:</strong> Replace the example placeholders with your supplier's real quote. Currency follows the unit cost you enter (USD, CAD, etc.). Tax and shipping are applied exactly as you enter them — nothing is added behind your back.
+</div>
+
+<h2>Common print trim sizes (reference only, no prices)</h2>
+<table>
+  <tr><td>Business card</td><td>3.5 × 2 in (89 × 51 mm)</td></tr>
+  <tr><td>Postcard</td><td>4 × 6 in (102 × 152 mm)</td></tr>
+  <tr><td>Flyer</td><td>5.5 × 8.5 in / A5 148 × 210 mm</td></tr>
+  <tr><td>Brochure (tri-fold, flat)</td><td>11 × 8.5 in</td></tr>
+  <tr><td>Poster</td><td>18 × 24 in / A3 297 × 420 mm</td></tr>
+</table>
+<p>Trim sizes vary by printer — confirm before ordering.</p>
+
+<footer>
+Free tool by <a href="https://cluoprints.com">CluoPrints</a> · Contact: <a href="mailto:info@cluoprints.com">info@cluoprints.com</a><br>
+Everything runs in your browser. Nothing you enter is uploaded or stored.
+</footer>
+
+<script>
+function num(id, fallback) {
+  var v = parseFloat(document.getElementById(id).value);
+  return isNaN(v) ? fallback : v;
+}
+function money(n) { return "$" + n.toFixed(2); }
+function calc() {
+  var qty = num("qty", 0);
+  var unit = num("unit", 0);
+  var markup = num("markup", 0);
+  var shipping = num("shipping", 0);
+  var tax = num("tax", 0);
+  if (qty <= 0) {
+    document.getElementById("rProduction").textContent = "Enter a quantity";
+    document.getElementById("rMarkup").textContent = "—";
+    document.getElementById("rShipping").textContent = "—";
+    document.getElementById("rTax").textContent = "—";
+    document.getElementById("rTotal").textContent = "—";
+    document.getElementById("rPerUnit").textContent = "—";
+    return;
+  }
+  var production = qty * unit;
+  var markupAmt = production * markup / 100;
+  var preTax = production + markupAmt + shipping;
+  var taxAmt = preTax * tax / 100;
+  var total = preTax + taxAmt;
+  var perUnit = total / qty;
+  document.getElementById("rProduction").textContent = money(production);
+  document.getElementById("rMarkup").textContent = money(markupAmt);
+  document.getElementById("rShipping").textContent = money(shipping);
+  document.getElementById("rTax").textContent = money(taxAmt);
+  document.getElementById("rTotal").textContent = money(total);
+  document.getElementById("rPerUnit").textContent = money(perUnit);
+  var product = document.getElementById("product").value;
+  var body = "Product: " + product + "\nQuantity: " + qty + "\nUnit cost: " + money(unit) +
+    "\nMarkup: " + markup + "%\nShipping: " + money(shipping) + "\nTax: " + tax + "%" +
+    "\nTotal: " + money(total) + "\nPer unit: " + money(perUnit) +
+    "\n\nPlease send me a formal quote.";
+  document.getElementById("emailBtn").href =
+    "mailto:info@cluoprints.com?subject=" + encodeURIComponent("Print estimate request") +
+    "&body=" + encodeURIComponent(body);
+}
+["qty", "unit", "markup", "shipping", "tax"].forEach(function (id) {
+  document.getElementById(id).addEventListener("input", calc);
+});
+document.getElementById("product").addEventListener("change", calc);
+(function prefill() {
+  var p = new URLSearchParams(window.location.search);
+  ["qty", "unit", "markup", "shipping", "tax"].forEach(function (id) {
+    if (p.has(id)) document.getElementById(id).value = p.get(id);
+  });
+  if (p.has("product")) document.getElementById("product").value = p.get("product");
+})();
+calc();
+</script>
+</body>
+</html>

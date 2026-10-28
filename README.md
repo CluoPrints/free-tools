@@ -15,6 +15,8 @@ These tools run entirely in your browser and are free to use. No installation is
 - [Print cost calculator](print-cost-calculator.html) - Calculate printing costs
 - [Business card generator](business-card-generator.html) - Create business cards
 - [Flyer generator](flyer-generator.html) - Create flyers
+- [Paper size converter](paper-size-converter.html) - Convert paper sizes
+- [Price list generator](price-list-generator.html) - Create price lists
 
 ## Live links
 

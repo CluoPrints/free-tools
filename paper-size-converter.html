@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Paper Size Converter — CluoPrints</title>
+<meta name="description" content="Free paper size converter. Look up standard paper sizes (A series, Letter, Legal, Tabloid) in mm, cm and inches, or convert your own dimensions. Runs entirely in your browser.">
+<style>
+body{font-family:Arial,Helvetica,sans-serif;max-width:720px;margin:0 auto;padding:20px;color:#222;line-height:1.5}
+h1{font-size:26px} h2{font-size:19px;margin-top:32px}
+label{display:block;margin:12px 0 4px;font-weight:bold}
+input,select{width:100%;padding:9px;font-size:16px;box-sizing:border-box}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+table{border-collapse:collapse;width:100%;margin-top:16px}
+td,th{border:1px solid #ccc;padding:8px 10px;text-align:left}
+td.num{text-align:right}
+.visual{display:flex;gap:32px;align-items:flex-end;margin-top:20px;flex-wrap:wrap}
+.box{border:3px solid #1f3864;background:#eef3fb;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;padding:4px;box-sizing:border-box}
+.box.a4{border-color:#888;background:#f4f4f4}
+.note{background:#eef3fb;border:1px solid #b9c9e2;padding:12px;margin-top:24px}
+a{color:#1f3864}
+footer{margin-top:36px;border-top:1px solid #ddd;padding-top:12px;font-size:14px;color:#555}
+</style>
+</head>
+<body>
+<h1>Free Paper Size Converter</h1>
+<p>Standard paper sizes and a mm / cm / inch converter. Dimensions are nominal trim sizes.</p>
+
+<h2>Standard sizes</h2>
+<label for="sizeSel">Paper size</label>
+<select id="sizeSel"></select>
+
+<table>
+  <tr><th>Size</th><th class="num">Millimetres</th><th class="num">Centimetres</th><th class="num">Inches</th></tr>
+  <tr><td id="rName">—</td><td class="num" id="rMm">—</td><td class="num" id="rCm">—</td><td class="num" id="rIn">—</td></tr>
+</table>
+
+<div class="visual">
+  <div>
+    <div class="box" id="boxSel"></div>
+    <div id="boxSelLabel" style="text-align:center;margin-top:6px"></div>
+  </div>
+  <div>
+    <div class="box a4" id="boxA4"></div>
+    <div style="text-align:center;margin-top:6px">A4 (reference)</div>
+  </div>
+</div>
+
+<h2>Convert your own dimensions</h2>
+<div class="row">
+  <div>
+    <label for="cW">Width</label>
+    <input id="cW" type="number" min="0" step="any" value="210">
+  </div>
+  <div>
+    <label for="cH">Height</label>
+    <input id="cH" type="number" min="0" step="any" value="297">
+  </div>
+  <div>
+    <label for="cUnit">Unit</label>
+    <select id="cUnit">
+      <option value="mm">mm</option>
+      <option value="cm">cm</option>
+      <option value="in">inches</option>
+    </select>
+  </div>
+</div>
+<table>
+  <tr><th></th><th class="num">Width</th><th class="num">Height</th></tr>
+  <tr><td>Millimetres</td><td class="num" id="cMmW">—</td><td class="num" id="cMmH">—</td></tr>
+  <tr><td>Centimetres</td><td class="num" id="cCmW">—</td><td class="num" id="cCmH">—</td></tr>
+  <tr><td>Inches</td><td class="num" id="cInW">—</td><td class="num" id="cInH">—</td></tr>
+</table>
+
+<div class="note">
+<strong>Standards:</strong> A0–A6 follow ISO 216 (aspect ratio √2). Letter, Legal and Tabloid are the common North American sizes. Printers may trim slightly differently — confirm bleed and trim with your printer before ordering.
+</div>
+
+<footer>
+Free tool by <a href="https://cluoprints.com">CluoPrints</a> · Contact: <a href="mailto:info@cluoprints.com">info@cluoprints.com</a><br>
+Everything runs in your browser. Nothing you enter is uploaded or stored.
+</footer>
+
+<script>
+var SIZES = [
+  { name: "A0", w: 841, h: 1189 },
+  { name: "A1", w: 594, h: 841 },
+  { name: "A2", w: 420, h: 594 },
+  { name: "A3", w: 297, h: 420 },
+  { name: "A4", w: 210, h: 297 },
+  { name: "A5", w: 148, h: 210 },
+  { name: "A6", w: 105, h: 148 },
+  { name: "Letter", w: 215.9, h: 279.4 },
+  { name: "Legal", w: 215.9, h: 355.6 },
+  { name: "Tabloid (11 × 17 in)", w: 279.4, h: 431.8 }
+];
+var sel = document.getElementById("sizeSel");
+SIZES.forEach(function (s, i) {
+  var o = document.createElement("option");
+  o.value = i;
+  o.textContent = s.name + " — " + s.w + " × " + s.h + " mm";
+  sel.appendChild(o);
+});
+sel.value = "4";
+function fmt(n, d) { return n.toFixed(d === undefined ? 2 : d); }
+function showSize() {
+  var s = SIZES[parseInt(sel.value, 10)];
+  document.getElementById("rName").textContent = s.name;
+  document.getElementById("rMm").textContent = s.w + " × " + s.h + " mm";
+  document.getElementById("rCm").textContent = fmt(s.w / 10) + " × " + fmt(s.h / 10) + " cm";
+  document.getElementById("rIn").textContent = fmt(s.w / 25.4) + " × " + fmt(s.h / 25.4) + " in";
+  var scale = 260 / Math.max(s.w, s.h);
+  var box = document.getElementById("boxSel");
+  box.style.width = Math.max(30, Math.round(s.w * scale)) + "px";
+  box.style.height = Math.max(30, Math.round(s.h * scale)) + "px";
+  box.textContent = s.name;
+  document.getElementById("boxSelLabel").textContent = s.name + " (to scale vs A4)";
+  var a4scale = 260 / 297;
+  var a4 = document.getElementById("boxA4");
+  a4.style.width = Math.round(210 * a4scale) + "px";
+  a4.style.height = Math.round(297 * a4scale) + "px";
+  a4.textContent = "A4";
+}
+function toMm(v, unit) {
+  if (unit === "cm") return v * 10;
+  if (unit === "in") return v * 25.4;
+  return v;
+}
+function convert() {
+  var w = parseFloat(document.getElementById("cW").value);
+  var h = parseFloat(document.getElementById("cH").value);
+  var unit = document.getElementById("cUnit").value;
+  if (isNaN(w) || isNaN(h) || w <= 0 || h <= 0) {
+    ["cMmW", "cMmH", "cCmW", "cCmH", "cInW", "cInH"].forEach(function (id) {
+      document.getElementById(id).textContent = "—";
+    });
+    return;
+  }
+  var wMm = toMm(w, unit), hMm = toMm(h, unit);
+  document.getElementById("cMmW").textContent = fmt(wMm);
+  document.getElementById("cMmH").textContent = fmt(hMm);
+  document.getElementById("cCmW").textContent = fmt(wMm / 10);
+  document.getElementById("cCmH").textContent = fmt(hMm / 10);
+  document.getElementById("cInW").textContent = fmt(wMm / 25.4);
+  document.getElementById("cInH").textContent = fmt(hMm / 25.4);
+}
+sel.addEventListener("change", showSize);
+["cW", "cH", "cUnit"].forEach(function (id) {
+  document.getElementById(id).addEventListener("input", convert);
+  document.getElementById(id).addEventListener("change", convert);
+});
+showSize();
+convert();
+</script>
+</body>
+</html>

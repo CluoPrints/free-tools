@@ -12,6 +12,9 @@ These tools run entirely in your browser and are free to use. No installation is
 - QR generator
 - Menu tools
 - Outfit tools
+- [Print cost calculator](print-cost-calculator.html) - Calculate printing costs
+- [Business card generator](business-card-generator.html) - Create business cards
+- [Flyer generator](flyer-generator.html) - Create flyers
 
 ## Live links
 

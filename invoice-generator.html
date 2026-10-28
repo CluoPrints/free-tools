@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/invoice-generator.html">
+<title>Free Invoice &amp; Quote Maker | CluoPrints</title>
+<meta name="description" content="Free invoice and quote maker for small businesses: add your items, set the tax rate, and print or save as PDF. No sign-up, everything runs in your browser and nothing is sent or stored.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Free Invoice &amp; Quote Maker | CluoPrints">
+<meta property="og:description" content="Make a simple invoice or quote in minutes: items, tax and total, then print or save as PDF. No sign-up, nothing leaves your browser.">
+<meta property="og:url" content="https://cluoprints.com/invoice-generator.html">
+<link rel="stylesheet" href="style.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box input[type=text],.tool-box input[type=number],.tool-box input[type=date],.tool-box textarea,.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-box textarea{min-height:70px;resize:vertical}
+.tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}
+.tool-row .grow{flex:1;min-width:180px}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+.inv-table{width:100%;border-collapse:collapse;margin-top:14px}
+.inv-table th{text-align:left;font-size:.92rem;color:var(--muted);padding:8px 6px;border-bottom:2px solid var(--line)}
+.inv-table td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+.inv-table input{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 10px;font:inherit;font-size:.98rem;background:#fff;color:var(--ink)}
+.inv-table .qty,.inv-table .price{max-width:130px}
+.inv-total{max-width:360px;margin:18px 0 0 auto}
+.inv-total table{width:100%;border-collapse:collapse}
+.inv-total td{padding:9px 6px;border-bottom:1px solid var(--line)}
+.inv-total td:last-child{text-align:right;font-weight:700}
+.inv-total tr.grand td{font-size:1.15rem;border-bottom:none}
+.btn-sm{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+.btn-sm:hover{border-color:var(--accent);color:var(--accent)}
+.preset-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.preset-lbl{font-weight:600;font-size:.95rem;color:var(--muted)}
+.preset-btn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+.preset-btn:hover{border-color:var(--accent);color:var(--accent)}
+.preset-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+@media(max-width:640px){.inv-table th:nth-child(4),.inv-table td:nth-child(4){display:none}}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery Collection</a>
+      <a href="ebooks.html">Ebooks</a>
+      <a href="custom.html">Custom Design</a>
+      <a href="design-your-own.html">Design Your Own</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html" class="active">Free Tools</a>
+      <a href="about.html">About &amp; Contact</a>
+      <a href="invoice-generator-fr.html">FR</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Invoice &amp; Quote Maker</h2>
+  <p class="sub">Make a clean, simple invoice or quote for your small business: fill in your details, add items, set the tax rate, then print it or save it as a PDF from your browser. No sign-up — everything runs right here and nothing is ever sent or stored.</p>
+  <div class="tool-box">
+    <div class="tool-row" style="margin-top:0">
+      <div class="grow">
+        <label for="invType">Document type</label>
+        <select id="invType">
+          <option value="Invoice">Invoice</option>
+          <option value="Quote">Quote</option>
+        </select>
+      </div>
+      <div class="grow">
+        <label for="invNum">Number</label>
+        <input type="text" id="invNum" placeholder="e.g. INV-2026-001">
+      </div>
+      <div class="grow">
+        <label for="invDate">Date</label>
+        <input type="date" id="invDate">
+      </div>
+      <div class="grow">
+        <label for="invCurr">Currency</label>
+        <select id="invCurr">
+          <option value="CAD">CAD ($)</option>
+          <option value="USD">USD ($)</option>
+        </select>
+      </div>
+    </div>
+    <div class="tool-row">
+      <div class="grow">
+        <label for="invFrom">Your business name</label>
+        <input type="text" id="invFrom" placeholder="e.g. CluoPrints">
+      </div>
+      <div class="grow">
+        <label for="invFromEmail">Your email (optional)</label>
+        <input type="text" id="invFromEmail" placeholder="e.g. info@cluoprints.com">
+      </div>
+    </div>
+    <div class="tool-row">
+      <div class="grow">
+        <label for="invTo">Bill to (client name)</label>
+        <input type="text" id="invTo" placeholder="e.g. Café du Coin">
+      </div>
+      <div class="grow">
+        <label for="invTax">Tax rate (%)</label>
+        <input type="number" id="invTax" min="0" step="0.001" value="14.975">
+      </div>
+    </div>
+    <div class="preset-row">
+      <span class="preset-lbl">Tax presets:</span>
+      <button class="preset-btn active" type="button" data-tax="14.975">Quebec 14.975%</button>
+      <button class="preset-btn" type="button" data-tax="5">Canada GST 5%</button>
+      <button class="preset-btn" type="button" data-tax="0">No tax 0%</button>
+      <button class="preset-btn" type="button" id="invCustom">Custom</button>
+    </div>
+    <table class="inv-table">
+      <thead>
+        <tr><th>Description</th><th>Qty</th><th>Unit price</th><th>Amount</th><th></th></tr>
+      </thead>
+      <tbody id="invRows"></tbody>
+    </table>
+    <div class="tool-row">
+      <button class="btn-sm" type="button" id="invAdd">+ Add item</button>
+    </div>
+    <div class="inv-total">
+      <table>
+        <tr><td>Subtotal</td><td id="invSub">—</td></tr>
+        <tr><td>Tax</td><td id="invTaxAmt">—</td></tr>
+        <tr class="grand"><td>Total</td><td id="invTotal">—</td></tr>
+      </table>
+    </div>
+    <div class="tool-row">
+      <div class="grow">
+        <label for="invNotes">Notes (optional)</label>
+        <textarea id="invNotes" placeholder="e.g. Payment due within 30 days. Thank you for your business!"></textarea>
+      </div>
+    </div>
+    <div class="tool-row">
+      <button class="btn" type="button" id="invPrint">Print / Save as PDF</button>
+    </div>
+    <p class="tool-note">Tip: in the print dialog, choose “Save as PDF” to keep a copy. This tool only does the arithmetic — it is not tax advice. If you are unsure which taxes apply to your sale, check your local tax rules.</p>
+  </div>
+  <div class="cta-band">
+  <h2>Need a menu, a website or custom printing?</h2>
+  <p>We design menus, websites and custom apparel for small businesses in Quebec and across Canada — printed to order, no minimums.</p>
+  <a class="btn" href="contact.html">Contact us for a free quote</a>
+</div>
+</section>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Original graphic apparel designs and custom design studio based in Saint-Jean-sur-Richelieu, Quebec, Canada.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="shop.html">All Products</a>
+      <a href="shop.html?kind=tee">T-Shirts</a>
+      <a href="shop.html?kind=sweatshirt">Sweatshirts</a>
+      <a href="shop.html?kind=hoodie">Hoodies</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="ip-policy.html">IP Policy</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="custom.html">Custom Design</a>
+      <a href="about.html">About Us</a>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 CluoPrints. All designs original.</div>
+</footer>
+<script src="app.js"></script>
+<script>
+function invFmt(n){return '$'+n.toFixed(2);}
+function invRow(desc,qty,price){
+  var tr=document.createElement('tr');
+  tr.innerHTML='<td><input type="text" class="desc" placeholder="Item or service" value="'+(desc||'')+'"></td>'
+    +'<td><input type="number" class="qty" min="0" step="1" value="'+(qty==null?1:qty)+'"></td>'
+    +'<td><input type="number" class="price" min="0" step="0.01" placeholder="0.00" value="'+(price==null?'':price)+'"></td>'
+    +'<td class="amt">—</td>'
+    +'<td><button class="btn-sm" type="button" aria-label="Remove item">✕</button></td>';
+  tr.querySelector('button').addEventListener('click',function(){tr.remove();invCalc();});
+  return tr;
+}
+function invCalc(){
+  var sub=0;
+  document.querySelectorAll('#invRows tr').forEach(function(tr){
+    var q=parseFloat(tr.querySelector('.qty').value)||0;
+    var p=parseFloat(tr.querySelector('.price').value)||0;
+    var amt=q*p; sub+=amt;
+    tr.querySelector('.amt').textContent=invFmt(amt);
+  });
+  var taxPct=parseFloat(document.getElementById('invTax').value)||0;
+  var tax=sub*taxPct/100;
+  document.getElementById('invSub').textContent=invFmt(sub);
+  document.getElementById('invTaxAmt').textContent=invFmt(tax);
+  document.getElementById('invTotal').textContent=invFmt(sub+tax);
+}
+var invBody=document.getElementById('invRows');
+invBody.appendChild(invRow('Design services',1,''));
+invBody.appendChild(invRow('',1,''));
+document.getElementById('invRows').addEventListener('input',invCalc);
+document.getElementById('invTax').addEventListener('input',invCalc);
+document.getElementById('invAdd').addEventListener('click',function(){invBody.appendChild(invRow('',1,''));invCalc();});
+document.querySelectorAll('.preset-btn[data-tax]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    document.getElementById('invTax').value=btn.getAttribute('data-tax');
+    invCalc();
+  });
+});
+document.getElementById('invCustom').addEventListener('click',function(){
+  document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active');});
+  this.classList.add('active');
+  document.getElementById('invTax').focus();
+});
+document.getElementById('invPrint').addEventListener('click',function(){window.print();});
+(function(){
+  var d=new Date();
+  var iso=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  document.getElementById('invDate').value=iso;
+  document.getElementById('invNum').value='INV-'+d.getFullYear()+'-001';
+})();
+invCalc();
+</script>
+</body>
+</html>

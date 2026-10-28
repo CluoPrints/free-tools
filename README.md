@@ -9,7 +9,7 @@ These tools run entirely in your browser and are free to use. No installation is
 ## Tools
 
 - Invoice generator
-- QR generator
+- [QR generator](qr-generator.html)
 - Menu tools
 - Outfit tools
 - [Print cost calculator](print-cost-calculator.html) - Calculate printing costs

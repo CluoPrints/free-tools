@@ -8,7 +8,7 @@ These tools run entirely in your browser and are free to use. No installation is
 
 ## Tools
 
-- Invoice generator
+- [Invoice generator](invoice-generator.html)
 - [QR generator](qr-generator.html)
 - Menu tools
 - Outfit tools

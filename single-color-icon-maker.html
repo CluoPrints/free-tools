@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>AI Image Restyler · Single-Color Icon Maker</title>
+<meta name="description" content="Free single-color icon maker: upload any picture, restyle it into one consistent single-color look, keep good results as style references, and download multi-size PNGs. No sign-up, runs in your browser.">
+<link rel="canonical" href="https://cluoprints.com/single-color-icon-maker.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Single-Color Icon Maker — Free Tool | CluoPrints">
+<meta property="og:description" content="Free single-color icon maker: upload any picture, restyle it into one consistent single-color look, keep good results as style references, and download multi-size PNGs. No sign-up, runs in your browser.">
+<meta property="og:url" content="https://cluoprints.com/single-color-icon-maker.html">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<style>
+  :root{
+    --bg:#f4f2ed; --panel:#ffffff; --panel-2:#ece9e2; --ink:#1c1a17; --ink-2:#5c574f;
+    --line:#ddd8cf; --accent:#1d4ed8; --accent-ink:#ffffff; --accent-soft:#dbe6ff;
+    --good:#177245; --warn:#9a3412; --chip:#ece9e2;
+    --shadow:0 1px 2px rgba(28,26,23,.06),0 8px 24px rgba(28,26,23,.07);
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#171512; --panel:#22201c; --panel-2:#2b2925; --ink:#f0ede7; --ink-2:#a89f93;
+      --line:#3a372f; --accent:#6ea8ff; --accent-ink:#0d1526; --accent-soft:#22314f;
+      --good:#5ec98d; --warn:#f0a35e; --chip:#2b2925;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.55;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:20px 16px 56px}
+  h1{font-size:26px;line-height:1.25;margin:0 0 6px;font-weight:800;letter-spacing:.01em}
+  .lede{color:var(--ink-2);font-size:14.5px;margin:0;max-width:640px}
+  .lede b{color:var(--ink)}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 20px}
+  .flow span{
+    font-size:12.5px;background:var(--panel);border:1px solid var(--line);border-radius:999px;
+    padding:5px 12px;color:var(--ink-2);
+  }
+  .flow span.on{border-color:var(--accent);color:var(--accent);font-weight:700}
+  .layout{display:grid;grid-template-columns:340px 1fr;gap:16px;align-items:start}
+  @media (max-width:860px){.layout{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+  .card h2{font-size:15px;margin:0 0 12px;font-weight:800}
+  .card h2 .no{
+    display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;
+    background:var(--accent);color:var(--accent-ink);font-size:12px;margin-right:7px;vertical-align:2px;
+  }
+  .card + .card{margin-top:16px}
+  /* upload */
+  .drop{
+    border:2px dashed var(--line);border-radius:12px;padding:22px 14px;text-align:center;cursor:pointer;
+    transition:border-color .15s, background .15s;background:var(--panel-2);
+  }
+  .drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+  .drop .big{font-size:15px;font-weight:700}
+  .drop .small{font-size:12.5px;color:var(--ink-2);margin-top:4px}
+  input[type=file]{display:none}
+  .samples{margin-top:12px}
+  .samples p{font-size:12.5px;color:var(--ink-2);margin:0 0 8px}
+  .sample-row{display:flex;gap:8px}
+  .sample-btn{
+    flex:1;font-size:26px;line-height:1;padding:10px 0;border-radius:10px;border:1px solid var(--line);
+    background:var(--panel);cursor:pointer;
+  }
+  .sample-btn:hover{border-color:var(--accent)}
+  .filemeta{font-size:12.5px;color:var(--ink-2);margin-top:10px;word-break:break-all;display:none}
+  /* swatches */
+  .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .sw{
+    border:2px solid var(--line);border-radius:10px;padding:7px 4px 5px;cursor:pointer;background:var(--panel);
+    text-align:center;font-size:12px;color:var(--ink-2);
+  }
+  .sw .dot{display:block;width:26px;height:26px;border-radius:50%;margin:0 auto 4px;border:1px solid rgba(0,0,0,.15)}
+  .sw.sel{border-color:var(--accent);color:var(--ink);font-weight:700}
+  .custom-color{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:13px;color:var(--ink-2)}
+  .custom-color input[type=color]{width:44px;height:32px;border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:2px;cursor:pointer}
+  .lockbar{
+    display:none;margin-top:12px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:10px;
+    padding:9px 12px;font-size:13px;
+  }
+  .lockbar b{color:var(--accent)}
+  .lockbar button{margin-left:8px}
+  /* sliders */
+  .ctl{margin:13px 0}
+  .ctl label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px}
+  .ctl label output{font-variant-numeric:tabular-nums;color:var(--ink-2);font-weight:700}
+  input[type=range]{width:100%;accent-color:var(--accent);height:28px}
+  .seg{display:flex;gap:6px}
+  .seg button{
+    flex:1;padding:8px 4px;font-size:13px;border-radius:9px;border:1px solid var(--line);
+    background:var(--panel);color:var(--ink-2);cursor:pointer;font-family:inherit;
+  }
+  .seg button.sel{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+  .check{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;margin:12px 0;cursor:pointer}
+  .check input{width:18px;height:18px;margin-top:2px;accent-color:var(--accent)}
+  .check small{display:block;color:var(--ink-2);font-size:12px}
+  /* preview */
+  .preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:560px){.preview-grid{grid-template-columns:1fr}}
+  .pv{text-align:center}
+  .pv .tag{font-size:12.5px;color:var(--ink-2);margin-bottom:7px;font-weight:700;letter-spacing:.04em}
+  .frame{
+    aspect-ratio:1/1;border-radius:12px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+    overflow:hidden;position:relative;
+  }
+  .frame.checker{
+    background-color:#fff;
+    background-image:linear-gradient(45deg,#d9d9d9 25%,transparent 25%),linear-gradient(-45deg,#d9d9d9 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#d9d9d9 75%),linear-gradient(-45deg,transparent 75%,#d9d9d9 75%);
+    background-size:22px 22px;background-position:0 0,0 11px,11px -11px,-11px 0;
+  }
+  @media (prefers-color-scheme: dark){.frame.checker{background-color:#2a2a2a}}
+  .frame img,.frame canvas{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;display:block}
+  .frame .empty{color:var(--ink-2);font-size:13.5px;padding:20px}
+  .actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+  button.btn{
+    font-family:inherit;font-size:14px;font-weight:700;border-radius:10px;padding:11px 18px;cursor:pointer;
+    border:1px solid var(--line);background:var(--panel);color:var(--ink);
+  }
+  button.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  button.btn:disabled{opacity:.45;cursor:not-allowed}
+  button.btn.small{padding:6px 12px;font-size:12.5px;font-weight:600}
+  .sizes{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .sizes button{
+    font-family:inherit;font-size:13px;padding:8px 13px;border-radius:9px;border:1px solid var(--line);
+    background:var(--panel-2);color:var(--ink);cursor:pointer;font-weight:600;
+  }
+  .sizes button:disabled{opacity:.45;cursor:not-allowed}
+  .sizes button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+  /* library */
+  .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
+  .lib-item{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--panel)}
+  .lib-item .thumb{aspect-ratio:1/1;background:#fff;display:flex;align-items:center;justify-content:center}
+  @media (prefers-color-scheme: dark){.lib-item .thumb{background:#2a2a2a}}
+  .lib-item img{width:100%;height:100%;object-fit:contain;display:block}
+  .lib-item .bar{display:flex;gap:4px;padding:6px}
+  .lib-item .bar button{
+    flex:1;font-family:inherit;font-size:11.5px;padding:6px 2px;border-radius:7px;cursor:pointer;
+    border:1px solid var(--line);background:var(--panel);color:var(--ink);
+  }
+  .lib-item .bar button.use{border-color:var(--accent);color:var(--accent);font-weight:700}
+  .lib-empty{color:var(--ink-2);font-size:13.5px;border:1px dashed var(--line);border-radius:11px;padding:18px;text-align:center}
+  .toast{
+    position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;
+    background:var(--ink);color:var(--bg);font-size:13.5px;font-weight:600;padding:10px 18px;border-radius:999px;
+    transition:opacity .2s,transform .2s;z-index:50;max-width:88vw;text-align:center;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .note{font-size:12.5px;color:var(--ink-2);margin-top:14px}
+  .stat{font-size:12.5px;color:var(--ink-2)}
+  .stat b{color:var(--ink)}
+</style>
+</head>
+<body>
+<header style="background:#1c2430;color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <a href="index.html" style="color:#fff;font-weight:800;text-decoration:none;font-size:18px">CluoPrints</a>
+  <span style="font-size:14px"><a href="tools.html" style="color:#fff;text-decoration:none">Free Tools</a> &nbsp;·&nbsp; <a href="single-color-icon-maker-fr.html" style="color:#fff;text-decoration:none">FR</a></span>
+</header>
+<div class="wrap">
+  <h1>Single-Color Icon Maker</h1>
+  <p class="lede">Free version · Everything runs in your own browser: <b>no uploads to any server, no paid AI APIs</b>. Upload any picture and instantly restyle it into one consistent single-color look. Save results you like to the reference library, and the next picture automatically follows the same style, so you can build a full matching icon set.</p>
+
+  <div class="flow" id="flowBar">
+    <span data-step="1" class="on">1 · Upload a picture</span>
+    <span data-step="2">2 · Pick a color and style</span>
+    <span data-step="3">3 · Fine-tune</span>
+    <span data-step="4">4 · Add to library / Download</span>
+  </div>
+
+  <div class="layout">
+    <div>
+      <section class="card">
+        <h2><span class="no">1</span>Upload a picture</h2>
+        <div class="drop" id="dropZone" role="button" tabindex="0" aria-label="Upload a picture">
+          <div class="big">Click to choose a picture, or drag one in</div>
+          <div class="small">JPG / PNG / WebP supported · Clear subjects on simple backgrounds work best</div>
+        </div>
+        <input type="file" id="fileInput" accept="image/*" />
+        <div class="filemeta" id="fileMeta"></div>
+        <div class="samples">
+          <p>No picture handy? Try the flow with a sample:</p>
+          <div class="sample-row">
+            <button class="sample-btn" data-emoji="🦆" title="Duck">🦆</button>
+            <button class="sample-btn" data-emoji="🕶️" title="Sunglasses">🕶️</button>
+            <button class="sample-btn" data-emoji="🐶" title="Dog">🐶</button>
+            <button class="sample-btn" data-emoji="🎧" title="Headphones">🎧</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2><span class="no">2</span>Main color and style</h2>
+        <div class="swatches" id="swatches"></div>
+        <div class="custom-color">
+          <input type="color" id="customColor" value="#7c3aed" />
+          <span>Custom color (click the swatch to pick any color)</span>
+        </div>
+        <div class="lockbar" id="lockBar">
+          Following the library style:<b id="lockName"></b>
+          <button class="btn small" id="unlockBtn" type="button">Unlock</button>
+        </div>
+        <div class="ctl">
+          <label>Color levels (fewer = flatter, more icon-like)<output id="levelsOut">4</output></label>
+          <input type="range" id="levels" min="2" max="8" step="1" value="4" />
+        </div>
+        <div class="ctl">
+          <label>Depth (light-dark range)<output id="depthOut">80</output></label>
+          <input type="range" id="depth" min="30" max="100" step="1" value="80" />
+        </div>
+      </section>
+
+      <section class="card">
+        <h2><span class="no">3</span>Fine-tuning</h2>
+        <label class="check">
+          <input type="checkbox" id="removeBg" checked />
+          <span>Remove white background<small>Turns near-white backgrounds transparent, with softly feathered edges</small></span>
+        </label>
+        <div class="ctl">
+          <label>Background-removal tolerance<output id="tolOut">28</output></label>
+          <input type="range" id="tol" min="5" max="60" step="1" value="28" />
+        </div>
+        <div class="ctl">
+          <label>Contrast<output id="contrastOut">15</output></label>
+          <input type="range" id="contrast" min="-40" max="60" step="1" value="15" />
+        </div>
+        <div class="ctl">
+          <label>Brightness<output id="brightOut">0</output></label>
+          <input type="range" id="bright" min="-40" max="40" step="1" value="0" />
+        </div>
+        <div class="ctl">
+          <label>Icon padding (%)<output id="padOut">8</output></label>
+          <input type="range" id="pad" min="0" max="25" step="1" value="8" />
+        </div>
+        <div class="ctl">
+          <label>Export background</label>
+          <div class="seg" id="bgSeg">
+            <button data-bg="transparent" class="sel" type="button">Transparent</button>
+            <button data-bg="white" type="button">White</button>
+            <button data-bg="light" type="button">Light gray</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <section class="card">
+        <h2>Preview</h2>
+        <div class="preview-grid">
+          <div class="pv">
+            <div class="tag">Original</div>
+            <div class="frame"><img id="srcImg" alt="Original preview" style="display:none" /><div class="empty" id="srcEmpty">No picture yet<br/>Upload one on the left, or pick a sample</div></div>
+          </div>
+          <div class="pv">
+            <div class="tag">Single-color result</div>
+            <div class="frame checker"><canvas id="outCanvas" width="640" height="640" style="display:none"></canvas><div class="empty" id="outEmpty">Your result will appear here</div></div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" id="addLibBtn" type="button" disabled>✓ Looks good, add to library</button>
+          <button class="btn" id="resetBtn" type="button">Reset to defaults</button>
+        </div>
+        <p class="note">Once added to the library, this picture’s color and all settings are locked in as the “current style”, and every picture you upload after that automatically follows the same style — that’s the secret to a consistent-looking icon set.</p>
+      </section>
+
+      <section class="card">
+        <h2><span class="no">4</span>Download (multi-size PNG)</h2>
+        <div class="sizes" id="sizeBtns">
+          <button data-size="1024" type="button" disabled>1024 × 1024</button>
+          <button data-size="512" type="button" disabled>512 × 512</button>
+          <button data-size="256" type="button" disabled>256 × 256</button>
+          <button data-size="128" type="button" disabled>128 × 128</button>
+          <button data-size="64" type="button" disabled>64 × 64</button>
+          <button data-size="32" type="button" disabled>32 × 32</button>
+        </div>
+        <p class="note">This downloads the picture currently in preview. Each picture in the library can also be downloaded on its own (see the buttons on its card below).</p>
+      </section>
+
+      <section class="card">
+        <h2>Reference library <span class="stat" id="libStat">(<b>0</b> pictures total)</span></h2>
+        <div class="lib-empty" id="libEmpty">Still empty. When you make a picture you like, click “Add to library” and it will show up here as the style reference for later pictures.</div>
+        <div class="lib-grid" id="libGrid"></div>
+        <div class="actions" id="libActions" style="display:none">
+          <button class="btn small" id="dlAllBtn" type="button">Download all one by one (512px)</button>
+          <button class="btn small" id="clearLibBtn" type="button">Clear library</button>
+        </div>
+        <p class="note">The library only lives in this page — refreshing or closing the page clears it, so please download important pictures first.</p>
+      </section>
+    </div>
+  </div>
+<p class="note" style="font-size:13px">Need a matching set designed for your business? <a href="mailto:info@cluoprints.com?subject=Menu%20design">Menu design from $149</a> · <a href="mailto:info@cluoprints.com?subject=Social%20media%20pack">Social media pack from C$149/mo</a> · <a href="mailto:info@cluoprints.com?subject=Website">Website from C$699</a></p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var PRESETS = [
+    {name:"Classic Blue", hex:"#2563eb"},
+    {name:"Vivid Orange", hex:"#ea580c"},
+    {name:"Forest Green",   hex:"#16a34a"},
+    {name:"Berry Red",   hex:"#dc2645"},
+    {name:"Grape Purple", hex:"#7c3aed"},
+    {name:"Lake Teal",   hex:"#0e9594"},
+    {name:"Honey Yellow",   hex:"#d97706"},
+    {name:"Graphite", hex:"#3f3f46"}
+  ];
+
+  var state = {
+    srcCanvas: null,     // original (scaled to <=1024)
+    srcName: "icon",
+    color: PRESETS[0].hex,
+    colorName: PRESETS[0].name,
+    locked: false,
+    bg: "transparent",
+    library: []          // {id, dataUrl(the 512 preview uses the 1024 processed original), settings}
+  };
+
+  var $ = function(id){ return document.getElementById(id); };
+  var els = {
+    drop: $("dropZone"), file: $("fileInput"), fileMeta: $("fileMeta"),
+    srcImg: $("srcImg"), srcEmpty: $("srcEmpty"),
+    out: $("outCanvas"), outEmpty: $("outEmpty"),
+    swatches: $("swatches"), customColor: $("customColor"),
+    lockBar: $("lockBar"), lockName: $("lockName"),
+    levels: $("levels"), depth: $("depth"), removeBg: $("removeBg"),
+    tol: $("tol"), contrast: $("contrast"), bright: $("bright"), pad: $("pad"),
+    bgSeg: $("bgSeg"), addLib: $("addLibBtn"), reset: $("resetBtn"),
+    sizeBtns: $("sizeBtns"), libGrid: $("libGrid"), libEmpty: $("libEmpty"),
+    libStat: $("libStat"), libActions: $("libActions"),
+    toast: $("toast"), flow: $("flowBar")
+  };
+  var outCtx = els.out.getContext("2d");
+
+  function toast(msg){
+    els.toast.textContent = msg;
+    els.toast.classList.add("show");
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function(){ els.toast.classList.remove("show"); }, 2400);
+  }
+
+  /* ---------- Color tools ---------- */
+  function hexToRgb(hex){
+    hex = hex.replace("#","");
+    if(hex.length===3) hex = hex.split("").map(function(c){return c+c;}).join("");
+    var n = parseInt(hex,16);
+    return {r:(n>>16)&255, g:(n>>8)&255, b:n&255};
+  }
+  function mix(a,b,t){ return {r:Math.round(a.r+(b.r-a.r)*t), g:Math.round(a.g+(b.g-a.g)*t), b:Math.round(a.b+(b.b-a.b)*t)}; }
+  function rampFor(hex, depthPct){
+    var base = hexToRgb(hex);
+    var depth = depthPct/100;               // Depth: how far the darkest shade is pushed toward black
+    var dark = mix(base, {r:0,g:0,b:0}, 0.25 + depth*0.55);
+    var lite = mix(base, {r:255,g:255,b:255}, 0.88 - depth*0.25);
+    return {dark:dark, base:base, lite:lite};
+  }
+
+  /* ---------- Read settings ---------- */
+  function getSettings(){
+    return {
+      color: state.color, colorName: state.colorName,
+      levels: +els.levels.value, depth: +els.depth.value,
+      removeBg: els.removeBg.checked, tol: +els.tol.value,
+      contrast: +els.contrast.value, bright: +els.bright.value,
+      pad: +els.pad.value, bg: state.bg
+    };
+  }
+  function applySettings(s){
+    state.color = s.color; state.colorName = s.colorName;
+    els.levels.value = s.levels; els.depth.value = s.depth;
+    els.removeBg.checked = s.removeBg; els.tol.value = s.tol;
+    els.contrast.value = s.contrast; els.bright.value = s.bright;
+    els.pad.value = s.pad; state.bg = s.bg;
+    syncOutputs(); syncSwatchSel(); syncBgSeg();
+  }
+  function syncOutputs(){
+    $("levelsOut").textContent = els.levels.value;
+    $("depthOut").textContent = els.depth.value;
+    $("tolOut").textContent = els.tol.value;
+    $("contrastOut").textContent = els.contrast.value;
+    $("brightOut").textContent = els.bright.value;
+    $("padOut").textContent = els.pad.value;
+  }
+
+  /* ---------- Core processing ---------- */
+  // Render the original as a single-color icon onto the target canvas (square size×size)
+  function render(targetCanvas, size, s){
+    s = s || getSettings();
+    var src = state.srcCanvas;
+    if(!src) return false;
+    targetCanvas.width = size; targetCanvas.height = size;
+    var ctx = targetCanvas.getContext("2d");
+
+    // 1) First, per-pixel processing at the original size
+    var work = document.createElement("canvas");
+    work.width = src.width; work.height = src.height;
+    var wctx = work.getContext("2d");
+    wctx.drawImage(src, 0, 0);
+    var imgData;
+    try { imgData = wctx.getImageData(0,0,work.width,work.height); }
+    catch(e){ toast("This picture’s pixels can’t be read (possibly cross-origin). Please try a local picture."); return false; }
+    var d = imgData.data;
+    var ramp = rampFor(s.color, s.depth);
+    var levels = s.levels;
+    var cf = (259*(s.contrast+255))/(255*(259-s.contrast)); // contrast factor (simplified version used here)
+    var cAdj = 1 + s.contrast/100;
+    var tol = s.tol;
+    for(var i=0;i<d.length;i+=4){
+      var r=d[i], g=d[i+1], b=d[i+2], a=d[i+3];
+      if(a===0) continue;
+      var lum = (0.299*r + 0.587*g + 0.114*b)/255;      // 0..1
+      // Remove white background: the closer to pure white, the more transparent (with feathering)
+      if(s.removeBg){
+        var white = Math.min(r,g,b)/255;                 // counts as white only when all three channels are high
+        var start = 1 - tol/100;                          // point where transparency starts
+        if(white > start){
+          var t = (white - start)/Math.max(0.01,(1-start)); // 0..1
+          a = Math.round(a * (1 - Math.pow(t,1.6)));
+          if(a<8){ d[i+3]=0; continue; }
+        }
+      }
+      // Brightness/contrast
+      lum = lum + s.bright/200;
+      lum = (lum - 0.5)*cAdj + 0.5;
+      if(lum<0) lum=0; if(lum>1) lum=1;
+      // Color-level quantization (flattening)
+      var q = Math.round(lum*(levels-1))/(levels-1);
+      // Pick along the color ramp: 0 → dark, 0.5 → main color, 1 → near-white light
+      var col;
+      if(q<=0.5) col = mix(ramp.dark, ramp.base, q*2);
+      else col = mix(ramp.base, ramp.lite, (q-0.5)*2);
+      d[i]=col.r; d[i+1]=col.g; d[i+2]=col.b; d[i+3]=a;
+    }
+    wctx.putImageData(imgData,0,0);
+
+    // 2) Then composite onto a square canvas (centered + padding + background)
+    if(s.bg==="white"){ ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,size,size); }
+    else if(s.bg==="light"){ ctx.fillStyle="#eef0f2"; ctx.fillRect(0,0,size,size); }
+    else ctx.clearRect(0,0,size,size);
+    var padPx = size * s.pad/100;
+    var avail = size - padPx*2;
+    var scale = Math.min(avail/src.width, avail/src.height);
+    var w = src.width*scale, h = src.height*scale;
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(work, (size-w)/2, (size-h)/2, w, h);
+    return true;
+  }
+
+  function refresh(){
+    syncOutputs();
+    var has = !!state.srcCanvas;
+    els.addLib.disabled = !has;
+    var btns = els.sizeBtns.querySelectorAll("button");
+    for(var i=0;i<btns.length;i++) btns[i].disabled = !has;
+    if(!has) return;
+    if(render(els.out, 640)){
+      els.out.style.display = "block";
+      els.outEmpty.style.display = "none";
+    }
+    setStep(state.library.length ? 4 : 2);
+  }
+
+  function setStep(n){
+    var spans = els.flow.querySelectorAll("span");
+    for(var i=0;i<spans.length;i++){
+      spans[i].classList.toggle("on", +spans[i].getAttribute("data-step") <= n);
+    }
+  }
+
+  /* ---------- Load pictures ---------- */
+  function loadImageElement(img, name){
+    var max = 1024;
+    var scale = Math.min(1, max/Math.max(img.naturalWidth||img.width, img.naturalHeight||img.height));
+    var c = document.createElement("canvas");
+    c.width = Math.max(1, Math.round((img.naturalWidth||img.width)*scale));
+    c.height = Math.max(1, Math.round((img.naturalHeight||img.height)*scale));
+    c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+    state.srcCanvas = c;
+    state.srcName = (name||"icon").replace(/\.[^.]+$/,"") || "icon";
+    els.srcImg.src = c.toDataURL("image/png");
+    els.srcImg.style.display = "block";
+    els.srcEmpty.style.display = "none";
+    els.fileMeta.style.display = "block";
+    els.fileMeta.textContent = "Current picture: " + state.srcName + "(" + c.width + " × " + c.height + ")" +
+      (state.locked ? " · Library style applied automatically" : "");
+    setStep(2);
+    refresh();
+  }
+  function loadFile(file){
+    if(!file) return;
+    if(file.type.indexOf("image/")!==0){ toast("Please choose a picture file"); return; }
+    var url = URL.createObjectURL(file);
+    var img = new Image();
+    img.onload = function(){ loadImageElement(img, file.name); URL.revokeObjectURL(url); };
+    img.onerror = function(){ toast("Couldn’t read the picture — please try another one"); URL.revokeObjectURL(url); };
+    img.src = url;
+  }
+  function loadEmoji(emoji){
+    var c = document.createElement("canvas");
+    c.width = 480; c.height = 480;
+    var x = c.getContext("2d");
+    x.font = "380px 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif";
+    x.textAlign = "center"; x.textBaseline = "middle";
+    x.fillText(emoji, 240, 258);
+    var img = new Image();
+    img.onload = function(){ loadImageElement(img, "sample-" + emoji); };
+    img.src = c.toDataURL("image/png");
+  }
+
+  els.drop.addEventListener("click", function(){ els.file.click(); });
+  els.drop.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); els.file.click(); } });
+  els.file.addEventListener("change", function(){ loadFile(els.file.files[0]); els.file.value=""; });
+  ["dragenter","dragover"].forEach(function(ev){ els.drop.addEventListener(ev, function(e){ e.preventDefault(); els.drop.classList.add("over"); }); });
+  ["dragleave","drop"].forEach(function(ev){ els.drop.addEventListener(ev, function(e){ e.preventDefault(); els.drop.classList.remove("over"); }); });
+  els.drop.addEventListener("drop", function(e){ loadFile(e.dataTransfer.files[0]); });
+  document.querySelectorAll(".sample-btn").forEach(function(b){
+    b.addEventListener("click", function(){ loadEmoji(b.getAttribute("data-emoji")); });
+  });
+
+  /* ---------- Style picker ---------- */
+  PRESETS.forEach(function(p){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "sw"; b.setAttribute("data-hex", p.hex);
+    b.innerHTML = '<span class="dot" style="background:'+p.hex+'"></span>' + p.name;
+    b.addEventListener("click", function(){
+      state.color = p.hex; state.colorName = p.name;
+      state.locked = false; els.lockBar.style.display = "none";
+      syncSwatchSel(); refresh();
+    });
+    els.swatches.appendChild(b);
+  });
+  function syncSwatchSel(){
+    var nodes = els.swatches.querySelectorAll(".sw");
+    for(var i=0;i<nodes.length;i++){
+      nodes[i].classList.toggle("sel", nodes[i].getAttribute("data-hex").toLowerCase() === state.color.toLowerCase());
+    }
+  }
+  els.customColor.addEventListener("input", function(){
+    state.color = els.customColor.value; state.colorName = "Custom color";
+    state.locked = false; els.lockBar.style.display = "none";
+    syncSwatchSel(); refresh();
+  });
+  $("unlockBtn").addEventListener("click", function(){
+    state.locked = false; els.lockBar.style.display = "none"; toast("Style lock released — you can change colors freely now");
+  });
+
+  /* ---------- Controls ---------- */
+  [els.levels, els.depth, els.tol, els.contrast, els.bright, els.pad].forEach(function(el){
+    el.addEventListener("input", refresh);
+  });
+  els.removeBg.addEventListener("change", refresh);
+  function syncBgSeg(){
+    var btns = els.bgSeg.querySelectorAll("button");
+    for(var i=0;i<btns.length;i++) btns[i].classList.toggle("sel", btns[i].getAttribute("data-bg")===state.bg);
+  }
+  els.bgSeg.querySelectorAll("button").forEach(function(b){
+    b.addEventListener("click", function(){ state.bg = b.getAttribute("data-bg"); syncBgSeg(); refresh(); });
+  });
+  els.reset.addEventListener("click", function(){
+    applySettings({ color:PRESETS[0].hex, colorName:PRESETS[0].name, levels:4, depth:80,
+      removeBg:true, tol:28, contrast:15, bright:0, pad:8, bg:"transparent" });
+    state.locked = false; els.lockBar.style.display = "none";
+    refresh(); toast("Settings reset to defaults");
+  });
+
+  /* ---------- Download ---------- */
+  function downloadCanvas(canvas, filename){
+    var a = document.createElement("a");
+    a.download = filename;
+    a.href = canvas.toDataURL("image/png");
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+  els.sizeBtns.querySelectorAll("button").forEach(function(b){
+    b.addEventListener("click", function(){
+      var size = +b.getAttribute("data-size");
+      var c = document.createElement("canvas");
+      if(render(c, size)) downloadCanvas(c, state.srcName + "-" + state.colorName + "-" + size + ".png");
+    });
+  });
+
+  /* ---------- Reference library ---------- */
+  function renderLibrary(){
+    els.libGrid.innerHTML = "";
+    els.libEmpty.style.display = state.library.length ? "none" : "block";
+    els.libActions.style.display = state.library.length ? "flex" : "none";
+    els.libStat.innerHTML = "(<b>" + state.library.length + "</b> pictures total)";
+    state.library.forEach(function(item){
+      var div = document.createElement("div");
+      div.className = "lib-item";
+      div.innerHTML =
+        '<div class="thumb"><img alt="Library icon"></div>' +
+        '<div class="bar">' +
+          '<button class="use" type="button">Use style</button>' +
+          '<button class="dl" type="button">Download 512</button>' +
+          '<button class="del" type="button">Delete</button>' +
+        '</div>';
+      div.querySelector("img").src = item.thumb;
+      div.querySelector(".use").addEventListener("click", function(){
+        applySettings(item.settings);
+        state.locked = true;
+        els.lockName.textContent = item.settings.colorName;
+        els.lockBar.style.display = "block";
+        refresh();
+        toast("Locked in “" + item.settings.colorName + "” style — the next picture will follow it automatically");
+        window.scrollTo({top:0, behavior:"smooth"});
+      });
+      div.querySelector(".dl").addEventListener("click", function(){
+        // Re-render with this entry’s own original and settings, then download
+        var keepSrc = state.srcCanvas, keepSet = getSettings();
+        state.srcCanvas = item.srcCanvas;
+        var c = document.createElement("canvas");
+        if(render(c, 512, item.settings)) downloadCanvas(c, item.name + "-512.png");
+        state.srcCanvas = keepSrc; applySettings(keepSet); refresh();
+      });
+      div.querySelector(".del").addEventListener("click", function(){
+        state.library = state.library.filter(function(x){ return x.id !== item.id; });
+        renderLibrary(); toast("Removed from library");
+      });
+      els.libGrid.appendChild(div);
+    });
+  }
+
+  els.addLib.addEventListener("click", function(){
+    if(!state.srcCanvas) return;
+    var c = document.createElement("canvas");
+    if(!render(c, 512)) return;
+    var s = getSettings();
+    state.library.push({
+      id: Date.now() + Math.random(),
+      name: state.srcName + "-" + s.colorName,
+      thumb: c.toDataURL("image/png"),
+      srcCanvas: state.srcCanvas,
+      settings: s
+    });
+    // Adding locks it as the current style
+    state.locked = true;
+    els.lockName.textContent = s.colorName;
+    els.lockBar.style.display = "block";
+    if(state.srcCanvas){
+      els.fileMeta.textContent = "Current picture: " + state.srcName + " · Library style applied automatically";
+    }
+    renderLibrary();
+    setStep(4);
+    toast("Added to the library and locked as the current style — just upload the next picture");
+  });
+
+  $("clearLibBtn").addEventListener("click", function(){
+    state.library = []; state.locked = false; els.lockBar.style.display = "none";
+    renderLibrary(); toast("Library cleared");
+  });
+  $("dlAllBtn").addEventListener("click", function(){
+    if(!state.library.length) return;
+    var keepSrc = state.srcCanvas, keepSet = getSettings();
+    var i = 0;
+    toast("Downloading one by one, " + state.library.length + " pictures total");
+    (function next(){
+      if(i >= state.library.length){
+        state.srcCanvas = keepSrc; if(keepSrc){ applySettings(keepSet); refresh(); }
+        return;
+      }
+      var item = state.library[i++];
+      state.srcCanvas = item.srcCanvas;
+      var c = document.createElement("canvas");
+      if(render(c, 512, item.settings)) downloadCanvas(c, item.name + "-512.png");
+      setTimeout(next, 450);
+    })();
+  });
+
+  /* ---------- Init ---------- */
+  syncOutputs(); syncSwatchSel(); syncBgSeg(); refresh();
+})();
+</script>
+</body>
+</html>

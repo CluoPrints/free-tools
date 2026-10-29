@@ -71,7 +71,7 @@
   .drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-soft)}
   .drop .big{font-size:15px;font-weight:700}
   .drop .small{font-size:12.5px;color:var(--ink-2);margin-top:4px}
-  input[type=file]{display:none}
+  input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
   .samples{margin-top:12px}
   .samples p{font-size:12.5px;color:var(--ink-2);margin:0 0 8px}
   .sample-row{display:flex;gap:8px}
@@ -187,12 +187,13 @@
     <div>
       <section class="card">
         <h2><span class="no">1</span>Upload a picture</h2>
-        <div class="drop" id="dropZone" role="button" tabindex="0" aria-label="Upload a picture">
+        <label class="drop" id="dropZone" for="fileInput" tabindex="0" aria-label="Upload a picture">
           <div class="big">Click to choose a picture, or drag one in</div>
           <div class="small">JPG / PNG / WebP supported · Clear subjects on simple backgrounds work best</div>
-        </div>
+        </label>
         <input type="file" id="fileInput" accept="image/*" />
         <div class="filemeta" id="fileMeta"></div>
+        <div class="filemeta" id="uploadStatus"></div>
         <div class="samples">
           <p>No picture handy? Try the flow with a sample:</p>
           <div class="sample-row">
@@ -336,6 +337,7 @@
   var $ = function(id){ return document.getElementById(id); };
   var els = {
     drop: $("dropZone"), file: $("fileInput"), fileMeta: $("fileMeta"),
+    status: $("uploadStatus"),
     srcImg: $("srcImg"), srcEmpty: $("srcEmpty"),
     out: $("outCanvas"), outEmpty: $("outEmpty"),
     swatches: $("swatches"), customColor: $("customColor"),
@@ -354,6 +356,11 @@
     els.toast.classList.add("show");
     clearTimeout(toast._t);
     toast._t = setTimeout(function(){ els.toast.classList.remove("show"); }, 2400);
+  }
+  function setStatus(msg){
+    if(!msg){ els.status.style.display = "none"; els.status.textContent = ""; return; }
+    els.status.style.display = "block";
+    els.status.textContent = msg;
   }
 
   /* ---------- Color tools ---------- */
@@ -505,11 +512,11 @@
   }
   function loadFile(file){
     if(!file) return;
-    if(file.type.indexOf("image/")!==0){ toast("Please choose a picture file"); return; }
+    setStatus("Processing\u2026");
     var url = URL.createObjectURL(file);
     var img = new Image();
-    img.onload = function(){ loadImageElement(img, file.name); URL.revokeObjectURL(url); };
-    img.onerror = function(){ toast("Couldn’t read the picture — please try another one"); URL.revokeObjectURL(url); };
+    img.onload = function(){ setStatus(""); loadImageElement(img, file.name); URL.revokeObjectURL(url); };
+    img.onerror = function(){ setStatus("Could not read this picture. Please try another one, ideally a JPG or PNG saved on this device."); URL.revokeObjectURL(url); };
     img.src = url;
   }
   function loadEmoji(emoji){
@@ -524,7 +531,6 @@
     img.src = c.toDataURL("image/png");
   }
 
-  els.drop.addEventListener("click", function(){ els.file.click(); });
   els.drop.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); els.file.click(); } });
   els.file.addEventListener("change", function(){ loadFile(els.file.files[0]); els.file.value=""; });
   ["dragenter","dragover"].forEach(function(ev){ els.drop.addEventListener(ev, function(e){ e.preventDefault(); els.drop.classList.add("over"); }); });

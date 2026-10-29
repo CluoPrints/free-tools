@@ -71,7 +71,9 @@
   .drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-soft)}
   .drop .big{font-size:15px;font-weight:700}
   .drop .small{font-size:12.5px;color:var(--ink-2);margin-top:4px}
-  input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+  .pickwrap{position:relative;display:block;width:fit-content;max-width:94%;margin:12px auto 2px}
+  .pickface{display:inline-block;padding:9px 18px;border:1px solid var(--line);border-radius:10px;background:var(--accent-soft);color:var(--accent-ink);font-weight:600;font-size:14.5px}
+  .pickinput{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
   .samples{margin-top:12px}
   .samples p{font-size:12.5px;color:var(--ink-2);margin:0 0 8px}
   .sample-row{display:flex;gap:8px}
@@ -190,8 +192,8 @@
         <label class="drop" id="dropZone" for="fileInput" tabindex="0" aria-label="Upload a picture">
           <div class="big">Click to choose a picture, or drag one in</div>
           <div class="small">JPG / PNG / WebP supported · Clear subjects on simple backgrounds work best</div>
+          <span class="pickwrap"><span class="pickface">Choose a picture</span><input type="file" id="fileInput" class="pickinput" accept="image/*" /></span>
         </label>
-        <input type="file" id="fileInput" accept="image/*" />
         <div class="filemeta" id="fileMeta"></div>
         <div class="filemeta" id="uploadStatus"></div>
         <div class="samples">
@@ -515,8 +517,21 @@
     setStatus("Processing\u2026");
     var url = URL.createObjectURL(file);
     var img = new Image();
-    img.onload = function(){ setStatus(""); loadImageElement(img, file.name); URL.revokeObjectURL(url); };
-    img.onerror = function(){ setStatus("Could not read this picture. Please try another one, ideally a JPG or PNG saved on this device."); URL.revokeObjectURL(url); };
+    var done = false;
+    function fail(){ if(done) return; done = true; setStatus("Could not read this picture. Please try another one, ideally a JPG or PNG saved on this device."); }
+    img.onload = function(){ if(done) return; done = true; setStatus(""); loadImageElement(img, file.name); URL.revokeObjectURL(url); };
+    img.onerror = function(){
+      URL.revokeObjectURL(url);
+      var reader = new FileReader();
+      reader.onload = function(){
+        var img2 = new Image();
+        img2.onload = function(){ if(done) return; done = true; setStatus(""); loadImageElement(img2, file.name); };
+        img2.onerror = fail;
+        img2.src = reader.result;
+      };
+      reader.onerror = fail;
+      try { reader.readAsDataURL(file); } catch(e) { fail(); }
+    };
     img.src = url;
   }
   function loadEmoji(emoji){
@@ -532,7 +547,22 @@
   }
 
   els.drop.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); els.file.click(); } });
-  els.file.addEventListener("change", function(){ loadFile(els.file.files[0]); els.file.value=""; });
+  var _lastSig = "";
+  function tryPick(){
+    var f = els.file.files && els.file.files[0];
+    if(!f) return;
+    var sig = f.name + "|" + f.size + "|" + f.lastModified;
+    if(sig === _lastSig) return;
+    _lastSig = sig;
+    loadFile(f);
+  }
+  els.file.addEventListener("change", tryPick);
+  els.file.addEventListener("input", tryPick);
+  window.addEventListener("focus", function(){
+    var n = 0;
+    var t = setInterval(function(){ tryPick(); if(++n >= 10) clearInterval(t); }, 300);
+  });
+  setInterval(tryPick, 1200);
   ["dragenter","dragover"].forEach(function(ev){ els.drop.addEventListener(ev, function(e){ e.preventDefault(); els.drop.classList.add("over"); }); });
   ["dragleave","drop"].forEach(function(ev){ els.drop.addEventListener(ev, function(e){ e.preventDefault(); els.drop.classList.remove("over"); }); });
   els.drop.addEventListener("drop", function(e){ loadFile(e.dataTransfer.files[0]); });

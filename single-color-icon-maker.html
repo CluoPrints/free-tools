@@ -83,6 +83,7 @@
   }
   .sample-btn:hover{border-color:var(--accent)}
   .filemeta{font-size:12.5px;color:var(--ink-2);margin-top:10px;word-break:break-all;display:none}
+  .upthumb{display:none;max-width:84px;max-height:84px;border-radius:10px;border:1px solid var(--line);margin-top:10px}
   /* swatches */
   .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
   .sw{
@@ -196,6 +197,7 @@
         </label>
         <div class="filemeta" id="fileMeta"></div>
         <div class="filemeta" id="uploadStatus"></div>
+        <img class="upthumb" id="upThumb" alt="Your uploaded picture" />
         <div class="samples">
           <p>No picture handy? Try the flow with a sample:</p>
           <div class="sample-row">
@@ -339,7 +341,7 @@
   var $ = function(id){ return document.getElementById(id); };
   var els = {
     drop: $("dropZone"), file: $("fileInput"), fileMeta: $("fileMeta"),
-    status: $("uploadStatus"),
+    status: $("uploadStatus"), upThumb: $("upThumb"),
     srcImg: $("srcImg"), srcEmpty: $("srcEmpty"),
     out: $("outCanvas"), outEmpty: $("outEmpty"),
     swatches: $("swatches"), customColor: $("customColor"),
@@ -505,6 +507,8 @@
     state.srcName = (name||"icon").replace(/\.[^.]+$/,"") || "icon";
     els.srcImg.src = c.toDataURL("image/png");
     els.srcImg.style.display = "block";
+    els.upThumb.src = els.srcImg.src;
+    els.upThumb.style.display = "block";
     els.srcEmpty.style.display = "none";
     els.fileMeta.style.display = "block";
     els.fileMeta.textContent = "Current picture: " + state.srcName + "(" + c.width + " × " + c.height + ")" +

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/color-converter.html">
+<title>Colour Converter HEX to RGB, HSL, CMYK — Free Tool | CluoPrints</title>
+<meta name="description" content="Free colour converter: type a HEX code and get RGB, HSL and CMYK values with one-click copy. Handy for print and web design. Runs in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Colour Converter HEX to RGB, HSL, CMYK — Free Tool | CluoPrints">
+<meta property="og:description" content="Free colour converter: type a HEX code and get RGB, HSL and CMYK values with one-click copy. Handy for print and web design. Runs in your browser.">
+<meta property="og:url" content="https://cluoprints.com/color-converter.html">
+<link rel="stylesheet" href="style.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box textarea,.tool-box input[type=text],.tool-box input[type=number],.tool-box input[type=file],.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-box textarea{min-height:84px;resize:vertical}
+.tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}
+.tool-row .grow{flex:1;min-width:180px}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+.tool-box h3{font-size:1.08rem;margin:6px 0 14px}
+.tool-box h3:not(:first-child){margin-top:26px;border-top:1px solid var(--line);padding-top:22px}
+.res-table{width:100%;border-collapse:collapse;margin-top:14px}
+.res-table th,.res-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.98rem}
+.res-table th{color:var(--muted);font-weight:600;width:44%}
+.res-table td{font-weight:600}
+.badge{display:inline-block;padding:7px 18px;border-radius:999px;font-weight:700;font-size:1rem;margin-top:16px}
+.badge.good{background:#dcfce7;color:#166534}
+.badge.mid{background:#fef9c3;color:#854d0e}
+.badge.bad{background:#fee2e2;color:#991b1b}
+.preview-img{display:block;max-width:100%;max-height:320px;margin:18px auto 4px;border-radius:12px;border:1px solid var(--line)}
+.copy-row{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:10px;background:var(--soft)}
+.copy-row .val{font-weight:700;font-size:1.02rem;word-break:break-all}
+.copy-row .lbl{color:var(--muted);font-size:.86rem;display:block;font-weight:600}
+.copy-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.big-swatch{height:110px;border-radius:14px;border:1px solid rgba(16,22,35,.08);margin-bottom:16px}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:10px 22px;border-radius:999px;font-size:.95rem;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+input[type=color]{width:100%;height:52px;border:1px solid var(--line);border-radius:10px;padding:4px;background:#fff;cursor:pointer}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery Collection</a>
+      <a href="ebooks.html">Ebooks</a>
+      <a href="custom.html">Custom Design</a>
+      <a href="design-your-own.html">Design Your Own</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html" class="active">Free Tools</a>
+      <a href="about.html">About &amp; Contact</a>
+      <a href="color-converter-fr.html">FR</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Colour Converter</h2>
+  <p class="sub">Type or pick a colour and instantly get its HEX, RGB, HSL and CMYK values — CMYK included for print. Click Copy next to any value.</p>
+  <div class="tool-box">
+    <div class="tool-row" style="margin-top:0">
+      <div class="grow">
+        <label for="ccHexIn">HEX code</label>
+        <input type="text" id="ccHexIn" value="#C2410C" placeholder="#C2410C" spellcheck="false">
+      </div>
+      <div class="grow">
+        <label for="ccPick">Or pick a colour</label>
+        <input type="color" id="ccPick" value="#c2410c">
+      </div>
+    </div>
+    <div class="big-swatch" id="ccSwatch" style="margin-top:16px"></div>
+    <div class="copy-row"><div><span class="lbl">HEX</span><span class="val" id="ccHex">—</span></div><button class="copy-btn" type="button" data-copy="ccHex">Copy</button></div>
+    <div class="copy-row"><div><span class="lbl">RGB</span><span class="val" id="ccRgb">—</span></div><button class="copy-btn" type="button" data-copy="ccRgb">Copy</button></div>
+    <div class="copy-row"><div><span class="lbl">HSL</span><span class="val" id="ccHsl">—</span></div><button class="copy-btn" type="button" data-copy="ccHsl">Copy</button></div>
+    <div class="copy-row"><div><span class="lbl">CMYK (print)</span><span class="val" id="ccCmyk">—</span></div><button class="copy-btn" type="button" data-copy="ccCmyk">Copy</button></div>
+    <p class="tool-note">Designing for print? Send us your colours and we will match them as closely as possible on fabric, mugs and paper.</p>
+  </div>
+  <div class="cta-band">
+  <h2>Want it printed?</h2>
+  <p>We can put your design on T-shirts, hoodies, mugs, posters and more — printed to order in Quebec, no minimums, with a free preview before you pay.</p>
+  <a class="btn" href="contact.html">Contact us for a free quote</a>
+</div>
+</section>
+<div id="toast"></div>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Original graphic apparel designs and custom design studio based in Saint-Jean-sur-Richelieu, Quebec, Canada.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="shop.html">All Products</a>
+      <a href="shop.html?kind=tee">T-Shirts</a>
+      <a href="shop.html?kind=sweatshirt">Sweatshirts</a>
+      <a href="shop.html?kind=hoodie">Hoodies</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="ip-policy.html">IP Policy</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="custom.html">Custom Design</a>
+      <a href="about.html">About Us</a>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 CluoPrints. All designs original.</div>
+</footer>
+<script src="app.js"></script>
+<script>
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.className='show';setTimeout(function(){t.className='';},1800);}
+function copyText(txt,msg){
+  function done(){showToast(msg);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){fallback();});}
+  else{fallback();}
+  function fallback(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+}
+function fmtBytes(b){if(b===0)return '0 B';var u=['B','KB','MB','GB'],i=Math.floor(Math.log(b)/Math.log(1024));return (b/Math.pow(1024,i)).toFixed(i?2:0)+' '+u[i];}
+var COPIED='copied!';
+function parseHex(v){v=v.trim().replace(/^#/, '');if(/^[0-9a-fA-F]{3}$/.test(v)){v=v.split('').map(function(c){return c+c;}).join('');}if(!/^[0-9a-fA-F]{6}$/.test(v))return null;return [parseInt(v.substr(0,2),16),parseInt(v.substr(2,2),16),parseInt(v.substr(4,2),16)];}
+function convert(){
+  var v=document.getElementById('ccHexIn').value;
+  var rgb=parseHex(v); if(!rgb)return;
+  var r=rgb[0],g=rgb[1],b=rgb[2];
+  var hex='#'+rgb.map(function(n){return ('0'+n.toString(16)).slice(-2);}).join('').toUpperCase();
+  var rn=r/255,gn=g/255,bn=b/255,mx=Math.max(rn,gn,bn),mn=Math.min(rn,gn,bn),l=(mx+mn)/2,h=0,s=0,d=mx-mn;
+  if(d){s=l>0.5?d/(2-mx-mn):d/(mx+mn);if(mx===rn)h=(gn-bn)/d+(gn<bn?6:0);else if(mx===gn)h=(bn-rn)/d+2;else h=(rn-gn)/d+4;h*=60;}
+  var k=1-mx,den=1-k,c=den?(1-rn-k)/den:0,m=den?(1-gn-k)/den:0,y=den?(1-bn-k)/den:0;
+  document.getElementById('ccHex').textContent=hex;
+  document.getElementById('ccRgb').textContent='rgb('+r+', '+g+', '+b+')';
+  document.getElementById('ccHsl').textContent='hsl('+Math.round(h)+', '+Math.round(s*100)+'%, '+Math.round(l*100)+'%)';
+  document.getElementById('ccCmyk').textContent='cmyk('+Math.round(c*100)+'%, '+Math.round(m*100)+'%, '+Math.round(y*100)+'%, '+Math.round(k*100)+'%)';
+  document.getElementById('ccSwatch').style.background=hex;
+  document.getElementById('ccPick').value=hex.toLowerCase();
+}
+document.getElementById('ccHexIn').addEventListener('input',convert);
+document.getElementById('ccPick').addEventListener('input',function(){document.getElementById('ccHexIn').value=this.value.toUpperCase();convert();});
+document.querySelectorAll('.copy-btn').forEach(function(btn){btn.addEventListener('click',function(){var el=document.getElementById(btn.getAttribute('data-copy'));copyText(el.textContent,el.textContent+' '+COPIED);});});
+convert();
+</script>
+</body>
+</html>

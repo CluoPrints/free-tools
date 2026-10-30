@@ -18,6 +18,7 @@ These tools run entirely in your browser and are free to use. No installation is
 - [Paper size converter](paper-size-converter.html) - Convert paper sizes
 - [Price list generator](price-list-generator.html) - Create price lists
 - [Single-color icon maker](single-color-icon-maker.html) - Create single-color icons in your browser
+- [Color converter](color-converter.html)
 
 ## Live links
 

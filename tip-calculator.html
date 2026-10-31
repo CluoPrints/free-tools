@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/tip-calculator.html">
+<title>Tip Calculator — Free Tool | CluoPrints</title>
+<meta name="description" content="Free tip calculator: enter the bill, pick a tip percentage and the number of people, and see the tip, the total, and the tip and total per person.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Tip Calculator — Free Tool | CluoPrints">
+<meta property="og:description" content="Free tip calculator: enter the bill, pick a tip percentage and the number of people, and see the tip, the total, and the tip and total per person.">
+<meta property="og:url" content="https://cluoprints.com/tip-calculator.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box input[type=text],.tool-box input[type=number],.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}
+.tool-row .grow{flex:1;min-width:180px}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+.res-table{width:100%;border-collapse:collapse;margin-top:14px}
+.res-table th,.res-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.98rem}
+.res-table th{color:var(--muted);font-weight:600;width:44%}
+.res-table td{font-weight:600}
+.preset-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.preset-lbl{font-weight:600;font-size:.95rem;color:var(--muted)}
+.preset-btn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+.preset-btn:hover{border-color:var(--accent);color:var(--accent)}
+.preset-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery Collection</a>
+      <a href="ebooks.html">Ebooks</a>
+      <a href="custom.html">Custom Design</a>
+      <a href="design-your-own.html">Design Your Own</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html" class="active">Free Tools</a>
+      <a href="about.html">About &amp; Contact</a>
+      <a href="tip-calculator-fr.html">FR</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Tip Calculator</h2>
+  <p class="sub">Split the bill fairly: enter the bill, pick a tip, and see the tip and total per person.</p>
+  <div class="tool-box">
+    <div class="tool-row" style="margin-top:0">
+      <div class="grow">
+        <label for="tipBill">Bill amount ($)</label>
+        <input type="number" id="tipBill" min="0" step="0.01" placeholder="e.g. 100.00">
+      </div>
+      <div class="grow">
+        <label for="tipPct">Tip (%)</label>
+        <input type="number" id="tipPct" min="0" step="0.5" value="18">
+      </div>
+      <div class="grow">
+        <label for="tipPeople">Number of people</label>
+        <input type="number" id="tipPeople" min="1" step="1" value="1">
+      </div>
+    </div>
+    <div class="preset-row">
+      <span class="preset-lbl">Tip presets:</span>
+      <button class="preset-btn" type="button" data-tip="10">10%</button>
+      <button class="preset-btn" type="button" data-tip="15">15%</button>
+      <button class="preset-btn active" type="button" data-tip="18">18%</button>
+      <button class="preset-btn" type="button" data-tip="20">20%</button>
+      <button class="preset-btn" type="button" data-tip="25">25%</button>
+      <button class="preset-btn" type="button" id="tipCustom">Custom</button>
+    </div>
+    <table class="res-table">
+      <tr><th>Tip amount</th><td id="tipAmt">—</td></tr>
+      <tr><th>Total (bill + tip)</th><td id="tipTotal">—</td></tr>
+      <tr><th>Tip per person</th><td id="tipPerPerson">—</td></tr>
+      <tr><th>Total per person</th><td id="tipTotalPerPerson">—</td></tr>
+    </table>
+    <p class="tool-note">The tip is calculated on the bill amount, then split evenly between everyone.</p>
+  </div>
+  <p class="tool-note"><a href="tools.html">Back to all free tools</a> · <a href="services.html">See our services</a> · CluoPrints also builds business websites: from C$699 one-time, then C$120/year all-inclusive.</p>
+</section>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Original graphic apparel designs and custom design studio based in Saint-Jean-sur-Richelieu, Quebec, Canada.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="shop.html">All Products</a>
+      <a href="shop.html?kind=tee">T-Shirts</a>
+      <a href="shop.html?kind=sweatshirt">Sweatshirts</a>
+      <a href="shop.html?kind=hoodie">Hoodies</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="ip-policy.html">IP Policy</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="custom.html">Custom Design</a>
+      <a href="about.html">About Us</a>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 CluoPrints. All designs original.</div>
+</footer>
+<script src="app.js"></script>
+<script>
+function fmtMoney(n){return '$'+n.toFixed(2);}
+var tipPctEl=document.getElementById('tipPct');
+function tipCalc(){
+  var bill=parseFloat(document.getElementById('tipBill').value);
+  var pct=parseFloat(tipPctEl.value);
+  var people=parseInt(document.getElementById('tipPeople').value,10);
+  if(isNaN(pct)||pct<0)pct=0;
+  if(isNaN(people)||people<1)people=1;
+  if(isNaN(bill)||bill<0){
+    document.getElementById('tipAmt').textContent='—';
+    document.getElementById('tipTotal').textContent='—';
+    document.getElementById('tipPerPerson').textContent='—';
+    document.getElementById('tipTotalPerPerson').textContent='—';
+    return;
+  }
+  var tip=bill*pct/100;
+  var total=bill+tip;
+  document.getElementById('tipAmt').textContent=fmtMoney(tip);
+  document.getElementById('tipTotal').textContent=fmtMoney(total);
+  document.getElementById('tipPerPerson').textContent=fmtMoney(tip/people);
+  document.getElementById('tipTotalPerPerson').textContent=fmtMoney(total/people);
+}
+var tipPresetBtns=document.querySelectorAll('.preset-btn[data-tip]');
+tipPresetBtns.forEach(function(btn){
+  btn.addEventListener('click',function(){
+    tipPresetBtns.forEach(function(b){b.classList.remove('active');});
+    document.getElementById('tipCustom').classList.remove('active');
+    btn.classList.add('active');
+    tipPctEl.value=btn.getAttribute('data-tip');
+    tipCalc();
+  });
+});
+document.getElementById('tipCustom').addEventListener('click',function(){
+  tipPresetBtns.forEach(function(b){b.classList.remove('active');});
+  this.classList.add('active');
+  tipPctEl.focus(); tipPctEl.select();
+});
+tipPctEl.addEventListener('input',function(){
+  var match=false;
+  tipPresetBtns.forEach(function(b){
+    var on=parseFloat(b.getAttribute('data-tip'))===parseFloat(tipPctEl.value);
+    b.classList.toggle('active',on);
+    if(on)match=true;
+  });
+  document.getElementById('tipCustom').classList.toggle('active',!match);
+  tipCalc();
+});
+document.getElementById('tipBill').addEventListener('input',tipCalc);
+document.getElementById('tipPeople').addEventListener('input',tipCalc);
+tipCalc();
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

@@ -20,6 +20,7 @@ These tools run entirely in your browser and are free to use. No installation is
 - [Single-color icon maker](single-color-icon-maker.html) - Create single-color icons in your browser
 - [Color converter](color-converter.html)
 - [Discount calculator](discount-calculator.html) - Calculate discounts and taxes
+- [Tip calculator](tip-calculator.html) - Calculate tips
 
 ## Live links
 

@@ -26,6 +26,7 @@ Browse by category. 按分类浏览。
 - [Tip calculator](tip-calculator.html) - Calculate tips. 计算小费。
 - [Price list generator](price-list-generator.html) - Create price lists. 制作价目表。
 - [Food cost calculator](food-cost-calculator.html) - Calculate food cost percentage and margins for restaurants. 计算餐厅菜品成本率与毛利。
+- [Markup calculator](markup-calculator.html) - Calculate selling prices with markup. 计算加价后的售价。
 - Menu tools - No corresponding file in this repository; kept as text only, without a link. 仓库中暂无对应文件，原条目仅保留文字，未加链接。
 
 ### 社媒类 Social

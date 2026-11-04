@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/print-checker.html">
+<link rel="alternate" hreflang="en" href="https://cluoprints.com/print-checker.html">
+<link rel="alternate" hreflang="fr" href="https://cluoprints.com/print-checker-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://cluoprints.com/print-checker.html">
+<title>Print Resolution Checker — Free Tool | CluoPrints</title>
+<meta name="description" content="Free print quality checker: upload an image to see its pixel size and the largest size it can print at 300 DPI and 150 DPI. No sign-up, runs in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Print Resolution Checker — Free Tool | CluoPrints">
+<meta property="og:description" content="Free print quality checker: upload an image to see its pixel size and the largest size it can print at 300 DPI and 150 DPI. No sign-up, runs in your browser.">
+<meta property="og:url" content="https://cluoprints.com/print-checker.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box textarea,.tool-box input[type=text],.tool-box input[type=number],.tool-box input[type=file],.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-box textarea{min-height:84px;resize:vertical}
+.tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}
+.tool-row .grow{flex:1;min-width:180px}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+.tool-box h3{font-size:1.08rem;margin:6px 0 14px}
+.tool-box h3:not(:first-child){margin-top:26px;border-top:1px solid var(--line);padding-top:22px}
+.res-table{width:100%;border-collapse:collapse;margin-top:14px}
+.res-table th,.res-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.98rem}
+.res-table th{color:var(--muted);font-weight:600;width:44%}
+.res-table td{font-weight:600}
+.badge{display:inline-block;padding:7px 18px;border-radius:999px;font-weight:700;font-size:1rem;margin-top:16px}
+.badge.good{background:#dcfce7;color:#166534}
+.badge.mid{background:#fef9c3;color:#854d0e}
+.badge.bad{background:#fee2e2;color:#991b1b}
+.preview-img{display:block;max-width:100%;max-height:320px;margin:18px auto 4px;border-radius:12px;border:1px solid var(--line)}
+.copy-row{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:10px;background:var(--soft)}
+.copy-row .val{font-weight:700;font-size:1.02rem;word-break:break-all}
+.copy-row .lbl{color:var(--muted);font-size:.86rem;display:block;font-weight:600}
+.copy-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.big-swatch{height:110px;border-radius:14px;border:1px solid rgba(16,22,35,.08);margin-bottom:16px}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:10px 22px;border-radius:999px;font-size:.95rem;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+input[type=color]{width:100%;height:52px;border:1px solid var(--line);border-radius:10px;padding:4px;background:#fff;cursor:pointer}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery Collection</a>
+      <a href="ebooks.html">Ebooks</a>
+      <a href="custom.html">Custom Design</a>
+      <a href="design-your-own.html">Design Your Own</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html" class="active">Free Tools</a>
+      <a href="about.html">About &amp; Contact</a>
+      <a href="print-checker-fr.html">FR</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Print Resolution Checker</h2>
+  <p class="sub">Upload your artwork or photo to find out how large it can be printed without going blurry. Everything is checked locally in your browser — your image never leaves your device.</p>
+  <div class="tool-box">
+    <label for="pcFile">Choose an image (JPG, PNG, WebP…)</label>
+    <input type="file" id="pcFile" accept="image/*">
+    <img id="pcPreview" class="preview-img" style="display:none" alt="">
+    <div id="pcResults" style="display:none">
+      <table class="res-table">
+        <tr><th>Image size (pixels)</th><td id="pcDims">—</td></tr>
+        <tr><th>File size</th><td id="pcSize">—</td></tr>
+        <tr><th>Max print size at 300 DPI (photo quality)</th><td id="pc300">—</td></tr>
+        <tr><th>Max print size at 150 DPI (posters, banners)</th><td id="pc150">—</td></tr>
+      </table>
+      <span class="badge" id="pcBadge"></span>
+      <p class="tool-note" id="pcAdvice"></p>
+    </div>
+    <p class="tool-note">Rule of thumb: 300 DPI for anything viewed up close (photos, book covers, labels), 150 DPI is fine for posters and banners seen from a distance.</p>
+  </div>
+  <div class="cta-band">
+  <h2>Want it printed?</h2>
+  <p>We can put your design on T-shirts, hoodies, mugs, posters and more — printed to order in Quebec, no minimums, with a free preview before you pay.</p>
+  <a class="btn" href="contact.html">Contact us for a free quote</a>
+</div>
+</section>
+<div id="toast"></div>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Original graphic apparel designs and custom design studio based in Saint-Jean-sur-Richelieu, Quebec, Canada.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="shop.html">All Products</a>
+      <a href="shop.html?kind=tee">T-Shirts</a>
+      <a href="shop.html?kind=sweatshirt">Sweatshirts</a>
+      <a href="shop.html?kind=hoodie">Hoodies</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="ip-policy.html">IP Policy</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="custom.html">Custom Design</a>
+      <a href="about.html">About Us</a>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 CluoPrints. All designs original.</div>
+</footer>
+<script src="app.js"></script>
+<script>
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.className='show';setTimeout(function(){t.className='';},1800);}
+function copyText(txt,msg){
+  function done(){showToast(msg);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){fallback();});}
+  else{fallback();}
+  function fallback(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+}
+function fmtBytes(b){if(b===0)return '0 B';var u=['B','KB','MB','GB'],i=Math.floor(Math.log(b)/Math.log(1024));return (b/Math.pow(1024,i)).toFixed(i?2:0)+' '+u[i];}
+var B={good:'✓ Great for printing',mid:'◐ Fine for small prints',bad:'✕ Resolution too low'};
+var A={good:'This image is large enough for crisp prints at the sizes above.',mid:'Best kept to smaller prints (cards, labels, small photos). For a large print, ask for a higher-resolution file.',bad:'Too small for quality printing — it will look pixelated. Ask for the original high-resolution file.'};
+document.getElementById('pcFile').addEventListener('change',function(){
+  var f=this.files[0]; if(!f)return;
+  var url=URL.createObjectURL(f), img=new Image();
+  img.onload=function(){
+    var w=img.naturalWidth,h=img.naturalHeight;
+    function sz(dpi){var iw=w/dpi,ih=h/dpi;return iw.toFixed(1)+' × '+ih.toFixed(1)+' in ('+(iw*2.54).toFixed(1)+' × '+(ih*2.54).toFixed(1)+' cm)';}
+    document.getElementById('pcDims').textContent=w+' × '+h+' px';
+    document.getElementById('pcSize').textContent=fmtBytes(f.size);
+    document.getElementById('pc300').textContent=sz(300);
+    document.getElementById('pc150').textContent=sz(150);
+    var badge=document.getElementById('pcBadge'), key;
+    if(w/300>=8){key='good';}else if(w/300>=3.5){key='mid';}else{key='bad';}
+    badge.className='badge '+key; badge.textContent=B[key];
+    document.getElementById('pcAdvice').textContent=A[key];
+    var pv=document.getElementById('pcPreview'); pv.src=url; pv.style.display='block';
+    document.getElementById('pcResults').style.display='block';
+  };
+  img.src=url;
+});
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

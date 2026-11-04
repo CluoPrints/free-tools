@@ -1,5 +1,6 @@
 # free-tools
 
+
 Free browser tools by CluoPrints — invoice generator, QR generator, menu and outfit tools.
 
 These tools run entirely in your browser and are free to use. No installation is needed — just open them in your browser and start using them.
@@ -18,7 +19,8 @@ Browse by category. 按分类浏览。
 - [Paper size converter](paper-size-converter.html) - Convert paper sizes. 转换纸张尺寸。
 - [Single-color icon maker](single-color-icon-maker.html) - Create single-color icons in your browser. 在浏览器中制作单色图标。
 - [Color converter](color-converter.html) - Convert colors. 转换颜色。
-
+- [Print resolution checker](print-checker.htm)  - Check if an image is sharp enough for print at a chosen size. 检查图片在所选印制尺寸下是否够清晰。
+- 
 ### 小商家经营类 Small business
 
 - [Invoice generator](invoice-generator.html) - Create invoices. 制作发票。

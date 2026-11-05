@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/slogan-generator.html">
+<link rel="alternate" hreflang="en" href="https://cluoprints.com/slogan-generator.html">
+<link rel="alternate" hreflang="fr" href="https://cluoprints.com/slogan-generator-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://cluoprints.com/slogan-generator.html">
+<title>Slogan Generator — Free Tool | CluoPrints</title>
+<meta name="description" content="Free slogan generator: instant slogan ideas for coffee, dogs, fitness, fishing, funny and beer themes. Click to copy.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Slogan Generator — Free Tool | CluoPrints">
+<meta property="og:description" content="Free slogan generator: instant slogan ideas for coffee, dogs, fitness, fishing, funny and beer themes. Click to copy.">
+<meta property="og:url" content="https://cluoprints.com/slogan-generator.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box textarea,.tool-box input[type=text],.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-box textarea{min-height:84px;resize:vertical}
+.tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}
+.tool-row .grow{flex:1;min-width:180px}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+#qrCanvas{display:block;margin:22px auto 6px;background:#fff;max-width:100%;height:auto}
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+.swatch{border-radius:14px;min-height:132px;display:flex;align-items:flex-end;padding:10px;cursor:pointer;border:1px solid rgba(16,22,35,.08);transition:transform .15s}
+.swatch:hover{transform:translateY(-3px)}
+.swatch span{background:rgba(255,255,255,.92);border-radius:7px;padding:2px 8px;font-weight:700;font-size:.86rem;color:#1c2430}
+.slogan-list{margin-top:6px}
+.slogan-item{display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;background:var(--soft);cursor:pointer;transition:border-color .15s,transform .15s}
+.slogan-item:hover{border-color:var(--accent);transform:translateY(-1px)}
+.slogan-item p{font-size:1.06rem;font-weight:600}
+.slogan-item small{color:var(--muted);white-space:nowrap}
+.tool-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.tool-card{border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;background:#fff;box-shadow:var(--shadow-sm);transition:transform .18s,box-shadow .18s;display:block}
+.tool-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.tool-card .ic{font-size:2.1rem;line-height:1;margin-bottom:12px}
+.tool-card h3{font-size:1.2rem;margin-bottom:8px}
+.tool-card p{color:var(--muted);font-size:.96rem}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:10px 22px;border-radius:999px;font-size:.95rem;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:640px){.swatches{grid-template-columns:repeat(2,1fr)}.swatch{min-height:96px}}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery Collection</a>
+      <a href="ebooks.html">Ebooks</a>
+      <a href="custom.html">Custom Design</a>
+      <a href="design-your-own.html">Design Your Own</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html" class="active">Free Tools</a>
+      <a href="about.html">About &amp; Contact</a>
+      <a href="slogan-generator-fr.html">FR</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Slogan Generator</h2>
+  <p class="sub">Pick a theme, hit the button, and get 5 ready-to-use slogan ideas. Click any slogan to copy it — perfect for tees, mugs and gifts.</p>
+  <div class="tool-box">
+    <div class="tool-row" style="margin-top:0">
+      <div class="grow">
+        <label for="sloganCat">Theme</label>
+        <select id="sloganCat"><option value="coffee">Coffee</option><option value="dog">Dogs</option><option value="fitness">Fitness</option><option value="fishing">Fishing</option><option value="funny">Funny</option><option value="beer">Beer</option></select>
+      </div>
+      <button class="btn" id="sloganGenBtn" type="button">Generate 5 slogans</button>
+    </div>
+    <div class="slogan-list" id="sloganList"></div>
+  </div>
+  <div class="cta-band">
+  <h2>Want it printed?</h2>
+  <p>We can put your QR code, colours or slogan on T-shirts, menus, stickers, mugs and more — printed to order in Quebec, no minimums.</p>
+  <a class="btn" href="contact.html">Contact us for a free quote</a>
+</div>
+</section>
+<div id="toast"></div>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Original graphic apparel designs and custom design studio based in Saint-Jean-sur-Richelieu, Quebec, Canada.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="shop.html">All Products</a>
+      <a href="shop.html?kind=tee">T-Shirts</a>
+      <a href="shop.html?kind=sweatshirt">Sweatshirts</a>
+      <a href="shop.html?kind=hoodie">Hoodies</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="ip-policy.html">IP Policy</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="custom.html">Custom Design</a>
+      <a href="about.html">About Us</a>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 CluoPrints. All designs original.</div>
+</footer>
+<script src="app.js"></script>
+<script>
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.className='show';setTimeout(function(){t.className='';},1800);}
+function copyText(txt,msg){
+  function done(){showToast(msg);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){fallback();});}
+  else{fallback();}
+  function fallback(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+}
+
+var COPY_HINT='click to copy';
+var COPIED_WORD='copied!';
+
+var BANK={"coffee": {"label": "Coffee", "templates": ["{A} coffee, {B} life", "Powered by coffee and {N}", "Coffee first, {N} later", "Life begins after {N}", "Coffee: because {H} is hard", "Espresso yourself, {A} and proud", "May your coffee be {A} and your Mondays short", "One more cup, then {N}"], "fill": {"A": ["strong", "hot", "fresh", "bold", "smooth", "serious"], "B": ["happy", "simple", "good", "calm", "better"], "N": ["adulting", "deadlines", "small talk", "everything else"], "H": ["adulting", "small talk", "real life", "waking up"]}}, "dog": {"label": "Dogs", "templates": ["Dog hair is my {N}", "Life is {A} with a dog", "Crazy dog person, and proud of it", "All you need is love and a {A} dog", "My dog thinks I'm {A}", "Home is where the dog {V}", "Warning: spoiled dog lives here, {A} and loved"], "fill": {"A": ["better", "happier", "cooler", "goofy", "great"], "N": ["glitter", "favorite accessory", "best friend"], "V": ["greets you", "sleeps", "runs the house", "waits for you"]}}, "fitness": {"label": "Fitness", "templates": ["Train {A}, stay {B}", "Stronger than yesterday", "Sore today, {A} tomorrow", "Lift heavy, live {A}", "No excuses, just {N}", "Sweat is your {A} badge", "{A} body loading… please wait"], "fill": {"A": ["hard", "strong", "unstoppable", "proud", "legendary"], "B": ["humble", "hungry", "focused"], "N": ["results", "progress", "hard work"]}}, "fishing": {"label": "Fishing", "templates": ["Born to fish, forced to {W}", "Fishing: cheaper than {N}", "A bad day fishing beats a {A} day at work", "Keep calm and fish {A}", "Reel life is the {A} life", "I'd rather be {G}"], "fill": {"A": ["good", "great", "best"], "N": ["therapy", "a boat", "everything"], "W": ["work", "adult", "do chores"], "G": ["fishing", "on the lake", "casting lines", "out on the water"]}}, "funny": {"label": "Funny", "templates": ["I'm not {A}, I'm just honest", "Professional {P}, amateur adult", "Running late is my {R}", "I put the 'pro' in procrastination", "Sarcasm: just one of my {S}", "I'm {A} and I know it"], "fill": {"A": ["lazy", "arguing", "weird", "funny"], "P": ["overthinker", "procrastinator", "daydreamer", "perfectionist"], "R": ["cardio", "superpower", "daily workout"], "S": ["superpowers", "many talents", "special skills"]}}, "beer": {"label": "Beer", "templates": ["Beer: because {N} happens", "Save water, drink {A} beer", "Life is short, drink the {A} beer", "Powered by craft beer and {G}", "In dog beers, I've only had one", "Hoppy and {A}"], "fill": {"A": ["cold", "craft", "local", "good"], "N": ["adulting", "reality", "life"], "G": ["good friends", "good music", "long weekends"]}}};
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function fillTpl(tpl,fill){
+  return tpl.replace(/\{([A-Z])\}/g,function(m,k){return fill[k]?pick(fill[k]):m;});
+}
+function generateSlogans(){
+  var key=document.getElementById('sloganCat').value;
+  var cat=BANK[key]; if(!cat)return;
+  var seen={}, out=[], guard=0;
+  while(out.length<5&&guard<80){
+    guard++;
+    var s=fillTpl(pick(cat.templates),cat.fill);
+    if(!seen[s]){seen[s]=1;out.push(s);}
+  }
+  var box=document.getElementById('sloganList'); box.innerHTML='';
+  out.forEach(function(s){
+    var d=document.createElement('div'); d.className='slogan-item';
+    var p=document.createElement('p'); p.textContent=s;
+    var sm=document.createElement('small'); sm.textContent=COPY_HINT;
+    d.appendChild(p); d.appendChild(sm);
+    d.addEventListener('click',function(){copyText(s,s+' — '+COPIED_WORD);});
+    box.appendChild(d);
+  });
+}
+document.getElementById('sloganGenBtn').addEventListener('click',generateSlogans);
+document.getElementById('sloganCat').addEventListener('change',generateSlogans);
+generateSlogans();
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

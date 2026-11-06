@@ -20,6 +20,7 @@ Browse by category. 按分类浏览。
 - [Single-color icon maker](single-color-icon-maker.html) - Create single-color icons in your browser. 在浏览器中制作单色图标。
 - [Color converter](color-converter.html) - Convert colors. 转换颜色。
 - [Print resolution checker](print-checker.htm)  - Check if an image is sharp enough for print at a chosen size. 检查图片在所选印制尺寸下是否够清晰。
+- [Image resizer](image-resizer.html) - Resize and compress images in the browser. 在浏览器里调整图片尺寸并压缩。
 - [Slogan generator](slogan-generator.html) - Get slogan ideas for tees, mugs and gifts. 为 T 恤、马克杯和礼品获取标语灵感。
 - 
 ### 小商家经营类 Small business

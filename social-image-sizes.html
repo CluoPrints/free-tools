@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/social-image-sizes.html">
+<link rel="alternate" hreflang="en" href="https://cluoprints.com/social-image-sizes.html">
+<link rel="alternate" hreflang="fr" href="https://cluoprints.com/social-image-sizes-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://cluoprints.com/social-image-sizes.html">
+<title>Social Image Sizes — One Image, Every Platform | CluoPrints</title>
+<meta name="description" content="Upload one image and export it in every social media size at once: Instagram post & story, Facebook, X, Pinterest, LinkedIn and YouTube thumbnail. Free, in your browser, nothing uploaded.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Social Image Sizes — One Image, Every Platform | CluoPrints">
+<meta property="og:description" content="Upload one image and export it in every social media size at once: Instagram post & story, Facebook, X, Pinterest, LinkedIn and YouTube thumbnail. Free, in your browser, nothing uploaded.">
+<meta property="og:url" content="https://cluoprints.com/social-image-sizes.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box textarea,.tool-box input[type=text],.tool-box input[type=number],.tool-box input[type=file],.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-box textarea{min-height:84px;resize:vertical}
+.tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}
+.tool-row .grow{flex:1;min-width:180px}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+.tool-box h3{font-size:1.08rem;margin:6px 0 14px}
+.tool-box h3:not(:first-child){margin-top:26px;border-top:1px solid var(--line);padding-top:22px}
+.size-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:6px}
+.size-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;cursor:pointer}
+.size-item input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--accent)}
+.size-item .nm{font-weight:700;font-size:.98rem}
+.size-item .dm{color:var(--muted);font-size:.88rem}
+.results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:16px}
+.result-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.result-card img{display:block;width:100%;border-radius:8px;border:1px solid var(--line);margin-bottom:10px;background:#f4f4f4}
+.result-card .nm{font-weight:700;font-size:.96rem}
+.result-card .dm{color:var(--muted);font-size:.88rem;margin:2px 0 8px}
+.result-card .warn{color:#854d0e;background:#fef9c3;border-radius:8px;padding:6px 9px;font-size:.85rem;margin-bottom:8px}
+.result-card .btn{width:100%;text-align:center;padding:8px 10px;font-size:.92rem}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:10px 22px;border-radius:999px;font-size:.95rem;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+input[type=color]{width:100%;height:52px;border:1px solid var(--line);border-radius:10px;padding:4px;background:#fff;cursor:pointer}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery Collection</a>
+      <a href="ebooks.html">Ebooks</a>
+      <a href="custom.html">Custom Design</a>
+      <a href="design-your-own.html">Design Your Own</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html" class="active">Free Tools</a>
+      <a href="about.html">About &amp; Contact</a>
+      <a href="social-image-sizes-fr.html">FR</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Social Image Sizes</h2>
+  <p class="sub">Upload one image and get every social media size at once — no more guessing dimensions or re-cropping the same photo six times. Everything runs locally in your browser; your image is never uploaded anywhere.</p>
+  <div class="tool-box">
+    <label for="ssFile">Choose an image (JPG, PNG, WebP…)</label>
+    <input type="file" id="ssFile" accept="image/*">
+    <p class="tool-note" id="ssOrig" style="display:none"></p>
+    <h3>Pick your sizes</h3>
+    <div class="size-list" id="ssList"></div>
+    <div class="tool-row">
+      <div class="grow">
+        <label for="ssFit">How to fit each size</label>
+        <select id="ssFit">
+          <option value="cover" selected>Crop to fill (no empty space)</option>
+          <option value="contain">Fit whole image (add background)</option>
+        </select>
+      </div>
+      <div class="grow" id="ssBgWrap" style="display:none">
+        <label for="ssBg">Background colour</label>
+        <input type="color" id="ssBg" value="#ffffff">
+      </div>
+      <div class="grow">
+        <label for="ssFormat">Output format</label>
+        <select id="ssFormat">
+          <option value="image/jpeg" selected>JPEG (smallest for photos)</option>
+          <option value="image/png">PNG (keeps transparency)</option>
+          <option value="image/webp">WebP (modern, small)</option>
+        </select>
+      </div>
+      <div class="grow">
+        <label for="ssQuality">Quality</label>
+        <select id="ssQuality">
+          <option value="0.92">High (92%)</option>
+          <option value="0.85" selected>Balanced (85%)</option>
+          <option value="0.7">Small file (70%)</option>
+        </select>
+      </div>
+    </div>
+    <div class="tool-row">
+      <button class="btn" id="ssGoBtn" type="button" disabled>Generate all sizes</button>
+      <button class="btn btn-outline" id="ssAllBtn" type="button" style="display:none">Download all</button>
+    </div>
+    <p class="tool-note">Tip: start from the biggest version of your image you have. If your original is smaller than a size, that export is upscaled and may look soft — we flag it for you.</p>
+    <div class="results-grid" id="ssResults"></div>
+  </div>
+  <div class="cta-band">
+  <h2>Want it printed?</h2>
+  <p>We can put your design on T-shirts, hoodies, mugs, posters and more — printed to order in Quebec, no minimums, with a free preview before you pay.</p>
+  <a class="btn" href="contact.html">Contact us for a free quote</a>
+</div>
+</section>
+<div id="toast"></div>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Original graphic apparel designs and custom design studio based in Saint-Jean-sur-Richelieu, Quebec, Canada.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="shop.html">All Products</a>
+      <a href="shop.html?kind=tee">T-Shirts</a>
+      <a href="shop.html?kind=sweatshirt">Sweatshirts</a>
+      <a href="shop.html?kind=hoodie">Hoodies</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="shipping.html">Shipping Policy</a>
+      <a href="ip-policy.html">IP Policy</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="custom.html">Custom Design</a>
+      <a href="about.html">About Us</a>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 CluoPrints. All designs original.</div>
+</footer>
+<script src="app.js"></script>
+<script>
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.className='show';setTimeout(function(){t.className='';},1800);}
+function fmtBytes(b){if(b===0)return '0 B';var u=['B','KB','MB','GB'],i=Math.floor(Math.log(b)/Math.log(1024));return (b/Math.pow(1024,i)).toFixed(i?2:0)+' '+u[i];}
+var PRESETS=[
+  {id:'instagram-post',label:'Instagram Post',w:1080,h:1080,note:'1:1'},
+  {id:'instagram-portrait',label:'Instagram Portrait',w:1080,h:1350,note:'4:5'},
+  {id:'instagram-story',label:'Instagram Story',w:1080,h:1920,note:'9:16'},
+  {id:'facebook-post',label:'Facebook Post',w:1200,h:630,note:'1.91:1'},
+  {id:'x-post',label:'X Post',w:1600,h:900,note:'16:9'},
+  {id:'pinterest-pin',label:'Pinterest Pin',w:1000,h:1500,note:'2:3'},
+  {id:'linkedin-post',label:'LinkedIn Post',w:1200,h:627,note:'1.91:1'},
+  {id:'youtube-thumbnail',label:'YouTube Thumbnail',w:1280,h:720,note:'16:9'}
+];
+var listEl=document.getElementById('ssList');
+PRESETS.forEach(function(p){
+  var lab=document.createElement('label');
+  lab.className='size-item';
+  lab.innerHTML='<input type="checkbox" checked data-id="'+p.id+'"><span><span class="nm">'+p.label+'</span><br><span class="dm">'+p.w+' × '+p.h+' px · '+p.note+'</span></span>';
+  listEl.appendChild(lab);
+});
+document.getElementById('ssFit').addEventListener('change',function(){
+  document.getElementById('ssBgWrap').style.display=this.value==='contain'?'block':'none';
+});
+var ssImg=null, ssFileObj=null, ssSig='';
+var fileEl=document.getElementById('ssFile');
+function handleFile(f){
+  if(!f)return;
+  var sig=f.name+'|'+f.size+'|'+f.lastModified;
+  if(sig===ssSig)return; /* already loaded (dedupe polling) */
+  ssSig=sig; ssFileObj=f;
+  var img=new Image();
+  img.onload=function(){
+    ssImg=img;
+    var o=document.getElementById('ssOrig');
+    o.style.display='block';
+    o.textContent='Original: '+img.naturalWidth+' × '+img.naturalHeight+' px · '+fmtBytes(f.size);
+    document.getElementById('ssGoBtn').disabled=false;
+    document.getElementById('ssResults').innerHTML='';
+    document.getElementById('ssAllBtn').style.display='none';
+  };
+  img.onerror=function(){showToast('Could not read this image.');};
+  img.src=URL.createObjectURL(f);
+}
+fileEl.addEventListener('change',function(){handleFile(this.files[0]);});
+fileEl.addEventListener('input',function(){handleFile(this.files[0]);});
+/* Mobile fallback: on some Android browsers the change/input events do not fire.
+   Poll briefly after the picker opens, and re-check when the window regains focus. */
+var pollTimer=null;
+fileEl.addEventListener('click',function(){
+  if(pollTimer)clearInterval(pollTimer);
+  var n=0;
+  pollTimer=setInterval(function(){
+    n++;
+    if(fileEl.files&&fileEl.files[0])handleFile(fileEl.files[0]);
+    if(n>=20)clearInterval(pollTimer);
+  },400);
+});
+window.addEventListener('focus',function(){if(fileEl.files&&fileEl.files[0])handleFile(fileEl.files[0]);});
+function drawPreset(p,fit,bg,type,q,cb){
+  var c=document.createElement('canvas');c.width=p.w;c.height=p.h;
+  var ctx=c.getContext('2d');
+  var sw=ssImg.naturalWidth, sh=ssImg.naturalHeight;
+  if(fit==='cover'){
+    var s=Math.max(p.w/sw,p.h/sh);
+    var dw=sw*s, dh=sh*s;
+    ctx.drawImage(ssImg,(p.w-dw)/2,(p.h-dh)/2,dw,dh);
+  }else{
+    ctx.fillStyle=bg;ctx.fillRect(0,0,p.w,p.h);
+    var s2=Math.min(p.w/sw,p.h/sh);
+    var dw2=sw*s2, dh2=sh*s2;
+    ctx.drawImage(ssImg,(p.w-dw2)/2,(p.h-dh2)/2,dw2,dh2);
+  }
+  var upscaled=sw<p.w||sh<p.h;
+  c.toBlob(function(blob){cb(blob,upscaled);},type,q);
+}
+document.getElementById('ssGoBtn').addEventListener('click',function(){
+  if(!ssImg)return;
+  var fit=document.getElementById('ssFit').value;
+  var bg=document.getElementById('ssBg').value;
+  var type=document.getElementById('ssFormat').value;
+  var q=parseFloat(document.getElementById('ssQuality').value);
+  var ext=type==='image/png'?'png':(type==='image/webp'?'webp':'jpg');
+  var checked=[];
+  listEl.querySelectorAll('input[type=checkbox]:checked').forEach(function(cb){
+    var p=null;
+    PRESETS.forEach(function(x){if(x.id===cb.getAttribute('data-id'))p=x;});
+    if(p)checked.push(p);
+  });
+  if(!checked.length){showToast('Pick at least one size.');return;}
+  var grid=document.getElementById('ssResults');
+  grid.innerHTML='';
+  var done=0;
+  checked.forEach(function(p){
+    drawPreset(p,fit,bg,type,q,function(blob,upscaled){
+      var url=URL.createObjectURL(blob);
+      var card=document.createElement('div');
+      card.className='result-card';
+      var warn=upscaled?'<div class="warn">Upscaled from a smaller original — may look soft.</div>':'';
+      card.innerHTML='<img src="'+url+'" alt="'+p.label+' preview"><div class="nm">'+p.label+'</div><div class="dm">'+p.w+' × '+p.h+' px · '+fmtBytes(blob.size)+'</div>'+warn+'<a class="btn" href="'+url+'" download="'+p.id+'.'+ext+'">Download</a>';
+      grid.appendChild(card);
+      done++;
+      if(done===checked.length){
+        document.getElementById('ssAllBtn').style.display='inline-block';
+        showToast(checked.length+' sizes ready.');
+      }
+    });
+  });
+});
+document.getElementById('ssAllBtn').addEventListener('click',function(){
+  var links=document.querySelectorAll('#ssResults .result-card a.btn');
+  links.forEach(function(a,i){setTimeout(function(){a.click();},i*400);});
+  showToast('Downloading '+links.length+' files…');
+});
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/color-palette.html">
+<link rel="alternate" hreflang="en" href="https://cluoprints.com/color-palette.html">
+<link rel="alternate" hreflang="fr" href="https://cluoprints.com/color-palette-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://cluoprints.com/color-palette.html">
+<title>Colour Palette Generator — Free Tool | CluoPrints</title>
+<meta name="description" content="Free colour palette generator: harmonious 5-colour palettes with HEX codes, click to copy. No sign-up.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Colour Palette Generator — Free Tool | CluoPrints">
+<meta property="og:description" content="Free colour palette generator: harmonious 5-colour palettes with HEX codes, click to copy. No sign-up.">
+<meta property="og:url" content="https://cluoprints.com/color-palette.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box textarea,.tool-box input[type=text],.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-box textarea{min-height:84px;resize:vertical}
+.tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}
+.tool-row .grow{flex:1;min-width:180px}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+#qrCanvas{display:block;margin:22px auto 6px;background:#fff;max-width:100%;height:auto}
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+.swatch{border-radius:14px;min-height:132px;display:flex;align-items:flex-end;padding:10px;cursor:pointer;border:1px solid rgba(16,22,35,.08);transition:transform .15s}
+.swatch:hover{transform:translateY(-3px)}
+.swatch span{background:rgba(255,255,255,.92);border-radius:7px;padding:2px 8px;font-weight:700;font-size:.86rem;color:#1c2430}
+.slogan-list{margin-top:6px}
+.slogan-item{display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;background:var(--soft);cursor:pointer;transition:border-color .15s,transform .15s}
+.slogan-item:hover{border-color:var(--accent);transform:translateY(-1px)}
+.slogan-item p{font-size:1.06rem;font-weight:600}
+.slogan-item small{color:var(--muted);white-space:nowrap}
+.tool-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.tool-card{border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;background:#fff;box-shadow:var(--shadow-sm);transition:transform .18s,box-shadow .18s;display:block}
+.tool-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.tool-card .ic{font-size:2.1rem;line-height:1;margin-bottom:12px}
+.tool-card h3{font-size:1.2rem;margin-bottom:8px}
+.tool-card p{color:var(--muted);font-size:.96rem}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:10px 22px;border-radius:999px;font-size:.95rem;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:640px){.swatches{grid-template-columns:repeat(2,1fr)}.swatch{min-height:96px}}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery Collection</a>
+      <a href="ebooks.html">Ebooks</a>
+      <a href="custom.html">Custom Design</a>
+      <a href="design-your-own.html">Design Your Own</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html" class="active">Free Tools</a>
+      <a href="about.html">About &amp; Contact</a>
+      <a href="color-palette-fr.html">FR</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Colour Palette Generator</h2>
+  <p class="sub">Click the button to generate a harmonious palette of 5 colours. Click any colour to copy its HEX code.</p>
+  <div class="tool-box">
+    <div class="tool-row" style="margin-top:0">
+      <div class="grow">
+        <label for="palMode">Harmony style</label>
+        <select id="palMode"><option value="analogous">Analogous</option><option value="complementary">Complementary</option><option value="triadic">Triadic</option><option value="split">Split-complementary</option><option value="mono">Monochromatic</option><option value="random">Surprise me</option></select>
+      </div>
+      <button class="btn" id="palGenBtn" type="button">Generate palette</button>
+    </div>
+    <div class="swatches" id="swatches"></div>
+    <p class="tool-note">Click a colour to copy</p>
+  </div>
+  <div class="cta-band">
+  <h2>Want it printed?</h2>
+  <p>We can put your QR code, colours or slogan on T-shirts, menus, stickers, mugs and more — printed to order in Quebec, no minimums.</p>
+  <a class="btn" href="contact.html">Contact us for a free quote</a>
+</div>
+</section>
+<div id="toast"></div>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Original graphic apparel designs and custom design studio based in Saint-Jean-sur-Richelieu, Quebec, Canada.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="shop.html">All Products</a>
+      <a href="shop.html?kind=tee">T-Shirts</a>
+      <a href="shop.html?kind=sweatshirt">Sweatshirts</a>
+      <a href="shop.html?kind=hoodie">Hoodies</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="ip-policy.html">IP Policy</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="custom.html">Custom Design</a>
+      <a href="about.html">About Us</a>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 CluoPrints. All designs original.</div>
+</footer>
+<script src="app.js"></script>
+<script>
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.className='show';setTimeout(function(){t.className='';},1800);}
+function copyText(txt,msg){
+  function done(){showToast(msg);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){fallback();});}
+  else{fallback();}
+  function fallback(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+}
+
+var COPIED_WORD='copied!';
+
+function hslToHex(h,s,l){
+  h=((h%360)+360)%360; s=Math.max(0,Math.min(100,s))/100; l=Math.max(0,Math.min(100,l))/100;
+  var c=(1-Math.abs(2*l-1))*s, x=c*(1-Math.abs(((h/60)%2)-1)), m=l-c/2, r=0,g=0,b=0;
+  if(h<60){r=c;g=x;}else if(h<120){r=x;g=c;}else if(h<180){g=c;b=x;}
+  else if(h<240){g=x;b=c;}else if(h<300){r=x;b=c;}else{r=c;b=x;}
+  function to(v){var n=Math.round((v+m)*255).toString(16);return n.length<2?'0'+n:n;}
+  return ('#'+to(r)+to(g)+to(b)).toUpperCase();
+}
+function rnd(a,b){return a+Math.random()*(b-a);}
+function buildPalette(mode){
+  var base=rnd(0,360), hues=[], i;
+  if(mode==='analogous'){for(i=0;i<5;i++)hues.push(base+(i-2)*24);}
+  else if(mode==='complementary'){hues=[base,base+8,base+180,base+188,base+24];}
+  else if(mode==='triadic'){hues=[base,base+120,base+240,base+14,base+134];}
+  else if(mode==='split'){hues=[base,base+150,base+210,base+10,base+160];}
+  else if(mode==='mono'){for(i=0;i<5;i++)hues.push(base+rnd(-6,6));}
+  else{for(i=0;i<5;i++)hues.push(rnd(0,360));}
+  var sat=rnd(52,78);
+  var lights = mode==='mono' ? [26,40,54,68,82] : [30,44,56,68,80];
+  if(mode!=='mono'&&Math.random()<0.5){lights=[78,62,50,38,28];}
+  return hues.map(function(h,i){return hslToHex(h, mode==='mono'?rnd(38,65):sat+rnd(-8,8), lights[i]);});
+}
+function renderPalette(){
+  var mode=document.getElementById('palMode').value;
+  var colors=buildPalette(mode);
+  var box=document.getElementById('swatches'); box.innerHTML='';
+  colors.forEach(function(hex){
+    var d=document.createElement('div'); d.className='swatch'; d.style.background=hex;
+    d.innerHTML='<span>'+hex+'</span>';
+    d.title=hex;
+    d.addEventListener('click',function(){copyText(hex,hex+' '+COPIED_WORD);});
+    box.appendChild(d);
+  });
+}
+document.getElementById('palGenBtn').addEventListener('click',renderPalette);
+renderPalette();
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

@@ -39,7 +39,10 @@ Browse by category. 按分类浏览。
 
 - [QR generator](qr-generator.html) - Create QR codes. 生成二维码。
 - [Social image sizes](social-image-sizes.html) - Export one image in every social media size. 一张图导出全部社媒尺寸。
+-
+- [WiFi QR code generator](wifi-qr.html) - Create a QR code for your WiFi network. 生成 WiFi 网络二维码。
 - [Hashtag generator](hashtag-generator.html) - Generate hashtags for Instagram posts. 为 Instagram 帖子生成标签。
+- 
 - Outfit tools - No corresponding file in this repository; kept as text only, without a link. 仓库中暂无对应文件，原条目仅保留文字，未加链接。
 
 更多工具请访问官网工具页：https://cluoprints.com/tools.html — For more tools, visit the official tools page: https://cluoprints.com/tools.html

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://cluoprints.com/contrast-checker.html">
+<link rel="alternate" hreflang="en" href="https://cluoprints.com/contrast-checker.html">
+<link rel="alternate" hreflang="fr" href="https://cluoprints.com/contrast-checker-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://cluoprints.com/contrast-checker.html">
+  <title>Colour Contrast Checker — Free Tool | CluoPrints</title>
+  <meta name="description" content="Free colour contrast checker: check text readability on any background with the WCAG contrast ratio. No sign-up, runs in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CluoPrints">
+  <meta property="og:title" content="Colour Contrast Checker — Free Tool | CluoPrints">
+  <meta property="og:description" content="Free colour contrast checker: check text readability on any background with the WCAG contrast ratio. No sign-up, runs in your browser.">
+  <meta property="og:url" content="https://cluoprints.com/contrast-checker.html">
+  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+  <style>
+    .tool-box {
+      background: #ffffff;
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: var(--radius, 12px);
+      box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.06));
+      padding: 2rem;
+      margin: 2rem 0;
+      color: var(--ink, #1C2430);
+    }
+    .cc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+    .cc-field label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    .cc-input-group {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .cc-input-group input[type="color"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 48px;
+      height: 44px;
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 8px;
+      padding: 0;
+      cursor: pointer;
+      background: transparent;
+    }
+    .cc-input-group input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 2px;
+    }
+    .cc-input-group input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: 6px;
+    }
+    .cc-input-group input[type="text"] {
+      flex: 1;
+      height: 44px;
+      padding: 0 0.85rem;
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: var(--ink, #1C2430);
+      background: #fff;
+    }
+    .cc-input-group input[type="text"]:focus,
+    .cc-input-group input[type="color"]:focus {
+      outline: 2px solid #2563eb;
+      outline-offset: 1px;
+    }
+    .cc-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .cc-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      background: #f8fafc;
+      border: 1px solid var(--line, #cbd5e1);
+      border-radius: 8px;
+      padding: 0.6rem 1.1rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ink, #1C2430);
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+    .cc-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+    .cc-btn-primary {
+      background: #1C2430;
+      color: #ffffff;
+      border-color: #1C2430;
+    }
+    .cc-btn-primary:hover {
+      background: #2d3748;
+      border-color: #2d3748;
+    }
+    .cc-result-summary {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      background: #f8fafc;
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+    .cc-score-wrapper {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .cc-score-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--muted, #64748b);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .cc-score-value {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--ink, #1C2430);
+    }
+    .cc-badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1.75rem;
+    }
+    .cc-badge-card {
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+    }
+    .cc-badge-card .title {
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .cc-badge-card .subtitle {
+      font-size: 0.75rem;
+      color: var(--muted, #64748b);
+      display: block;
+      margin-top: 0.15rem;
+    }
+    .cc-status {
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .cc-status.pass {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .cc-status.fail {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    .cc-preview {
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 10px;
+      padding: 2rem;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .cc-preview h3 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .cc-preview p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .cc-copy-alert {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #166534;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      margin-left: 0.5rem;
+    }
+    .cc-copy-alert.visible {
+      opacity: 1;
+    }
+    .how-to-notes {
+      margin-top: 2rem;
+      color: var(--muted, #475569);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .how-to-notes h2 {
+      font-size: 1.25rem;
+      color: var(--ink, #1C2430);
+      margin-bottom: 0.5rem;
+    }
+  </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery Collection</a>
+      <a href="ebooks.html">Ebooks</a>
+      <a href="custom.html">Custom Design</a>
+      <a href="design-your-own.html">Design Your Own</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html" class="active">Free Tools</a>
+      <a href="about.html">About &amp; Contact</a>
+      <a href="contrast-checker-fr.html">FR</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h1>Colour Contrast Checker</h1>
+  <p>Evaluate colour pairings instantly against Web Content Accessibility Guidelines (WCAG 2.1) to guarantee clear, comfortable reading for apparel graphics and web designs.</p>
+
+  <div class="tool-box">
+    <div class="cc-grid">
+      <div class="cc-field">
+        <label for="textColor">Text Colour</label>
+        <div class="cc-input-group">
+          <input type="color" id="textColorPicker" value="#1c2430" aria-label="Choose text colour picker">
+          <input type="text" id="textColor" value="#1C2430" maxlength="7" spellcheck="false" aria-label="Text colour hex code">
+        </div>
+      </div>
+
+      <div class="cc-field">
+        <label for="bgColor">Background Colour</label>
+        <div class="cc-input-group">
+          <input type="color" id="bgColorPicker" value="#ffffff" aria-label="Choose background colour picker">
+          <input type="text" id="bgColor" value="#FFFFFF" maxlength="7" spellcheck="false" aria-label="Background colour hex code">
+        </div>
+      </div>
+    </div>
+
+    <div class="cc-actions">
+      <button type="button" class="cc-btn" id="swapBtn">⇄ Swap colours</button>
+      <button type="button" class="cc-btn" id="randomBtn">⚄ Random pair</button>
+      <button type="button" class="cc-btn cc-btn-primary" id="copyBtn">Copy result</button>
+      <span class="cc-copy-alert" id="copyAlert" role="status" aria-live="polite">Copied to clipboard!</span>
+    </div>
+
+    <div class="cc-result-summary">
+      <div class="cc-score-wrapper">
+        <span class="cc-score-label">Contrast Ratio:</span>
+        <span class="cc-score-value" id="ratioDisplay">16.75 : 1</span>
+      </div>
+    </div>
+
+    <div class="cc-badges-grid">
+      <div class="cc-badge-card">
+        <div>
+          <span class="title">WCAG AA Normal</span>
+          <span class="subtitle">Body text (min 4.5:1)</span>
+        </div>
+        <span class="cc-status" id="badgeAANormal">PASS</span>
+      </div>
+      <div class="cc-badge-card">
+        <div>
+          <span class="title">WCAG AA Large</span>
+          <span class="subtitle">Headings &amp; bold (min 3:1)</span>
+        </div>
+        <span class="cc-status" id="badgeAALarge">PASS</span>
+      </div>
+      <div class="cc-badge-card">
+        <div>
+          <span class="title">WCAG AAA Normal</span>
+          <span class="subtitle">High fidelity (min 7:1)</span>
+        </div>
+        <span class="cc-status" id="badgeAAANormal">PASS</span>
+      </div>
+      <div class="cc-badge-card">
+        <div>
+          <span class="title">WCAG AAA Large</span>
+          <span class="subtitle">Large text (min 4.5:1)</span>
+        </div>
+        <span class="cc-status" id="badgeAAALarge">PASS</span>
+      </div>
+    </div>
+
+    <div class="cc-preview" id="previewBox" style="background-color: #FFFFFF; color: #1C2430;">
+      <h3 id="previewHeading">Previewing typography and visual contrast</h3>
+      <p id="previewText">Good contrast keeps digital typography and physical print graphics readable for everyone, accommodating varied lighting conditions, low-vision readers, and high-glare environments.</p>
+    </div>
+  </div>
+
+  <div class="how-to-notes">
+    <h2>How to use this tool</h2>
+    <p>Enter any six-digit or three-digit hex colour code or click the colour swatch to select a shade visually. The contrast ratio and WCAG evaluation update automatically. Large text is defined by WCAG as 18pt (approximately 24px) or 14pt bold (approximately 18.5px bold). A minimum score of 4.5:1 is recommended for standard body typography.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Original graphic apparel designs and custom design studio based in Saint-Jean-sur-Richelieu, Quebec, Canada.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="shop.html">All Products</a>
+      <a href="shop.html?kind=tee">T-Shirts</a>
+      <a href="shop.html?kind=sweatshirt">Sweatshirts</a>
+      <a href="shop.html?kind=hoodie">Hoodies</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="ip-policy.html">IP Policy</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="custom.html">Custom Design</a>
+      <a href="about.html">About Us</a>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 CluoPrints. All designs original.</div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+  let currentTextHex = '#1C2430';
+  let currentBgHex = '#FFFFFF';
+
+  function parseHex(hex) {
+    if (typeof hex !== 'string') return null;
+    let clean = hex.replace(/^#/, '').trim();
+    if (clean.length === 3) {
+      clean = clean.split('').map(function(char) { return char + char; }).join('');
+    }
+    if (!/^[0-9a-fA-F]{6}$/.test(clean)) {
+      return null;
+    }
+    const num = parseInt(clean, 16);
+    return {
+      r: (num >> 16) & 255,
+      g: (num >> 8) & 255,
+      b: num & 255
+    };
+  }
+
+  function formatHex(hex) {
+    let clean = hex.replace(/^#/, '').trim();
+    if (clean.length === 3) {
+      clean = clean.split('').map(function(c) { return c + c; }).join('');
+    }
+    return '#' + clean.toUpperCase();
+  }
+
+  function luminance(hex) {
+    const rgb = parseHex(hex);
+    if (!rgb) return 0;
+    const channels = [rgb.r / 255, rgb.g / 255, rgb.b / 255].map(function(c) {
+      return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+  }
+
+  function computeRatio(hex1, hex2) {
+    const lum1 = luminance(hex1);
+    const lum2 = luminance(hex2);
+    const lighter = Math.max(lum1, lum2);
+    const darker = Math.min(lum1, lum2);
+    return (lighter + 0.05) / (darker + 0.05);
+  }
+
+  const textColorInput = document.getElementById('textColor');
+  const textColorPicker = document.getElementById('textColorPicker');
+  const bgColorInput = document.getElementById('bgColor');
+  const bgColorPicker = document.getElementById('bgColorPicker');
+  const ratioDisplay = document.getElementById('ratioDisplay');
+  const previewBox = document.getElementById('previewBox');
+  const swapBtn = document.getElementById('swapBtn');
+  const randomBtn = document.getElementById('randomBtn');
+  const copyBtn = document.getElementById('copyBtn');
+  const copyAlert = document.getElementById('copyAlert');
+
+  const badgeAANormal = document.getElementById('badgeAANormal');
+  const badgeAALarge = document.getElementById('badgeAALarge');
+  const badgeAAANormal = document.getElementById('badgeAAANormal');
+  const badgeAAALarge = document.getElementById('badgeAAALarge');
+
+  function updateBadge(element, pass) {
+    if (pass) {
+      element.textContent = 'PASS';
+      element.className = 'cc-status pass';
+    } else {
+      element.textContent = 'FAIL';
+      element.className = 'cc-status fail';
+    }
+  }
+
+  function updateUI() {
+    const ratio = computeRatio(currentTextHex, currentBgHex);
+    const roundedRatio = (Math.round(ratio * 100) / 100).toFixed(2);
+
+    ratioDisplay.textContent = roundedRatio + ' : 1';
+
+    const passAANormal = ratio >= 4.5;
+    const passAALarge = ratio >= 3.0;
+    const passAAANormal = ratio >= 7.0;
+    const passAAALarge = ratio >= 4.5;
+
+    updateBadge(badgeAANormal, passAANormal);
+    updateBadge(badgeAALarge, passAALarge);
+    updateBadge(badgeAAANormal, passAAANormal);
+    updateBadge(badgeAAALarge, passAAALarge);
+
+    previewBox.style.backgroundColor = currentBgHex;
+    previewBox.style.color = currentTextHex;
+
+    textColorInput.value = currentTextHex;
+    textColorPicker.value = currentTextHex.toLowerCase();
+
+    bgColorInput.value = currentBgHex;
+    bgColorPicker.value = currentBgHex.toLowerCase();
+  }
+
+  textColorInput.addEventListener('input', function() {
+    const parsed = parseHex(this.value);
+    if (parsed) {
+      currentTextHex = formatHex(this.value);
+      updateUI();
+    }
+  });
+
+  textColorPicker.addEventListener('input', function() {
+    currentTextHex = formatHex(this.value);
+    updateUI();
+  });
+
+  bgColorInput.addEventListener('input', function() {
+    const parsed = parseHex(this.value);
+    if (parsed) {
+      currentBgHex = formatHex(this.value);
+      updateUI();
+    }
+  });
+
+  bgColorPicker.addEventListener('input', function() {
+    currentBgHex = formatHex(this.value);
+    updateUI();
+  });
+
+  swapBtn.addEventListener('click', function() {
+    const temp = currentTextHex;
+    currentTextHex = currentBgHex;
+    currentBgHex = temp;
+    updateUI();
+  });
+
+  function getRandomHex() {
+    const random24 = Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+    return '#' + random24.toUpperCase();
+  }
+
+  randomBtn.addEventListener('click', function() {
+    currentTextHex = getRandomHex();
+    currentBgHex = getRandomHex();
+    updateUI();
+  });
+
+  copyBtn.addEventListener('click', function() {
+    const ratio = (Math.round(computeRatio(currentTextHex, currentBgHex) * 100) / 100).toFixed(2);
+    const aaPass = ratio >= 4.5 ? 'AA pass' : 'AA fail';
+    const aaaPass = ratio >= 7.0 ? 'AAA pass' : 'AAA fail';
+    const summary = 'Contrast ' + ratio + ':1 — ' + aaPass + ', ' + aaaPass;
+
+    navigator.clipboard.writeText(summary).then(function() {
+      copyAlert.classList.add('visible');
+      setTimeout(function() {
+        copyAlert.classList.remove('visible');
+      }, 2200);
+    }).catch(function() {
+      const textarea = document.createElement('textarea');
+      textarea.value = summary;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      copyAlert.classList.add('visible');
+      setTimeout(function() {
+        copyAlert.classList.remove('visible');
+      }, 2200);
+    });
+  });
+
+  updateUI();
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

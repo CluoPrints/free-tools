@@ -24,6 +24,7 @@ Browse by category. 按分类浏览。
 - [Image compressor](image-compressor.html) - Compress an image to a target file size. 把图片压缩到指定文件大小。
 - [Slogan generator](slogan-generator.html) - Get slogan ideas for tees, mugs and gifts. 为 T 恤、马克杯和礼品获取标语灵感。
 - [Colour palette generator](color-palette.html) - Generate harmonious 5-colour palettes with HEX codes. 生成和谐的 5 色配色方案与 HEX 代码。
+- [Contrast checker](contrast-checker.html) - Check colour contrast ratios for accessible design. 检查颜色对比度是否符合无障碍标准。
 - 
 ### 小商家经营类 Small business
 

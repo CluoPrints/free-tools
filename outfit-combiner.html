@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/outfit-combiner.html">
+<link rel="alternate" hreflang="en" href="https://cluoprints.com/outfit-combiner.html">
+<link rel="alternate" hreflang="fr" href="https://cluoprints.com/outfit-combiner-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://cluoprints.com/outfit-combiner.html">
+<title>Outfit Combiner — Free Tool | CluoPrints</title>
+<meta name="description" content="Free outfit combiner: upload photos of your clothes, tag each piece, and get outfit combinations for any occasion. Your photos never leave your browser.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Outfit Combiner — Free Tool | CluoPrints">
+<meta property="og:description" content="Free outfit combiner: upload photos of your clothes, tag each piece, and get outfit combinations for any occasion. Your photos never leave your browser.">
+<meta property="og:url" content="https://cluoprints.com/outfit-combiner.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box input[type=file],.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+.wardrobe{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-top:18px}
+.item-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.item-card img,.swatch{width:100%;height:150px;object-fit:cover;border-radius:8px;background:#eee;display:block}
+.item-card select{margin-top:8px;padding:8px 10px;font-size:.92rem}
+.item-card button,.btn-small{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font:inherit;font-size:.88rem;cursor:pointer;margin-top:10px}
+.outfit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:18px}
+.outfit-card{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}
+.outfit-card .pics{display:flex;gap:8px;flex-wrap:wrap}
+.outfit-card .pics img,.outfit-card .pics .swatch{width:72px;height:72px;border-radius:8px;object-fit:cover}
+.outfit-card ul{margin:10px 0 0 18px}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery Collection</a>
+      <a href="ebooks.html">Ebooks</a>
+      <a href="custom.html">Custom Design</a>
+      <a href="design-your-own.html">Design Your Own</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html" class="active">Free Tools</a>
+      <a href="about.html">About & Contact</a>
+      <a href="outfit-combiner-fr.html">FR</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Outfit Combiner</h2>
+  <p class="sub">Upload your clothes, tag each piece, and get outfit ideas in seconds. No sign-up, no app, and your photos never leave this browser.</p>
+  <div class="tool-box">
+    <h3 style="margin-top:0">1. Add your clothes</h3>
+    <label for="up">Upload clothing photos</label>
+    <input type="file" id="up" accept="image/*" multiple>
+    <p class="tool-note">Privacy: your photos are read only in this browser to show previews. They are never uploaded, stored or shared. Close the page and they are gone.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn-small" id="sampleBtn" type="button">Try with sample clothes</button>
+      <button class="btn-small" id="clearBtn" type="button">Clear all</button>
+    </div>
+    <div class="wardrobe" id="wardrobe"></div>
+  </div>
+  <div class="tool-box">
+    <h3 style="margin-top:0">2. Get outfit ideas</h3>
+    <label for="occFilter">Occasion</label>
+    <select id="occFilter"><option value="any">Any occasion</option><option value="casual">Casual</option><option value="work">Work</option><option value="date">Date night</option><option value="sport">Sport</option></select>
+    <div style="margin-top:14px"><button class="btn" id="genBtn" type="button">Generate outfits</button></div>
+    <p class="tool-note" id="msg"></p>
+    <div class="outfit-grid" id="outfits"></div>
+  </div>
+  <div class="cta-band">
+    <h2>Want this look printed? We can print your design on T-shirts, hoodies, mugs and more — printed to order, no minimums.</h2>
+    <p><a class="btn" href="contact.html">Get a free quote</a> <a class="btn" href="shop.html">Shop CluoPrints pieces</a></p>
+  </div>
+  <p class="tool-note">How it works: this tool matches pieces by type, occasion and colour rules. It does not use AI image generation and it does not show clothes on your body (no virtual try-on).</p>
+</section>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Original graphic apparel designs and custom design studio based in Saint-Jean-sur-Richelieu, Quebec, Canada.</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 CluoPrints. All designs original.</div>
+</footer>
+<script src="app.js"></script>
+<script>
+var PIECES = {'top':'Top','bottom':'Bottom','shoes':'Shoes','outer':'Outerwear','accessory':'Accessory'};
+var COLOURS = {'black':'Black','white':'White','grey':'Grey','navy':'Navy','blue':'Blue','brown':'Brown','beige':'Beige','red':'Red','green':'Green','yellow':'Yellow','pink':'Pink','pattern':'Patterned'};
+var OCCASIONS = {'any':'Any occasion','casual':'Casual','work':'Work','date':'Date night','sport':'Sport'};
+var COLOUR_HEX = {black:'#222',white:'#f5f5f5',grey:'#999',navy:'#1f2a5a',blue:'#3a7bd5',brown:'#7b4a2b',beige:'#d9c7a5',red:'#c0392b',green:'#2e7d4f',yellow:'#e8c832',pink:'#e88bb1',pattern:'#888'};
+var items = [];
+var nextId = 1;
+function pieceOpts(sel){var s='';Object.keys(PIECES).forEach(function(k){s+='<option value="'+k+'"'+(k===sel?' selected':'')+'>'+PIECES[k]+'</option>';});return s;}
+function colourOpts(sel){var s='';Object.keys(COLOURS).forEach(function(k){s+='<option value="'+k+'"'+(k===sel?' selected':'')+'>'+COLOURS[k]+'</option>';});return s;}
+function occOpts(sel){var s='';Object.keys(OCCASIONS).forEach(function(k){s+='<option value="'+k+'"'+(k===sel?' selected':'')+'>'+OCCASIONS[k]+'</option>';});return s;}
+function renderWardrobe(){
+  var w=document.getElementById('wardrobe'); w.innerHTML='';
+  items.forEach(function(it){
+    var d=document.createElement('div'); d.className='item-card';
+    if(it.src){var im=document.createElement('img'); im.src=it.src; im.alt=PIECES[it.piece]; d.appendChild(im);}
+    else{var sw=document.createElement('div'); sw.className='swatch'; sw.style.background=COLOUR_HEX[it.colour]||'#eee'; d.appendChild(sw);}
+    var s1=document.createElement('select'); s1.innerHTML=pieceOpts(it.piece); s1.onchange=function(){it.piece=s1.value;};
+    var s2=document.createElement('select'); s2.innerHTML=colourOpts(it.colour); s2.onchange=function(){it.colour=s2.value;};
+    var s3=document.createElement('select'); s3.innerHTML=occOpts(it.occ); s3.onchange=function(){it.occ=s3.value;};
+    var rm=document.createElement('button'); rm.type='button'; rm.textContent='×'; rm.onclick=function(){items=items.filter(function(x){return x.id!==it.id;}); renderWardrobe();};
+    d.appendChild(s1); d.appendChild(s2); d.appendChild(s3); d.appendChild(rm); w.appendChild(d);
+  });
+}
+document.getElementById('up').addEventListener('change', function(ev){
+  Array.prototype.forEach.call(ev.target.files, function(f){
+    var r=new FileReader();
+    r.onload=function(e){items.push({id:nextId++, src:e.target.result, piece:'top', colour:'black', occ:'any'}); renderWardrobe();};
+    r.readAsDataURL(f);
+  });
+  ev.target.value='';
+});
+document.getElementById('clearBtn').addEventListener('click', function(){items=[]; document.getElementById('outfits').innerHTML=''; document.getElementById('msg').textContent=''; renderWardrobe();});
+document.getElementById('sampleBtn').addEventListener('click', function(){
+  var demo=[['top','white','casual'],['top','navy','work'],['top','red','date'],['bottom','black','any'],['bottom','blue','casual'],['shoes','white','casual']];
+  demo.forEach(function(x){items.push({id:nextId++, src:'', piece:x[0], colour:x[1], occ:x[2]});});
+  renderWardrobe();
+});
+function scoreCombo(c){
+  var s=0; var neut=['black','white','grey','navy','beige','brown'];
+  c.forEach(function(it){if(neut.indexOf(it.colour)>=0)s+=2;});
+  if(c[0] && c[1] && c[0].colour===c[1].colour)s-=1;
+  var pats=c.filter(function(it){return it.colour==='pattern';}).length; if(pats>1)s-=2;
+  return s;
+}
+document.getElementById('genBtn').addEventListener('click', function(){
+  var occ=document.getElementById('occFilter').value;
+  var msg=document.getElementById('msg'); var out=document.getElementById('outfits'); out.innerHTML='';
+  var ok=function(it){return occ==='any' || it.occ==='any' || it.occ===occ;};
+  var tops=items.filter(function(it){return it.piece==='top' && ok(it);});
+  var bots=items.filter(function(it){return it.piece==='bottom' && ok(it);});
+  if(!tops.length || !bots.length){msg.textContent="Add at least one top and one bottom first."; return;}
+  var shoes=items.filter(function(it){return it.piece==='shoes' && ok(it);});
+  var outers=items.filter(function(it){return it.piece==='outer' && ok(it);});
+  var accs=items.filter(function(it){return it.piece==='accessory' && ok(it);});
+  var combos=[];
+  tops.forEach(function(tp){ bots.forEach(function(bt){
+    var base=[tp,bt];
+    var sh=shoes.length?shoes[0]:null; var ow=outers.length?outers[0]:null; var ac=accs.length?accs[0]:null;
+    var combo=base.slice(); if(sh)combo.push(sh); if(ow)combo.push(ow); if(ac)combo.push(ac);
+    combos.push({items:combo, score:scoreCombo(combo)});
+  });});
+  combos.sort(function(a,b){return b.score-a.score;});
+  combos=combos.slice(0,12);
+  if(!combos.length){msg.textContent="No combination matches that occasion yet. Try “Any occasion”, or add more pieces."; return;}
+  msg.textContent='';
+  combos.forEach(function(c,idx){
+    var card=document.createElement('div'); card.className='outfit-card';
+    var h=document.createElement('h3'); h.textContent="Outfit "+(idx+1); card.appendChild(h);
+    var pics=document.createElement('div'); pics.className='pics';
+    c.items.forEach(function(it){
+      if(it.src){var im=document.createElement('img'); im.src=it.src; im.alt=PIECES[it.piece]; pics.appendChild(im);}
+      else{var sw=document.createElement('div'); sw.className='swatch'; sw.style.background=COLOUR_HEX[it.colour]||'#eee'; pics.appendChild(sw);}
+    });
+    card.appendChild(pics);
+    var ul=document.createElement('ul');
+    c.items.forEach(function(it){var li=document.createElement('li'); li.textContent=COLOURS[it.colour]+' '+PIECES[it.piece].toLowerCase(); ul.appendChild(li);});
+    card.appendChild(ul);
+    var cp=document.createElement('button'); cp.className='btn-small'; cp.type='button'; cp.textContent="Copy outfit list";
+    cp.onclick=function(){
+      var txt="Outfit "+(idx+1)+":\n"+c.items.map(function(it){return COLOURS[it.colour]+' '+PIECES[it.piece];}).join("\n");
+      if(navigator.clipboard){navigator.clipboard.writeText(txt).then(function(){cp.textContent="Copied!";});}
+    };
+    card.appendChild(cp); out.appendChild(card);
+  });
+});
+renderWardrobe();
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

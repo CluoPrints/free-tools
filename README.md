@@ -1,7 +1,7 @@
 # free-tools
 
 
-Free browser tools by CluoPrints — invoice generator, QR generator, menu and outfit tools.
+25 free browser tools by CluoPrints — print, small-business and social-media tools, all running entirely in your browser. No sign-up, no installation.
 
 These tools run entirely in your browser and are free to use. No installation is needed — just open them in your browser and start using them.
 

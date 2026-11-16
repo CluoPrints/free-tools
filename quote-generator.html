@@ -206,6 +206,10 @@
 <script src="app.js"></script>
 <script>
 function qFmt(n){return '$'+n.toFixed(2);}
+/* Round to cents (half up). The +1e-9 nudge only corrects binary float noise
+   (e.g. 220*14.975/100 = 32.945 stored as 32.94499...), so totals always equal
+   subtotal + displayed tax instead of being a cent short. */
+function qRound(n){return Math.round((n+1e-9)*100)/100;}
 function qRow(desc,qty,price){
   var tr=document.createElement('tr');
   tr.innerHTML='<td><input type="text" class="desc" placeholder="Item or service" value="'+(desc||'')+'"></td>'
@@ -222,17 +226,17 @@ function qCalc(){
   document.querySelectorAll('#qRows tr').forEach(function(tr){
     var q=parseFloat(tr.querySelector('.qty').value)||0;
     var p=parseFloat(tr.querySelector('.price').value)||0;
-    var amt=q*p; sub+=amt;
+    var amt=qRound(q*p); sub+=amt;
     tr.querySelector('.amt').textContent=qFmt(amt);
   });
   var rate=qTaxRate();
-  var tax=sub*rate/100;
+  var tax=qRound(sub*rate/100);
   document.getElementById('qSub').textContent=qFmt(sub);
   var taxRow=document.getElementById('qTaxRow');
   if(rate>0){taxRow.style.display='';document.getElementById('qTaxLbl').textContent='Tax ('+rate+'%)';document.getElementById('qTaxAmt').textContent=qFmt(tax);}
   else{taxRow.style.display='none';}
   document.getElementById('qCurrLbl').textContent=document.getElementById('qCurr').value;
-  document.getElementById('qTotal').textContent=qFmt(sub+tax);
+  document.getElementById('qTotal').textContent=qFmt(qRound(sub+tax));
 }
 function qEsc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function qCollect(){
@@ -242,11 +246,11 @@ function qCollect(){
     var q=parseFloat(tr.querySelector('.qty').value)||0;
     var p=parseFloat(tr.querySelector('.price').value)||0;
     if(!d&&!q&&!p)return;
-    var amt=q*p;sub+=amt;
+    var amt=qRound(q*p);sub+=amt;
     rows.push({d:d,q:q,p:p,amt:amt});
   });
   var rate=qTaxRate();
-  var tax=sub*rate/100;
+  var tax=qRound(sub*rate/100);
   return {
     num:document.getElementById('qNum').value.trim(),
     date:document.getElementById('qDate').value,
@@ -256,7 +260,7 @@ function qCollect(){
     femail:document.getElementById('qFromEmail').value.trim(),
     to:document.getElementById('qTo').value.trim(),
     notes:document.getElementById('qNotes').value.trim(),
-    rows:rows, sub:sub, rate:rate, tax:tax, total:sub+tax
+    rows:rows, sub:sub, rate:rate, tax:tax, total:qRound(sub+tax)
   };
 }
 function qRowsHtml(d){

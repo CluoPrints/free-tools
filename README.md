@@ -1,7 +1,7 @@
 # free-tools
 
 
-26 free browser tools by CluoPrints — print, small-business and social-media tools, all running entirely in your browser. No sign-up, no installation.
+27 free browser tools by CluoPrints — print, small-business and social-media tools, all running entirely in your browser. No sign-up, no installation.
 
 These tools run entirely in your browser and are free to use. No installation is needed — just open them in your browser and start using them.
 
@@ -27,6 +27,7 @@ Browse by category. 按分类浏览。
 - [Contrast checker](contrast-checker.html) - Check colour contrast ratios for accessible design. 检查颜色对比度是否符合无障碍标准。
 - [Favicon generator](favicon-generator.html) - Create favicons for your website. 为网站生成 favicon 图标。
 - [Image colour picker](image-color-picker.html) - Pick colours from any image. 从图片中取色。
+- [Image to PDF](image-to-pdf.html) - Convert images to PDF. 把图片转成 PDF。
 ### 小商家经营类 Small business
 
 - [Invoice generator](invoice-generator.html) - Create invoices. 制作发票。

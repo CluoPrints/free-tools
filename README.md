@@ -27,7 +27,7 @@ Browse by category. 按分类浏览。
 - [Contrast checker](contrast-checker.html) - Check colour contrast ratios for accessible design. 检查颜色对比度是否符合无障碍标准。
 - [Favicon generator](favicon-generator.html) - Create favicons for your website. 为网站生成 favicon 图标。
 - [Image colour picker](image-color-picker.html) - Pick colours from any image. 从图片中取色。
-- [Image to PDF](image-to-pdf.html) - Convert images to PDF. 把图片转成 PDF。
+- [Image to PDF](image-to-pdf.html) - Convert images to PDF. 把图片转成 PDF。 法语版 French version: [image-to-pdf-fr.html](image-to-pdf-fr.html)
 ### 小商家经营类 Small business
 
 - [Invoice generator](invoice-generator.html) - Create invoices. 制作发票。

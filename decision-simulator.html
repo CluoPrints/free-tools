@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/decision-simulator.html">
+<link rel="alternate" hreflang="en" href="https://cluoprints.com/decision-simulator.html">
+<link rel="alternate" hreflang="fr" href="https://cluoprints.com/decision-simulator-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://cluoprints.com/decision-simulator.html">
+<title>Life Decision Simulator — Free Rent vs Buy Decision Tool | CluoPrints</title>
+<meta name="description" content="Free life decision simulator: score rent vs buy — or any options of your own — across weighted criteria and see a clear winner with the maths shown. No sign-up, runs in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Life Decision Simulator — Free Decision Tool | CluoPrints">
+<meta property="og:description" content="Score your options across what matters to you and get a clear, weighted answer. Free, no sign-up.">
+<meta property="og:url" content="https://cluoprints.com/decision-simulator.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+<style>
+.ds-tool{background:#101a2c;color:#eef3fb;border-radius:18px;padding:24px;margin-bottom:26px;box-shadow:0 12px 32px rgba(10,20,40,.25)}
+.ds-tool *{box-sizing:border-box}
+.ds-banner{background:linear-gradient(120deg,#2a2113,#3a2c10);border:1px solid #6b5518;color:#ffe9ad;border-radius:12px;padding:10px 16px;font-size:1rem;margin-bottom:18px}
+.ds-banner b{color:#f6c453}
+.ds-lbl{font-weight:600;display:block;margin-bottom:8px}
+.ds-tool input[type=text],.ds-tool select{background:#182740;border:1px solid #27395a;border-radius:10px;padding:10px 12px;color:#eef3fb;font:inherit;font-size:.98rem;width:100%}
+.ds-tool input:focus,.ds-tool select:focus{outline:2px solid #35d0ba;outline-offset:1px}
+#dsTitle{font-size:1.1rem;font-weight:600}
+.ds-presets{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px}
+.ds-pbtn{border:1px solid #27395a;background:#182740;color:#eef3fb;border-radius:999px;padding:8px 15px;font:inherit;font-size:.92rem;font-weight:600;cursor:pointer}
+.ds-pbtn.active{background:#35d0ba;border-color:#35d0ba;color:#052e28}
+.ds-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:14px}
+.ds-opt{background:#182740;border:1px solid #27395a;border-radius:12px;padding:12px;display:flex;align-items:center;gap:9px}
+.ds-letter{display:inline-flex;align-items:center;justify-content:center;width:27px;height:27px;border-radius:8px;background:#24365a;font-weight:800;flex:none}
+.ds-x{background:none;border:1px solid #27395a;color:#9db1c9;width:29px;height:29px;border-radius:8px;cursor:pointer;flex:none}
+.ds-x:disabled{opacity:.3}
+.ds-btn{border:1px solid #27395a;background:#182740;color:#eef3fb;border-radius:10px;padding:9px 16px;font:inherit;font-weight:600;cursor:pointer;margin-top:12px}
+.ds-btn:hover{border-color:#35d0ba;color:#35d0ba}
+.ds-btn:disabled{opacity:.4;cursor:default}
+.ds-scroll{overflow-x:auto;margin-top:16px}
+table.ds-matrix{width:100%;border-collapse:collapse;min-width:600px}
+table.ds-matrix th,table.ds-matrix td{padding:8px;border-bottom:1px solid #27395a;vertical-align:middle;text-align:left}
+table.ds-matrix th{color:#9db1c9;font-size:.88rem}
+.ds-flex{display:flex;align-items:center;gap:9px}
+.ds-tool input[type=range]{flex:1;accent-color:#35d0ba;cursor:pointer}
+.ds-val{font-weight:800;min-width:22px;text-align:right}
+.ds-results{margin-top:22px;border-top:1px solid #27395a;padding-top:18px}
+.ds-win{font-size:1.25rem;font-weight:800}
+.ds-win b{color:#f6c453}
+.ds-rank{display:flex;align-items:center;gap:11px;padding:7px 0;border-bottom:1px solid #27395a}
+.ds-rank:last-of-type{border-bottom:none}
+.ds-rname{flex:0 1 190px;font-weight:600}
+.ds-rbar{flex:1;background:#0d1626;border-radius:999px;height:11px;overflow:hidden}
+.ds-rfill{height:100%;background:linear-gradient(90deg,#2ea8e0,#35d0ba)}
+.ds-rank.first .ds-rfill{background:linear-gradient(90deg,#e0a92e,#f6c453)}
+.ds-rscore{font-weight:800;min-width:48px;text-align:right}
+.ds-pc{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:14px}
+.ds-pcard{background:#182740;border:1px solid #27395a;border-radius:12px;padding:13px 15px}
+.ds-pcard h4{margin:0 0 6px;font-size:1rem;color:#eef3fb}
+.ds-pcard p{margin:4px 0;font-size:.92rem;color:#9db1c9}
+.ds-pcard .up{color:#35d0ba;font-weight:700}
+.ds-pcard .down{color:#f28b82;font-weight:700}
+table.ds-plain{width:100%;border-collapse:collapse;min-width:520px;margin-top:14px}
+table.ds-plain th,table.ds-plain td{padding:7px 9px;border-bottom:1px solid #27395a;text-align:left;font-size:.94rem}
+table.ds-plain th{color:#9db1c9}
+table.ds-plain tr.total td{font-weight:800;border-top:2px solid #27395a}
+.ds-note{color:#9db1c9;font-size:.9rem;margin-top:14px}
+.ds-cta{margin-top:20px;background:linear-gradient(120deg,#14342c,#10233a);border:1px solid #35d0ba;border-radius:14px;padding:18px 20px}
+.ds-cta h3{margin:0 0 6px;color:#fff;font-size:1.12rem}
+.ds-cta p{margin:0 0 12px;color:#cfe6dd;font-size:.95rem}
+.ds-cta a{display:inline-block;background:#35d0ba;color:#04263f;font-weight:700;padding:11px 22px;border-radius:10px;text-decoration:none}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "zetbhwibk5");
+</script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery Collection</a>
+      <a href="ebooks.html">Ebooks</a>
+      <a href="custom.html">Custom Design</a>
+      <a href="design-your-own.html">Design Your Own</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html" class="active">Free Tools</a>
+      <a href="about.html">About &amp; Contact</a>
+      <a href="decision-simulator-fr.html">FR</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Life Decision Simulator — Free Version</h2>
+  <p class="sub">Stuck between two big options? Score them across what actually matters to you — cost, flexibility, stress, growth — and get a clear weighted winner, with the maths shown. The Rent vs Buy example is filled in and scored; make it yours.</p>
+
+  <div class="ds-tool" id="dsTool">
+    <div class="ds-banner" id="dsBanner">Loading the example…</div>
+    <label class="ds-lbl" for="dsTitle">What are you deciding?</label>
+    <input type="text" id="dsTitle" data-ds="title" autocomplete="off">
+    <div class="ds-presets">
+      <button type="button" class="ds-pbtn" data-dsp="rentbuy">Rent vs Buy a Home</button>
+      <button type="button" class="ds-pbtn" data-dsp="blank">Blank / Custom</button>
+    </div>
+    <div class="ds-opts" id="dsOpts"></div>
+    <button type="button" class="ds-btn" id="dsAddOpt">+ Add an option</button>
+    <div class="ds-scroll"><table class="ds-matrix" id="dsMatrix"></table></div>
+    <button type="button" class="ds-btn" id="dsAddCrit">+ Add a criterion</button>
+    <div class="ds-results" id="dsResults"></div>
+    <p class="ds-note">Free version: 2 scenarios, up to 3 options and 5 criteria. This is a decision-support tool, not financial or professional advice — it totals your own scores and priorities.</p>
+    <div class="ds-cta">
+      <h3>Want the full Life Decision Simulator?</h3>
+      <p>5 scenarios (jobs, moving cities, buy vs lease a car…), up to 4 options and 10 criteria, 5-year cost comparison, “what would flip the result” analysis, a printable PDF report — in one file that works offline, yours forever for CA$29.99.</p>
+      <a href="https://payhip.com/CluoPrints" target="_blank" rel="noopener">Get the full version on Payhip</a>
+    </div>
+  </div>
+
+  <div class="cta-band">
+  <h2>Shopping for custom printing?</h2>
+  <p>Every CluoPrints quote shows the full price with taxes before you commit — no surprises. Printed to order in Quebec, no minimums.</p>
+  <a class="btn" href="contact.html">Contact us for a free quote</a>
+</div>
+</section>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Original graphic apparel designs and custom design studio based in Saint-Jean-sur-Richelieu, Quebec, Canada.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="shop.html">All Products</a>
+      <a href="shop.html?kind=tee">T-Shirts</a>
+      <a href="shop.html?kind=sweatshirt">Sweatshirts</a>
+      <a href="shop.html?kind=hoodie">Hoodies</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="ip-policy.html">IP Policy</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="custom.html">Custom Design</a>
+      <a href="about.html">About Us</a>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 CluoPrints. All designs original.</div>
+</footer>
+<script src="app.js"></script>
+<script>
+"use strict";
+var DS_PRESETS = {
+  rentbuy: {
+    title: "Rent or Buy a Home?",
+    options: ["Rent an apartment", "Buy a house"],
+    criteria: [
+      { name: "Monthly affordability", weight: 5 },
+      { name: "Low upfront cost", weight: 4 },
+      { name: "Flexibility to move", weight: 3 },
+      { name: "Wealth building", weight: 5 },
+      { name: "Low maintenance hassle", weight: 3 }
+    ],
+    scores: [[8, 9, 9, 3, 9], [6, 3, 3, 9, 4]]
+  },
+  blank: {
+    title: "My decision",
+    options: ["Option A", "Option B"],
+    criteria: [
+      { name: "Cost", weight: 3 },
+      { name: "Time & effort", weight: 3 },
+      { name: "Satisfaction", weight: 4 }
+    ],
+    scores: [[5, 5, 5], [5, 5, 5]]
+  }
+};
+var DS_MAX_OPT = 3, DS_MAX_CRIT = 5, DS_LETTERS = ["A", "B", "C"];
+var ds = null, dsPreset = "rentbuy";
+function dsEsc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(ch){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch];});}
+function dsFmt(x){return (Math.round(x*10)/10).toFixed(1);}
+function dsCompute(){
+  var tw=0,c,i; for(c=0;c<ds.criteria.length;c++) tw+=Number(ds.criteria[c].weight)||0;
+  var per=[];
+  for(i=0;i<ds.options.length;i++){
+    var raw=0; for(c=0;c<ds.criteria.length;c++) raw+=(Number(ds.scores[i][c])||1)*(Number(ds.criteria[c].weight)||0);
+    var strong=0,weak=0;
+    for(c=1;c<ds.criteria.length;c++){
+      if(ds.scores[i][c]>ds.scores[i][strong]||(ds.scores[i][c]===ds.scores[i][strong]&&ds.criteria[c].weight>ds.criteria[strong].weight)) strong=c;
+      if(ds.scores[i][c]<ds.scores[i][weak]||(ds.scores[i][c]===ds.scores[i][weak]&&ds.criteria[c].weight>ds.criteria[weak].weight)) weak=c;
+    }
+    per.push({raw:raw,score:tw>0?raw/(10*tw)*100:0,strong:strong,weak:weak});
+  }
+  var ranking=per.map(function(_,idx){return idx;});
+  ranking.sort(function(a,b){return per[b].raw-per[a].raw;});
+  return {per:per,ranking:ranking};
+}
+function dsRenderOpts(){
+  var h="";
+  ds.options.forEach(function(name,i){
+    h+='<div class="ds-opt"><span class="ds-letter">'+DS_LETTERS[i]+'</span>'+
+      '<input type="text" value="'+dsEsc(name)+'" data-ds="opt-name" data-o="'+i+'" aria-label="Option name">'+
+      '<button type="button" class="ds-x" data-dsact="del-opt" data-o="'+i+'"'+(ds.options.length<=2?" disabled":"")+' title="Remove option">&times;</button></div>';
+  });
+  document.getElementById("dsOpts").innerHTML=h;
+  document.getElementById("dsAddOpt").disabled=ds.options.length>=DS_MAX_OPT;
+}
+function dsRenderMatrix(){
+  var h="<tr><th>Criterion</th><th>Importance</th>";
+  ds.options.forEach(function(name,i){h+='<th id="dsmh-'+i+'">'+dsEsc(name)+"</th>";});
+  h+="<th></th></tr>";
+  ds.criteria.forEach(function(cr,c){
+    h+='<tr><td><input type="text" value="'+dsEsc(cr.name)+'" data-ds="crit-name" data-c="'+c+'" aria-label="Criterion name"></td><td><select data-ds="crit-weight" data-c="'+c+'" aria-label="Importance">';
+    for(var w=1;w<=5;w++) h+='<option value="'+w+'"'+(Number(cr.weight)===w?" selected":"")+">"+w+"</option>";
+    h+="</select></td>";
+    ds.options.forEach(function(_,o){
+      h+='<td><div class="ds-flex"><input type="range" min="1" max="10" step="1" value="'+ds.scores[o][c]+'" data-ds="score" data-o="'+o+'" data-c="'+c+'" aria-label="Score"><span class="ds-val" id="dssv-'+o+"-"+c+'">'+ds.scores[o][c]+"</span></div></td>";
+    });
+    h+='<td><button type="button" class="ds-x" data-dsact="del-crit" data-c="'+c+'"'+(ds.criteria.length<=1?" disabled":"")+' title="Remove criterion">&times;</button></td></tr>';
+  });
+  document.getElementById("dsMatrix").innerHTML=h;
+  document.getElementById("dsAddCrit").disabled=ds.criteria.length>=DS_MAX_CRIT;
+}
+function dsRenderResults(){
+  var r=dsCompute(), win=r.ranking[0];
+  document.getElementById("dsBanner").innerHTML="Current #1 pick: <b>"+dsEsc(ds.options[win])+"</b> — "+dsFmt(r.per[win].score)+" / 100"+
+    (ds.options.length>1?' &nbsp;·&nbsp; runner-up: '+dsEsc(ds.options[r.ranking[1]])+" — "+dsFmt(r.per[r.ranking[1]].score):"");
+  var h='<div class="ds-win">Top pick: <b>'+dsEsc(ds.options[win])+"</b> — "+dsFmt(r.per[win].score)+" / 100</div>";
+  r.ranking.forEach(function(oi,i){
+    h+='<div class="ds-rank'+(i===0?" first":"")+'"><span class="ds-rname">'+dsEsc(ds.options[oi])+'</span><span class="ds-rbar"><span class="ds-rfill" style="width:'+Math.max(2,r.per[oi].score)+'%"></span></span><span class="ds-rscore">'+dsFmt(r.per[oi].score)+"</span></div>";
+  });
+  h+='<div class="ds-pc">';
+  ds.options.forEach(function(name,oi){
+    var s=ds.criteria[r.per[oi].strong], w=ds.criteria[r.per[oi].weak];
+    h+='<div class="ds-pcard"><h4>'+dsEsc(name)+'</h4><p><span class="up">Strongest point:</span> '+dsEsc(s.name)+" — "+ds.scores[oi][r.per[oi].strong]+'/10</p><p><span class="down">Watch out:</span> '+dsEsc(w.name)+" — "+ds.scores[oi][r.per[oi].weak]+"/10</p></div>";
+  });
+  h+="</div>";
+  h+='<div class="ds-scroll"><table class="ds-plain"><tr><th>Criterion</th><th>Importance</th>';
+  ds.options.forEach(function(name){h+="<th>"+dsEsc(name)+"</th>";});
+  h+="</tr>";
+  ds.criteria.forEach(function(cr,c){
+    h+="<tr><td>"+dsEsc(cr.name)+"</td><td>"+cr.weight+"/5</td>";
+    ds.options.forEach(function(_,o){h+="<td>"+ds.scores[o][c]+"/10</td>";});
+    h+="</tr>";
+  });
+  h+='<tr class="total"><td>Weighted total</td><td></td>';
+  ds.options.forEach(function(_,o){h+="<td>"+dsFmt(r.per[o].score)+" / 100</td>";});
+  h+="</tr></table></div>";
+  document.getElementById("dsResults").innerHTML=h;
+}
+function dsRenderAll(){dsRenderOpts();dsRenderMatrix();dsRenderResults();
+  document.querySelectorAll(".ds-pbtn").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-dsp")===dsPreset);});}
+function dsLoad(p){ds=JSON.parse(JSON.stringify(DS_PRESETS[p]));dsPreset=p;document.getElementById("dsTitle").value=ds.title;dsRenderAll();}
+document.getElementById("dsTool").addEventListener("input",function(e){
+  var el=e.target,bind=el.getAttribute&&el.getAttribute("data-ds"); if(!bind) return;
+  var o=parseInt(el.getAttribute("data-o"),10),c=parseInt(el.getAttribute("data-c"),10);
+  if(bind==="title") ds.title=el.value;
+  else if(bind==="opt-name"){ds.options[o]=el.value;var mh=document.getElementById("dsmh-"+o);if(mh)mh.textContent=el.value;dsRenderResults();return;}
+  else if(bind==="crit-name"){ds.criteria[c].name=el.value;dsRenderResults();return;}
+  else if(bind==="score"){ds.scores[o][c]=Math.min(10,Math.max(1,Number(el.value)||1));var sv=document.getElementById("dssv-"+o+"-"+c);if(sv)sv.textContent=ds.scores[o][c];}
+  dsRenderResults();
+});
+document.getElementById("dsTool").addEventListener("change",function(e){
+  var el=e.target,bind=el.getAttribute&&el.getAttribute("data-ds");
+  if(bind==="crit-weight"){ds.criteria[parseInt(el.getAttribute("data-c"),10)].weight=Math.min(5,Math.max(1,Number(el.value)||1));dsRenderResults();}
+});
+document.getElementById("dsTool").addEventListener("click",function(e){
+  var p=e.target.closest?e.target.closest("[data-dsp]"):null;
+  if(p){dsLoad(p.getAttribute("data-dsp"));return;}
+  var el=e.target.closest?e.target.closest("[data-dsact]"):null;
+  if(el){
+    var act=el.getAttribute("data-dsact");
+    if(act==="del-opt"){var o=parseInt(el.getAttribute("data-o"),10);if(ds.options.length<=2)return;ds.options.splice(o,1);ds.scores.splice(o,1);dsPreset=null;dsRenderAll();}
+    if(act==="del-crit"){var c=parseInt(el.getAttribute("data-c"),10);if(ds.criteria.length<=1)return;ds.criteria.splice(c,1);ds.scores.forEach(function(row){row.splice(c,1);});dsPreset=null;dsRenderAll();}
+    return;
+  }
+  if(e.target.id==="dsAddOpt"){if(ds.options.length>=DS_MAX_OPT)return;ds.options.push("Option "+DS_LETTERS[ds.options.length]);ds.scores.push(ds.criteria.map(function(){return 5;}));dsPreset=null;dsRenderAll();}
+  if(e.target.id==="dsAddCrit"){if(ds.criteria.length>=DS_MAX_CRIT)return;ds.criteria.push({name:"New criterion",weight:3});ds.scores.forEach(function(row){row.push(5);});dsPreset=null;dsRenderAll();}
+});
+dsLoad("rentbuy");
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

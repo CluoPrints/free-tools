@@ -1,6 +1,5 @@
 # free-tools
 
-
 28 free browser tools by CluoPrints — print, small-business and social-media tools, all running entirely in your browser. No sign-up, no installation.
 
 These tools run entirely in your browser and are free to use. No installation is needed — just open them in your browser and start using them.
@@ -38,7 +37,6 @@ Browse by category. 按分类浏览。
 - [Markup calculator](markup-calculator.html) - Calculate selling prices with markup. 计算加价后的售价。
 - Menu tools - No corresponding file in this repository; kept as text only, without a link. 仓库中暂无对应文件，原条目仅保留文字，未加链接。
 - [Quote generator](quote-generator.html) - Create quotes and estimates for clients. 为客户制作报价单。
-- [Life Decision Simulator](decision-simulator.html) - Score options across weighted criteria, e.g. rent vs buy. 按加权标准为选项打分，如租房与买房对比。 法语版 French version: [decision-simulator-fr.html](decision-simulator-fr.html)
 
 ### 社媒类 Social
 
@@ -47,6 +45,10 @@ Browse by category. 按分类浏览。
 - [WiFi QR code generator](wifi-qr.html) - Create a QR code for your WiFi network. 生成 WiFi 网络二维码。
 - [Hashtag generator](hashtag-generator.html) - Generate hashtags for Instagram posts. 为 Instagram 帖子生成标签。
 - [Outfit combiner](outfit-combiner.html) - Mix and match outfits. 搭配服装。
+
+### Life & productivity 生活与效率
+
+- [Life Decision Simulator](decision-simulator.html) ([French version](decision-simulator-fr.html)) - Weigh options with weighted criteria and see a clear winner. 用加权标准比较选项、得出清晰结论。
 
 更多工具请访问官网工具页：https://cluoprints.com/tools.html — For more tools, visit the official tools page: https://cluoprints.com/tools.html
 

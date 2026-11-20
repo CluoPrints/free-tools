@@ -36,7 +36,7 @@ Browse by category. 按分类浏览。
 - [Food cost calculator](food-cost-calculator.html) - Calculate food cost percentage and margins for restaurants. 计算餐厅菜品成本率与毛利。
 - [Markup calculator](markup-calculator.html) - Calculate selling prices with markup. 计算加价后的售价。
 - Menu tools - No corresponding file in this repository; kept as text only, without a link. 仓库中暂无对应文件，原条目仅保留文字，未加链接。
-- [Quote generator](quote-generator.html) - Create quotes and estimates for clients. 为客户制作报价单。
+- [Quote generator](quote-generator.html) ([French version](quote-generator-fr.html)) - Create quotes and estimates for clients. 为客户制作报价单。
 
 ### 社媒类 Social
 

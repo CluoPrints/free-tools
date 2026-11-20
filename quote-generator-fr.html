@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/quote-generator-fr.html">
+<link rel="alternate" hreflang="en" href="https://cluoprints.com/quote-generator.html">
+<link rel="alternate" hreflang="fr" href="https://cluoprints.com/quote-generator-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://cluoprints.com/quote-generator.html">
+<title>Générateur de soumissions gratuit | CluoPrints</title>
+<meta name="description" content="Générateur de soumissions gratuit pour petites entreprises : ajoutez vos articles, réglez le taux de taxe et la validité, puis imprimez ou téléchargez votre soumission en fichier. Sans inscription, tout fonctionne dans votre navigateur et rien n'est envoyé ni conservé.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Générateur de soumissions gratuit | CluoPrints">
+<meta property="og:description" content="Préparez une soumission propre pour votre client en quelques minutes : articles, taxes et total, puis imprimez ou téléchargez-la. Sans inscription, rien ne quitte votre navigateur.">
+<meta property="og:url" content="https://cluoprints.com/quote-generator-fr.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box input[type=text],.tool-box input[type=number],.tool-box input[type=date],.tool-box textarea,.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-box textarea{min-height:70px;resize:vertical}
+.tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}
+.tool-row .grow{flex:1;min-width:180px}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+.inv-table{width:100%;border-collapse:collapse;margin-top:14px}
+.inv-table th{text-align:left;font-size:.92rem;color:var(--muted);padding:8px 6px;border-bottom:2px solid var(--line)}
+.inv-table td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+.inv-table input{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 10px;font:inherit;font-size:.98rem;background:#fff;color:var(--ink)}
+.inv-table .qty,.inv-table .price{max-width:130px}
+.inv-total{max-width:360px;margin:18px 0 0 auto}
+.inv-total table{width:100%;border-collapse:collapse}
+.inv-total td{padding:9px 6px;border-bottom:1px solid var(--line)}
+.inv-total td:last-child{text-align:right;font-weight:700}
+.inv-total tr.grand td{font-size:1.15rem;border-bottom:none}
+.btn-sm{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+.btn-sm:hover{border-color:var(--accent);color:var(--accent)}
+.btn-secondary{border:1px solid var(--line);background:#fff;border-radius:999px;padding:12px 26px;font:inherit;font-size:1rem;font-weight:700;cursor:pointer;color:var(--ink)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+@media(max-width:640px){.inv-table th:nth-child(4),.inv-table td:nth-child(4){display:none}}
+#printArea{display:none}
+@media print{
+  body>*{display:none!important}
+  #printArea{display:block!important;font-family:Georgia,'Times New Roman',serif;color:#111;padding:24px}
+  #printArea h1{font-size:1.7rem;margin:0 0 2px}
+  #printArea .pmeta{color:#555;font-size:.95rem;margin-bottom:18px}
+  #printArea .pcols{display:flex;gap:40px;margin-bottom:18px;font-size:.98rem}
+  #printArea .pcols b{display:block;margin-bottom:2px}
+  #printArea table{width:100%;border-collapse:collapse;margin-bottom:16px}
+  #printArea th,#printArea td{border-bottom:1px solid #bbb;padding:7px 8px;text-align:left;font-size:.98rem}
+  #printArea th{border-bottom:2px solid #111}
+  #printArea td.n,#printArea th.n{text-align:right}
+  #printArea .ptot{width:260px;margin-left:auto}
+  #printArea .ptot td{border-bottom:none;padding:3px 8px}
+  #printArea .ptot tr.grand td{font-weight:bold;font-size:1.12rem;border-top:2px solid #111;padding-top:7px}
+  #printArea .pnotes{margin-top:20px;font-size:.95rem;white-space:pre-wrap}
+  #printArea .pfoot{margin-top:34px;color:#888;font-size:.78rem}
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "zetbhwibk5");
+</script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index-fr.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index-fr.html">Accueil</a>
+      <a href="shop-fr.html">Boutique</a>
+      <a href="services-fr.html">Services</a>
+      <a href="about-fr.html">À propos</a>
+      <a href="design-your-own-fr.html">Créez le vôtre</a>
+      <a href="ebooks-fr.html">Livres à colorier</a>
+      <a href="tools-fr.html" class="active">Outils gratuits</a>
+      <a href="quote-generator.html">EN</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Générateur de soumissions</h2>
+  <p class="sub">Préparez une soumission propre et professionnelle pour votre client : remplissez vos coordonnées, ajoutez des articles, réglez le taux de taxe et la durée de validité, puis imprimez-la ou téléchargez-la en fichier pour l'envoyer. Sans inscription — tout fonctionne ici et rien n'est jamais envoyé ni conservé.</p>
+  <div class="tool-box">
+    <div class="tool-row" style="margin-top:0">
+      <div class="grow">
+        <label for="qNum">Numéro de soumission</label>
+        <input type="text" id="qNum" placeholder="p. ex. SOU-2026-001">
+      </div>
+      <div class="grow">
+        <label for="qDate">Date</label>
+        <input type="date" id="qDate">
+      </div>
+      <div class="grow">
+        <label for="qValid">Valide jusqu'au</label>
+        <input type="date" id="qValid">
+      </div>
+      <div class="grow">
+        <label for="qCurr">Devise</label>
+        <select id="qCurr">
+          <option value="CAD">CAD ($)</option>
+          <option value="USD">USD ($)</option>
+        </select>
+      </div>
+    </div>
+    <div class="tool-row">
+      <div class="grow">
+        <label for="qFrom">Nom de votre entreprise</label>
+        <input type="text" id="qFrom" placeholder="p. ex. CluoPrints">
+      </div>
+      <div class="grow">
+        <label for="qFromEmail">Votre courriel (facultatif)</label>
+        <input type="text" id="qFromEmail" placeholder="p. ex. info@cluoprints.com">
+      </div>
+    </div>
+    <div class="tool-row">
+      <div class="grow">
+        <label for="qTo">Soumission pour (nom du client)</label>
+        <input type="text" id="qTo" placeholder="p. ex. Café du Coin">
+      </div>
+    </div>
+    <div class="tool-row">
+      <div class="grow">
+        <label for="qTax">Taux de taxe (%)</label>
+        <input type="number" id="qTax" min="0" step="0.001" value="0" placeholder="p. ex. 14,975">
+      </div>
+    </div>
+    <p class="tool-note">Laissez le taux à 0 si aucune taxe ne s'applique, ou entrez votre taux combiné — par exemple 14,975 % (TPS + TVQ au Québec).</p>
+    <table class="inv-table">
+      <thead>
+        <tr><th>Description</th><th>Qté</th><th>Prix unitaire</th><th>Montant</th><th></th></tr>
+      </thead>
+      <tbody id="qRows"></tbody>
+    </table>
+    <div class="tool-row">
+      <button class="btn-sm" type="button" id="qAdd">+ Ajouter un article</button>
+    </div>
+    <div class="inv-total">
+      <table>
+        <tr><td>Sous-total</td><td id="qSub">—</td></tr>
+        <tr id="qTaxRow" style="display:none"><td id="qTaxLbl">Taxe</td><td id="qTaxAmt">—</td></tr>
+        <tr class="grand"><td>Total (<span id="qCurrLbl">CAD</span>)</td><td id="qTotal">—</td></tr>
+      </table>
+    </div>
+    <div class="tool-row">
+      <div class="grow">
+        <label for="qNotes">Notes (facultatif)</label>
+        <textarea id="qNotes" placeholder="p. ex. Cette soumission est valide jusqu'à la date indiquée ci-dessus. Les prix comprennent les matériaux et la main-d'œuvre. Merci de votre confiance !"></textarea>
+      </div>
+    </div>
+    <div class="tool-row">
+      <button class="btn" type="button" id="qPrint">Imprimer / Enregistrer en PDF</button>
+      <button class="btn-secondary" type="button" id="qDownload">Télécharger la soumission (.html)</button>
+    </div>
+    <p class="tool-note">Astuce : dans la fenêtre d'impression, choisissez « Enregistrer au format PDF » pour garder une copie. Le bouton de téléchargement enregistre votre soumission dans un fichier autonome que vous pouvez conserver ou envoyer à votre client. Cet outil ne fait que les calculs — ce n'est pas un conseil fiscal. Si vous n'êtes pas sûr des taxes applicables à votre vente, vérifiez les règles fiscales de votre région.</p>
+  </div>
+  <div class="cta-band">
+  <h2>Besoin d'un menu, d'un site web ou d'impressions personnalisées ?</h2>
+  <p>Nous concevons des menus, des sites web et des vêtements personnalisés pour les petites entreprises du Québec et de partout au Canada — imprimés sur commande, sans minimum.</p>
+  <p>Conception de menu à partir de 149 $ · Réseaux sociaux à partir de 149 $ CA/mois · Sites web à partir de 699 $ CA. Écrivez à <a href="mailto:info@cluoprints.com">info@cluoprints.com</a> pour un devis.</p>
+  <a class="btn" href="contact-fr.html">Contactez-nous pour un devis gratuit</a>
+</div>
+</section>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Designs graphiques originaux et studio de design personnalisé au Québec, Canada.</p>
+    </div>
+    <div>
+      <h4>Légal</h4>
+      <a href="terms-fr.html">Conditions</a>
+      <a href="privacy-fr.html">Confidentialité</a>
+      <a href="refund-fr.html">Remboursements</a>
+      <a href="shipping-fr.html">Livraison</a>
+      <a href="ip-policy-fr.html">Propriété intellectuelle</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a><br>
+      <a href="index.html">English version</a>
+    </div>
+  </div>
+  <p class="copy">© 2026 CluoPrints. Tous droits réservés. Chaque design est original.</p>
+</footer>
+<div id="printArea" aria-hidden="true"></div>
+<script src="app.js"></script>
+<script>
+function qFmt(n){return n.toFixed(2).replace('.', ',')+' $';}
+/* Arrondir aux cents (moitié supérieure). Le +1e-9 corrige seulement le bruit
+   des flottants binaires (p. ex. 220*14,975/100 = 32,945 stocké 32,94499...),
+   pour que le total égale toujours sous-total + taxe affichée. */
+function qRound(n){return Math.round((n+1e-9)*100)/100;}
+function qRow(desc,qty,price){
+  var tr=document.createElement('tr');
+  tr.innerHTML='<td><input type="text" class="desc" placeholder="Article ou service" value="'+(desc||'')+'"></td>'
+    +'<td><input type="number" class="qty" min="0" step="1" value="'+(qty==null?1:qty)+'"></td>'
+    +'<td><input type="number" class="price" min="0" step="0.01" placeholder="0,00" value="'+(price==null?'':price)+'"></td>'
+    +'<td class="amt">—</td>'
+    +'<td><button class="btn-sm" type="button" aria-label="Retirer l\u2019article">✕</button></td>';
+  tr.querySelector('button').addEventListener('click',function(){tr.remove();qCalc();});
+  return tr;
+}
+function qTaxRate(){return parseFloat(document.getElementById('qTax').value)||0;}
+function qRateStr(r){return String(r).replace('.', ',');}
+function qCalc(){
+  var sub=0;
+  document.querySelectorAll('#qRows tr').forEach(function(tr){
+    var q=parseFloat(tr.querySelector('.qty').value)||0;
+    var p=parseFloat(tr.querySelector('.price').value)||0;
+    var amt=qRound(q*p); sub+=amt;
+    tr.querySelector('.amt').textContent=qFmt(amt);
+  });
+  var rate=qTaxRate();
+  var tax=qRound(sub*rate/100);
+  document.getElementById('qSub').textContent=qFmt(sub);
+  var taxRow=document.getElementById('qTaxRow');
+  if(rate>0){taxRow.style.display='';document.getElementById('qTaxLbl').textContent='Taxe ('+qRateStr(rate)+' %)';document.getElementById('qTaxAmt').textContent=qFmt(tax);}
+  else{taxRow.style.display='none';}
+  document.getElementById('qCurrLbl').textContent=document.getElementById('qCurr').value;
+  document.getElementById('qTotal').textContent=qFmt(qRound(sub+tax));
+}
+function qEsc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function qCollect(){
+  var sub=0,rows=[];
+  document.querySelectorAll('#qRows tr').forEach(function(tr){
+    var d=tr.querySelector('.desc').value;
+    var q=parseFloat(tr.querySelector('.qty').value)||0;
+    var p=parseFloat(tr.querySelector('.price').value)||0;
+    if(!d&&!q&&!p)return;
+    var amt=qRound(q*p);sub+=amt;
+    rows.push({d:d,q:q,p:p,amt:amt});
+  });
+  var rate=qTaxRate();
+  var tax=qRound(sub*rate/100);
+  return {
+    num:document.getElementById('qNum').value.trim(),
+    date:document.getElementById('qDate').value,
+    valid:document.getElementById('qValid').value,
+    curr:document.getElementById('qCurr').value,
+    from:document.getElementById('qFrom').value.trim(),
+    femail:document.getElementById('qFromEmail').value.trim(),
+    to:document.getElementById('qTo').value.trim(),
+    notes:document.getElementById('qNotes').value.trim(),
+    rows:rows, sub:sub, rate:rate, tax:tax, total:qRound(sub+tax)
+  };
+}
+function qRowsHtml(d){
+  var out='';
+  d.rows.forEach(function(r){
+    out+='<tr><td>'+qEsc(r.d)+'</td><td class="n">'+r.q+'</td><td class="n">'+qFmt(r.p)+'</td><td class="n">'+qFmt(r.amt)+'</td></tr>';
+  });
+  return out;
+}
+function qTotalsHtml(d){
+  var t='<tr><td>Sous-total</td><td class="n">'+qFmt(d.sub)+'</td></tr>';
+  if(d.rate>0)t+='<tr><td>Taxe ('+qRateStr(d.rate)+' %)</td><td class="n">'+qFmt(d.tax)+'</td></tr>';
+  t+='<tr class="grand"><td>Total ('+qEsc(d.curr)+')</td><td class="n">'+qFmt(d.total)+'</td></tr>';
+  return t;
+}
+function qMetaHtml(d){
+  return '<div class="pmeta">Date : '+qEsc(d.date)+(d.valid?' · Valide jusqu\u2019au : '+qEsc(d.valid):'')+' · Devise : '+qEsc(d.curr)+'</div>';
+}
+function qBuildPrint(){
+  var d=qCollect();
+  document.getElementById('printArea').innerHTML=
+    '<h1>Soumission '+qEsc(d.num)+'</h1>'
+    +qMetaHtml(d)
+    +'<div class="pcols"><div><b>De</b>'+qEsc(d.from)+(d.femail?'<br>'+qEsc(d.femail):'')+'</div><div><b>Préparée pour</b>'+qEsc(d.to)+'</div></div>'
+    +'<table><thead><tr><th>Description</th><th class="n">Qté</th><th class="n">Prix unitaire</th><th class="n">Montant</th></tr></thead><tbody>'+qRowsHtml(d)+'</tbody></table>'
+    +'<table class="ptot">'+qTotalsHtml(d)+'</table>'
+    +(d.notes?'<div class="pnotes">'+qEsc(d.notes)+'</div>':'')
+    +'<div class="pfoot">Créé avec le générateur de soumissions gratuit de CluoPrints — cluoprints.com</div>';
+}
+function qDownload(){
+  var d=qCollect();
+  var doc='<!DOCTYPE html>\n<html lang="fr">\n<head>\n<meta charset="UTF-8">\n<title>Soumission '+qEsc(d.num)+'</title>\n'
+    +'<style>body{font-family:Georgia,\'Times New Roman\',serif;color:#111;padding:24px;max-width:760px;margin:0 auto}'
+    +'h1{font-size:1.7rem;margin:0 0 2px}.pmeta{color:#555;font-size:.95rem;margin-bottom:18px}'
+    +'.pcols{display:flex;gap:40px;margin-bottom:18px;font-size:.98rem}.pcols b{display:block;margin-bottom:2px}'
+    +'table{width:100%;border-collapse:collapse;margin-bottom:16px}th,td{border-bottom:1px solid #bbb;padding:7px 8px;text-align:left;font-size:.98rem}'
+    +'th{border-bottom:2px solid #111}td.n,th.n{text-align:right}.ptot{width:260px;margin-left:auto}'
+    +'.ptot td{border-bottom:none;padding:3px 8px}.ptot tr.grand td{font-weight:bold;font-size:1.12rem;border-top:2px solid #111;padding-top:7px}'
+    +'.pnotes{margin-top:20px;font-size:.95rem;white-space:pre-wrap}.pfoot{margin-top:34px;color:#888;font-size:.78rem}</style>\n</head>\n<body>\n'
+    +'<h1>Soumission '+qEsc(d.num)+'</h1>\n'+qMetaHtml(d)+'\n'
+    +'<div class="pcols"><div><b>De</b>'+qEsc(d.from)+(d.femail?'<br>'+qEsc(d.femail):'')+'</div><div><b>Préparée pour</b>'+qEsc(d.to)+'</div></div>\n'
+    +'<table><thead><tr><th>Description</th><th class="n">Qté</th><th class="n">Prix unitaire</th><th class="n">Montant</th></tr></thead><tbody>'+qRowsHtml(d)+'</tbody></table>\n'
+    +'<table class="ptot">'+qTotalsHtml(d)+'</table>\n'
+    +(d.notes?'<div class="pnotes">'+qEsc(d.notes)+'</div>\n':'')
+    +'<div class="pfoot">Créé avec le générateur de soumissions gratuit de CluoPrints — cluoprints.com</div>\n</body>\n</html>\n';
+  var blob=new Blob([doc],{type:'text/html'});
+  var a=document.createElement('a');
+  var safe=(d.num||'soumission').replace(/[^A-Za-z0-9._-]+/g,'-');
+  a.href=URL.createObjectURL(blob);
+  a.download='soumission-'+safe+'.html';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+}
+var qBody=document.getElementById('qRows');
+qBody.appendChild(qRow('Services de design',1,''));
+qBody.appendChild(qRow('',1,''));
+document.getElementById('qRows').addEventListener('input',qCalc);
+document.getElementById('qTax').addEventListener('input',qCalc);
+document.getElementById('qCurr').addEventListener('change',qCalc);
+document.getElementById('qAdd').addEventListener('click',function(){qBody.appendChild(qRow('',1,''));qCalc();});
+document.getElementById('qPrint').addEventListener('click',function(){qBuildPrint();window.print();});
+document.getElementById('qDownload').addEventListener('click',qDownload);
+window.addEventListener('beforeprint',qBuildPrint);
+(function(){
+  var d=new Date();
+  var iso=function(dt){return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');};
+  document.getElementById('qDate').value=iso(d);
+  var v=new Date(d); v.setDate(v.getDate()+30);
+  document.getElementById('qValid').value=iso(v);
+  document.getElementById('qNum').value='SOU-'+d.getFullYear()+'-001';
+})();
+qCalc();
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

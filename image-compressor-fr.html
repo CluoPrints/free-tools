@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/image-compressor-fr.html">
+<link rel="alternate" hreflang="en" href="https://cluoprints.com/image-compressor.html">
+<link rel="alternate" hreflang="fr" href="https://cluoprints.com/image-compressor-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://cluoprints.com/image-compressor.html">
+<title>Compresser une image à une taille cible (Ko) | CluoPrints</title>
+<meta name="description" content="Compresseur d'image gratuit : réduisez n'importe quelle image JPG, PNG, WebP ou GIF à la taille de fichier voulue — 50 Ko, 100 Ko, 200 Ko, 500 Ko ou votre propre cible. Dans votre navigateur, rien n'est envoyé.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Compresser une image à une taille cible (Ko) | CluoPrints">
+<meta property="og:description" content="Réduisez n'importe quelle image à la taille de fichier voulue — 50 Ko, 100 Ko, 200 Ko, 500 Ko ou votre propre cible. Gratuit, dans votre navigateur, rien n'est envoyé.">
+<meta property="og:url" content="https://cluoprints.com/image-compressor-fr.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box textarea,.tool-box input[type=text],.tool-box input[type=number],.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-box textarea{min-height:84px;resize:vertical}
+.tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}
+.tool-row .grow{flex:1;min-width:180px}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+.tool-box h3{font-size:1.08rem;margin:6px 0 14px}
+.tool-box h3:not(:first-child){margin-top:26px;border-top:1px solid var(--line);padding-top:22px}
+.upload-wrap{position:relative;display:inline-block}
+.upload-wrap .btn{pointer-events:none}
+.upload-wrap input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0;padding:0}
+.preset-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.preset{border:1px solid var(--line);border-radius:999px;padding:9px 18px;background:#fff;font:inherit;font-weight:600;cursor:pointer}
+.preset:hover{border-color:var(--accent)}
+.preset.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.check-line{display:flex;gap:10px;align-items:flex-start;margin-top:14px;cursor:pointer}
+.check-line input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--accent)}
+.result-box{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--soft);margin-top:18px}
+.result-box img{display:block;max-width:100%;max-height:320px;border-radius:8px;border:1px solid var(--line);margin:0 auto 14px;background:#fff}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;font-size:.98rem}
+.result-grid .k{color:var(--muted)}
+.result-grid .v{font-weight:700;text-align:right}
+.result-box .btn{width:100%;text-align:center;margin-top:14px}
+.status-ok{color:#166534;background:#dcfce7;border-radius:8px;padding:10px 12px;font-size:.95rem;margin-top:14px}
+.status-warn{color:#854d0e;background:#fef9c3;border-radius:8px;padding:10px 12px;font-size:.95rem;margin-top:14px}
+.status-err{color:#991b1b;background:#fee2e2;border-radius:8px;padding:10px 12px;font-size:.95rem;margin-top:14px}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:10px 22px;border-radius:999px;font-size:.95rem;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:640px){.result-grid{grid-template-columns:1fr}.result-grid .v{text-align:left}}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "zetbhwibk5");
+</script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index-fr.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index-fr.html">Accueil</a>
+      <a href="shop-fr.html">Boutique</a>
+      <a href="services-fr.html">Services</a>
+      <a href="about-fr.html">À propos</a>
+      <a href="design-your-own-fr.html">Créez le vôtre</a>
+      <a href="ebooks-fr.html">Livres à colorier</a>
+      <a href="tools-fr.html" class="active">Outils gratuits</a>
+      <a href="image-compressor.html">EN</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Compresser une image à une taille cible</h2>
+  <p class="sub">Une photo à faire passer sous 100 Ko pour un formulaire, une annonce ou un courriel? Téléversez une image, choisissez la taille voulue et téléchargez un fichier qui respecte la limite. Tout se fait localement dans votre navigateur; votre image n’est jamais envoyée nulle part.</p>
+  <div class="tool-box">
+    <label>Choisissez une image (JPG, PNG, WebP, GIF)</label>
+    <div class="upload-wrap">
+      <span class="btn">Choisir une image</span>
+      <input type="file" id="icFile" accept="image/jpeg,image/png,image/webp,image/gif">
+    </div>
+    <p class="tool-note" id="icOrig" style="display:none"></p>
+    <h3>Taille de fichier cible</h3>
+    <div class="preset-row" id="icPresets">
+      <button type="button" class="preset" data-kb="50">50 Ko</button>
+      <button type="button" class="preset on" data-kb="100">100 Ko</button>
+      <button type="button" class="preset" data-kb="200">200 Ko</button>
+      <button type="button" class="preset" data-kb="500">500 Ko</button>
+    </div>
+    <div class="tool-row">
+      <div class="grow">
+        <label for="icCustom">Ou entrez votre propre cible (Ko)</label>
+        <input type="number" id="icCustom" min="5" max="20000" step="1" placeholder="p. ex. 150">
+      </div>
+    </div>
+    <label class="check-line"><input type="checkbox" id="icKeepPng"><span>Garder le format PNG (seulement pour les images PNG). Le PNG garde la transparence, mais ne peut se réduire qu’en diminuant les dimensions — si la cible est impossible à atteindre, nous vous indiquerons la plus petite taille possible au lieu de deviner.</span></label>
+    <div class="tool-row">
+      <button class="btn" id="icGoBtn" type="button" disabled>Compresser l’image</button>
+    </div>
+    <p class="tool-note">Comment ça marche : les images JPG et WebP sont réencodées à la meilleure qualité qui respecte votre cible (à ±10 % ou 5 Ko près). Les images PNG sont converties en JPG par défaut, car le JPG compresse bien mieux les photos — cochez « Garder le PNG » seulement si vous avez besoin de la transparence. Les GIF animés sont compressés en une seule image fixe; l’animation n’est pas conservée. Si votre fichier est déjà plus petit que la cible, nous le dirons — pas de fausse compression.</p>
+    <div id="icStatus"></div>
+    <div class="result-box" id="icResult" style="display:none">
+      <img id="icPreview" alt="Aperçu de l’image compressée">
+      <div class="result-grid">
+        <span class="k">Original</span><span class="v" id="icOrigInfo"></span>
+        <span class="k">Compressé</span><span class="v" id="icNewInfo"></span>
+        <span class="k">Réduction de taille</span><span class="v" id="icRatio"></span>
+        <span class="k">Format de sortie</span><span class="v" id="icFmt"></span>
+      </div>
+      <a class="btn" id="icDownload" href="#" download>Télécharger l’image compressée</a>
+    </div>
+  </div>
+  <div class="cta-band">
+  <h2>Envie de l’imprimer?</h2>
+  <p>Nous pouvons imprimer votre photo ou votre design sur des t-shirts, chandails, tasses, affiches et plus — imprimé sur commande au Québec, sans minimum, avec un aperçu gratuit avant de payer.</p>
+  <a class="btn" href="contact-fr.html">Contactez-nous pour un devis gratuit</a>
+</div>
+</section>
+<div id="toast"></div>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Designs graphiques originaux et studio de design personnalisé au Québec, Canada.</p>
+    </div>
+    <div>
+      <h4>Légal</h4>
+      <a href="terms-fr.html">Conditions</a>
+      <a href="privacy-fr.html">Confidentialité</a>
+      <a href="refund-fr.html">Remboursements</a>
+      <a href="shipping-fr.html">Livraison</a>
+      <a href="ip-policy-fr.html">Propriété intellectuelle</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a><br>
+      <a href="index.html">English version</a>
+    </div>
+  </div>
+  <p class="copy">© 2026 CluoPrints. Tous droits réservés. Chaque design est original.</p>
+</footer>
+<script src="app.js"></script>
+<script>
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.className='show';setTimeout(function(){t.className='';},1800);}
+function fmtBytes(b){if(b===0)return '0 o';var u=['o','Ko','Mo','Go'],i=Math.floor(Math.log(b)/Math.log(1024));return (b/Math.pow(1024,i)).toFixed(i?2:0)+' '+u[i];}
+function setStatus(cls,msg){var s=document.getElementById('icStatus');s.innerHTML=msg?'<div class="'+cls+'">'+msg+'</div>':'';}
+var icImg=null, icFileObj=null, icSig='', icTargetKB=100;
+var fileEl=document.getElementById('icFile');
+function handleFile(f){
+  if(!f)return;
+  if(!/^image\//.test(f.type)){setStatus('status-err','Ce fichier n’est pas une image. Veuillez choisir un fichier JPG, PNG, WebP ou GIF.');return;}
+  var sig=f.name+'|'+f.size+'|'+f.lastModified;
+  if(sig===icSig)return; /* déjà chargé (déduplication du sondage) */
+  icSig=sig; icFileObj=f;
+  var img=new Image();
+  img.onload=function(){
+    icImg=img;
+    var o=document.getElementById('icOrig');
+    o.style.display='block';
+    o.textContent='Original : '+img.naturalWidth+' × '+img.naturalHeight+' px · '+fmtBytes(f.size)+' · '+f.name;
+    document.getElementById('icGoBtn').disabled=false;
+    document.getElementById('icResult').style.display='none';
+    setStatus('', '');
+    if(f.size<=icTargetKB*1024){
+      setStatus('status-ok','Bonne nouvelle : ce fichier fait déjà '+fmtBytes(f.size)+', soit moins que votre cible de '+icTargetKB+' Ko — aucune compression nécessaire. Choisissez une cible plus petite si vous voulez un fichier encore plus léger.');
+    }
+  };
+  img.onerror=function(){setStatus('status-err','Impossible de lire cette image. Veuillez essayer un autre fichier.');};
+  img.src=URL.createObjectURL(f);
+}
+fileEl.addEventListener('change',function(){handleFile(this.files[0]);});
+fileEl.addEventListener('input',function(){handleFile(this.files[0]);});
+/* Solution de repli mobile : sur certains navigateurs Android, les événements change/input ne se déclenchent pas.
+   On vérifie brièvement après l’ouverture du sélecteur, puis à nouveau quand la fenêtre reprend le focus. */
+var pollTimer=null;
+fileEl.addEventListener('click',function(){
+  if(pollTimer)clearInterval(pollTimer);
+  var n=0;
+  pollTimer=setInterval(function(){
+    n++;
+    if(fileEl.files&&fileEl.files[0])handleFile(fileEl.files[0]);
+    if(n>=20)clearInterval(pollTimer);
+  },400);
+});
+window.addEventListener('focus',function(){if(fileEl.files&&fileEl.files[0])handleFile(fileEl.files[0]);});
+document.getElementById('icPresets').addEventListener('click',function(e){
+  var b=e.target.closest('.preset');if(!b)return;
+  document.querySelectorAll('#icPresets .preset').forEach(function(p){p.classList.remove('on');});
+  b.classList.add('on');
+  icTargetKB=parseInt(b.getAttribute('data-kb'),10);
+  document.getElementById('icCustom').value='';
+  if(icFileObj&&icFileObj.size<=icTargetKB*1024){
+    setStatus('status-ok','Bonne nouvelle : ce fichier fait déjà '+fmtBytes(icFileObj.size)+', soit moins que votre cible de '+icTargetKB+' Ko — aucune compression nécessaire. Choisissez une cible plus petite si vous voulez un fichier encore plus léger.');
+  }else{setStatus('','');}
+});
+document.getElementById('icCustom').addEventListener('input',function(){
+  var v=parseInt(this.value,10);
+  if(v>0){icTargetKB=v;document.querySelectorAll('#icPresets .preset').forEach(function(p){p.classList.remove('on');});}
+  if(icFileObj&&v>0&&icFileObj.size<=v*1024){
+    setStatus('status-ok','Bonne nouvelle : ce fichier fait déjà '+fmtBytes(icFileObj.size)+', soit moins que votre cible de '+v+' Ko — aucune compression nécessaire. Choisissez une cible plus petite si vous voulez un fichier encore plus léger.');
+  }else{setStatus('','');}
+});
+function canvasToBlob(canvas,type,q){
+  return new Promise(function(res){canvas.toBlob(function(b){res(b);},type,q);});
+}
+function drawTo(img,scale){
+  var c=document.createElement('canvas');
+  c.width=Math.max(1,Math.round(img.naturalWidth*scale));
+  c.height=Math.max(1,Math.round(img.naturalHeight*scale));
+  var ctx=c.getContext('2d');
+  ctx.drawImage(img,0,0,c.width,c.height);
+  return c;
+}
+document.getElementById('icGoBtn').addEventListener('click',function(){
+  if(!icImg||!icFileObj)return;
+  var target=icTargetKB*1024;
+  var btn=this;
+  btn.disabled=true;btn.textContent='Compression…';
+  setStatus('','');
+  document.getElementById('icResult').style.display='none';
+  if(icFileObj.size<=target){
+    setStatus('status-ok','Ce fichier fait déjà '+fmtBytes(icFileObj.size)+', soit moins que votre cible de '+icTargetKB+' Ko — aucune compression nécessaire.');
+    btn.disabled=false;btn.textContent='Compresser l’image';return;
+  }
+  var isPng=/png/i.test(icFileObj.type);
+  var keepPng=isPng&&document.getElementById('icKeepPng').checked;
+  var outType, ext, fmtLabel;
+  if(keepPng){outType='image/png';ext='png';fmtLabel='PNG (transparence conservée)';}
+  else if(/webp/i.test(icFileObj.type)){outType='image/webp';ext='webp';fmtLabel='WebP';}
+  else{outType='image/jpeg';ext='jpg';fmtLabel=isPng?'JPEG (converti depuis PNG)':'JPEG';}
+  var done=function(blob,scale,note){
+    var url=URL.createObjectURL(blob);
+    var pct=Math.round((1-blob.size/icFileObj.size)*100);
+    document.getElementById('icPreview').src=url;
+    document.getElementById('icOrigInfo').textContent=icImg.naturalWidth+' × '+icImg.naturalHeight+' px · '+fmtBytes(icFileObj.size);
+    document.getElementById('icNewInfo').textContent=Math.round(icImg.naturalWidth*scale)+' × '+Math.round(icImg.naturalHeight*scale)+' px · '+fmtBytes(blob.size);
+    document.getElementById('icRatio').textContent=pct+' % plus petit ('+fmtBytes(icFileObj.size-blob.size)+' économisés)';
+    document.getElementById('icFmt').textContent=fmtLabel;
+    var base=icFileObj.name.replace(/\.[^.]+$/,'');
+    var dl=document.getElementById('icDownload');
+    dl.href=url;dl.download=base+'-compressed.'+ext;
+    document.getElementById('icResult').style.display='block';
+    if(note)setStatus('status-warn',note);
+    else setStatus('status-ok','Terminé — '+fmtBytes(blob.size)+' (cible : '+icTargetKB+' Ko).');
+    btn.disabled=false;btn.textContent='Compresser l’image';
+    showToast('Compressé à '+fmtBytes(blob.size)+'.');
+  };
+  var fail=function(msg){setStatus('status-err',msg);btn.disabled=false;btn.textContent='Compresser l’image';};
+  if(keepPng){
+    /* PNG : la qualité ne s’applique pas, on cherche plutôt l’échelle par dichotomie. */
+    var lo=0.05,hi=1.0,best=null,bestBlob=null;
+    var tries=0;
+    var step=function(){
+      tries++;
+      var mid=(lo+hi)/2;
+      var c=drawTo(icImg,mid);
+      canvasToBlob(c,'image/png').then(function(blob){
+        if(!blob){fail('Impossible d’encoder cette image en PNG.');return;}
+        if(blob.size<=target){best=mid;bestBlob=blob;lo=mid;}else{hi=mid;}
+        if(tries>=10||(hi-lo)<0.02){
+          if(bestBlob){done(bestBlob,best,null);}
+          else{
+            /* Même la plus petite échelle essayée reste trop lourde : on indique le vrai minimum. */
+            var minC=drawTo(icImg,0.05);
+            canvasToBlob(minC,'image/png').then(function(minBlob){
+              fail('Ce PNG ne peut pas atteindre '+icTargetKB+' Ko — même à 5 % de sa taille d’origine, il pèse encore '+fmtBytes(minBlob.size)+'. Essayez une cible plus grande, ou décochez « Garder le PNG » pour le convertir en JPEG.');
+            });
+          }
+          return;
+        }
+        step();
+      });
+    };
+    step();
+  }else{
+    /* JPEG/WebP : dichotomie sur la qualité à taille réelle d’abord, puis réduction des dimensions si besoin. */
+    var scale=1.0;
+    var qualitySearch=function(){
+      var lo=0.05,hi=0.95,bestQ=null,bestBlob=null,tries=0;
+      var step=function(){
+        tries++;
+        var mid=(lo+hi)/2;
+        var c=drawTo(icImg,scale);
+        canvasToBlob(c,outType,mid).then(function(blob){
+          if(!blob){fail('Impossible d’encoder cette image.');return;}
+          if(blob.size<=target){bestQ=mid;bestBlob=blob;lo=mid;}else{hi=mid;}
+          if(tries>=9||(hi-lo)<0.02){
+            if(bestBlob){done(bestBlob,scale,null);return;}
+            if(scale>0.15){scale*=0.7;qualitySearch();return;}
+            fail('Cette image ne peut pas atteindre '+icTargetKB+' Ko — même à la qualité la plus basse et à 15 % de sa taille d’origine, elle reste au-dessus de la cible. Essayez une cible plus grande.');
+            return;
+          }
+          step();
+        });
+      };
+      step();
+    };
+    qualitySearch();
+  }
+});
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

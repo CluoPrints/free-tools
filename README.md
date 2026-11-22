@@ -1,16 +1,23 @@
 # free-tools
 
+
 28 free browser tools by CluoPrints — print, small-business and social-media tools, all running entirely in your browser. No sign-up, no installation.
+
 
 These tools run entirely in your browser and are free to use. No installation is needed — just open them in your browser and start using them.
 
+
 这些工具完全在浏览器中运行，免费使用，无需安装。
+
 
 ## Tools 工具合集
 
+
 Browse by category. 按分类浏览。
 
+
 ### 印制类 Print
+
 
 - [Print cost calculator](print-cost-calculator.html) - Calculate printing costs. 计算印制成本。
 - [Business card generator](business-card-generator.html) - Create business cards. 制作名片。
@@ -20,14 +27,15 @@ Browse by category. 按分类浏览。
 - [Color converter](color-converter.html) - Convert colors. 转换颜色。
 - [Print resolution checker](print-checker.html) - Check if an image is sharp enough for print at a chosen size. 检查图片在所选印制尺寸下是否够清晰。
 - [Image resizer](image-resizer.html) - Resize and compress images in the browser. 在浏览器里调整图片尺寸并压缩。
-- [Image compressor](image-compressor.html) - Compress an image to a target file size. 把图片压缩到指定文件大小。
-- [Slogan generator](slogan-generator.html) - Get slogan ideas for tees, mugs and gifts. 为 T 恤、马克杯和礼品获取标语灵感。
+- [Image compressor](image-compressor.html) ([French version](image-compressor-fr.html)) - Compress an image to a target file size. 把图片压缩到指定文件大小。
+- [Slogan generator](slogan-generator.html) ([French version](slogan-generator-fr.html)) - Get slogan ideas for tees, mugs and gifts. 为 T 恤、马克杯和礼品获取标语灵感。
 - [Colour palette generator](color-palette.html) - Generate harmonious 5-colour palettes with HEX codes. 生成和谐的 5 色配色方案与 HEX 代码。
 - [Contrast checker](contrast-checker.html) - Check colour contrast ratios for accessible design. 检查颜色对比度是否符合无障碍标准。
 - [Favicon generator](favicon-generator.html) - Create favicons for your website. 为网站生成 favicon 图标。
 - [Image colour picker](image-color-picker.html) - Pick colours from any image. 从图片中取色。
 - [Image to PDF](image-to-pdf.html) - Convert images to PDF. 把图片转成 PDF。 法语版 French version: [image-to-pdf-fr.html](image-to-pdf-fr.html)
 ### 小商家经营类 Small business
+
 
 - [Invoice generator](invoice-generator.html) - Create invoices. 制作发票。
 - [Discount calculator](discount-calculator.html) - Calculate discounts and taxes. 计算折扣与税费。
@@ -38,21 +46,18 @@ Browse by category. 按分类浏览。
 - Menu tools - No corresponding file in this repository; kept as text only, without a link. 仓库中暂无对应文件，原条目仅保留文字，未加链接。
 - [Quote generator](quote-generator.html) ([French version](quote-generator-fr.html)) - Create quotes and estimates for clients. 为客户制作报价单。
 
+
 ### 社媒类 Social
 
+
 - [QR generator](qr-generator.html) - Create QR codes. 生成二维码。
-- [Social image sizes](social-image-sizes.html) - Export one image in every social media size. 一张图导出全部社媒尺寸。
+- [Social image sizes](social-image-sizes.html) ([French version](social-image-sizes-fr.html)) - Export one image in every social media size. 一张图导出全部社媒尺寸。
 - [WiFi QR code generator](wifi-qr.html) - Create a QR code for your WiFi network. 生成 WiFi 网络二维码。
 - [Hashtag generator](hashtag-generator.html) - Generate hashtags for Instagram posts. 为 Instagram 帖子生成标签。
 - [Outfit combiner](outfit-combiner.html) - Mix and match outfits. 搭配服装。
 
+
 ### Life & productivity 生活与效率
 
-- [Life Decision Simulator](decision-simulator.html) ([French version](decision-simulator-fr.html)) - Weigh options with weighted criteria and see a clear winner. 用加权标准比较选项、得出清晰结论。
 
-更多工具请访问官网工具页：https://cluoprints.com/tools.html — For more tools, visit the official tools page: https://cluoprints.com/tools.html
-
-## Live links
-
-- CluoPrints: https://cluoprints.com
-- Free tools page: https://cluoprints.com/tools.html
+- [Life Decision Simulator](decision-simulator.html) ([French version](decision-simulator-fr.html)) - Weigh options with weighted criteria and see a clear winner. 用加权标准比较选项、得出

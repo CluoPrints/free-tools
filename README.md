@@ -1,40 +1,56 @@
 # free-tools
 
 
+
+
 28 free browser tools by CluoPrints — print, small-business and social-media tools, all running entirely in your browser. No sign-up, no installation.
+
+
 
 
 These tools run entirely in your browser and are free to use. No installation is needed — just open them in your browser and start using them.
 
 
+
+
 这些工具完全在浏览器中运行，免费使用，无需安装。
+
+
 
 
 ## Tools 工具合集
 
 
+
+
 Browse by category. 按分类浏览。
+
+
 
 
 ### 印制类 Print
 
 
+
+
 - [Print cost calculator](print-cost-calculator.html) - Calculate printing costs. 计算印制成本。
-- [Business card generator](business-card-generator.html) - Create business cards. 制作名片。
+- [Business card generator](business-card-generator.html)([French version](business-card-generator-fr.html)) - Create business cards. 制作名片。
 - [Flyer generator](flyer-generator.html) - Create flyers. 制作传单。
 - [Paper size converter](paper-size-converter.html) - Convert paper sizes. 转换纸张尺寸。
 - [Single-color icon maker](single-color-icon-maker.html) - Create single-color icons in your browser. 在浏览器中制作单色图标。
-- [Color converter](color-converter.html) - Convert colors. 转换颜色。
+- [Color converter](color-converter.html)([French version](color-converter-fr.html)) - Convert colors. 转换颜色。
 - [Print resolution checker](print-checker.html) - Check if an image is sharp enough for print at a chosen size. 检查图片在所选印制尺寸下是否够清晰。
 - [Image resizer](image-resizer.html) - Resize and compress images in the browser. 在浏览器里调整图片尺寸并压缩。
 - [Image compressor](image-compressor.html) ([French version](image-compressor-fr.html)) - Compress an image to a target file size. 把图片压缩到指定文件大小。
 - [Slogan generator](slogan-generator.html) ([French version](slogan-generator-fr.html)) - Get slogan ideas for tees, mugs and gifts. 为 T 恤、马克杯和礼品获取标语灵感。
-- [Colour palette generator](color-palette.html) - Generate harmonious 5-colour palettes with HEX codes. 生成和谐的 5 色配色方案与 HEX 代码。
+- [Colour palette generator](color-palette.html)([French version](color-palette-fr.html)) - Generate harmonious 5-colour palettes with HEX codes. 生成和谐的 5 色配色方案与 HEX 代码。
 - [Contrast checker](contrast-checker.html) - Check colour contrast ratios for accessible design. 检查颜色对比度是否符合无障碍标准。
 - [Favicon generator](favicon-generator.html) - Create favicons for your website. 为网站生成 favicon 图标。
 - [Image colour picker](image-color-picker.html) - Pick colours from any image. 从图片中取色。
 - [Image to PDF](image-to-pdf.html) - Convert images to PDF. 把图片转成 PDF。 法语版 French version: [image-to-pdf-fr.html](image-to-pdf-fr.html)
 ### 小商家经营类 Small business
+
+
 
 
 - [Invoice generator](invoice-generator.html) - Create invoices. 制作发票。
@@ -47,7 +63,11 @@ Browse by category. 按分类浏览。
 - [Quote generator](quote-generator.html) ([French version](quote-generator-fr.html)) - Create quotes and estimates for clients. 为客户制作报价单。
 
 
+
+
 ### 社媒类 Social
+
+
 
 
 - [QR generator](qr-generator.html) - Create QR codes. 生成二维码。
@@ -55,9 +75,3 @@ Browse by category. 按分类浏览。
 - [WiFi QR code generator](wifi-qr.html) - Create a QR code for your WiFi network. 生成 WiFi 网络二维码。
 - [Hashtag generator](hashtag-generator.html) - Generate hashtags for Instagram posts. 为 Instagram 帖子生成标签。
 - [Outfit combiner](outfit-combiner.html) - Mix and match outfits. 搭配服装。
-
-
-### Life & productivity 生活与效率
-
-
-- [Life Decision Simulator](decision-simulator.html) ([French version](decision-simulator-fr.html)) - Weigh options with weighted criteria and see a clear winner. 用加权标准比较选项、得出

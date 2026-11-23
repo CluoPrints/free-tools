@@ -1,36 +1,22 @@
 # free-tools
 
 
-
-
 28 free browser tools by CluoPrints — print, small-business and social-media tools, all running entirely in your browser. No sign-up, no installation.
-
-
 
 
 These tools run entirely in your browser and are free to use. No installation is needed — just open them in your browser and start using them.
 
 
-
-
 这些工具完全在浏览器中运行，免费使用，无需安装。
-
-
 
 
 ## Tools 工具合集
 
 
-
-
 Browse by category. 按分类浏览。
 
 
-
-
 ### 印制类 Print
-
-
 
 
 - [Print cost calculator](print-cost-calculator.html) - Calculate printing costs. 计算印制成本。
@@ -51,8 +37,6 @@ Browse by category. 按分类浏览。
 ### 小商家经营类 Small business
 
 
-
-
 - [Invoice generator](invoice-generator.html) - Create invoices. 制作发票。
 - [Discount calculator](discount-calculator.html) - Calculate discounts and taxes. 计算折扣与税费。
 - [Tip calculator](tip-calculator.html) - Calculate tips. 计算小费。
@@ -63,11 +47,7 @@ Browse by category. 按分类浏览。
 - [Quote generator](quote-generator.html) ([French version](quote-generator-fr.html)) - Create quotes and estimates for clients. 为客户制作报价单。
 
 
-
-
 ### 社媒类 Social
-
-
 
 
 - [QR generator](qr-generator.html) - Create QR codes. 生成二维码。
@@ -75,3 +55,9 @@ Browse by category. 按分类浏览。
 - [WiFi QR code generator](wifi-qr.html) - Create a QR code for your WiFi network. 生成 WiFi 网络二维码。
 - [Hashtag generator](hashtag-generator.html) - Generate hashtags for Instagram posts. 为 Instagram 帖子生成标签。
 - [Outfit combiner](outfit-combiner.html) - Mix and match outfits. 搭配服装。
+
+
+### Life & productivity 生活与效率
+
+
+- [Life Decision Simulator](decision-simulator.html) ([French version](decision-simulator-fr.html)) - Weigh options with weighted criteria and see a clear winner. 用加权标准比较选项、得出

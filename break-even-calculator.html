@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/break-even-calculator.html">
+<link rel="alternate" hreflang="en" href="https://cluoprints.com/break-even-calculator.html">
+<link rel="alternate" hreflang="fr" href="https://cluoprints.com/break-even-calculator-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://cluoprints.com/break-even-calculator.html">
+<title>Break-Even Calculator — Free Tool | CluoPrints</title>
+<meta name="description" content="Free break-even calculator for small businesses: enter your monthly fixed costs, selling price and variable cost per unit to see how many units you must sell to break even — plus profit at different sales volumes.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Break-Even Calculator — Free Tool | CluoPrints">
+<meta property="og:description" content="Free break-even calculator for small businesses: enter your monthly fixed costs, selling price and variable cost per unit to see how many units you must sell to break even — plus profit at different sales volumes.">
+<meta property="og:url" content="https://cluoprints.com/break-even-calculator.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box textarea,.tool-box input[type=text],.tool-box input[type=number],.tool-box input[type=file],.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-box textarea{min-height:84px;resize:vertical}
+.tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}
+.tool-row .grow{flex:1;min-width:180px}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+.tool-box h3{font-size:1.08rem;margin:6px 0 14px}
+.tool-box h3:not(:first-child){margin-top:26px;border-top:1px solid var(--line);padding-top:22px}
+.res-table{width:100%;border-collapse:collapse;margin-top:14px}
+.res-table th,.res-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.98rem}
+.res-table th{color:var(--muted);font-weight:600;width:44%}
+.res-table td{font-weight:600}
+.badge{display:inline-block;padding:7px 18px;border-radius:999px;font-weight:700;font-size:1rem;margin-top:16px}
+.badge.good{background:#dcfce7;color:#166534}
+.badge.mid{background:#fef9c3;color:#854d0e}
+.badge.bad{background:#fee2e2;color:#991b1b}
+.preview-img{display:block;max-width:100%;max-height:320px;margin:18px auto 4px;border-radius:12px;border:1px solid var(--line)}
+.copy-row{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:10px;background:var(--soft)}
+.copy-row .val{font-weight:700;font-size:1.02rem;word-break:break-all}
+.copy-row .lbl{color:var(--muted);font-size:.86rem;display:block;font-weight:600}
+.copy-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.big-swatch{height:110px;border-radius:14px;border:1px solid rgba(16,22,35,.08);margin-bottom:16px}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:10px 22px;border-radius:999px;font-size:.95rem;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+input[type=color]{width:100%;height:52px;border:1px solid var(--line);border-radius:10px;padding:4px;background:#fff;cursor:pointer}
+.preset-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.preset-lbl{font-weight:600;font-size:.95rem;color:var(--muted)}
+.preset-btn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+.preset-btn:hover{border-color:var(--accent);color:var(--accent)}
+.preset-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "zetbhwibk5");
+</script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery Collection</a>
+      <a href="ebooks.html">Ebooks</a>
+      <a href="custom.html">Custom Design</a>
+      <a href="design-your-own.html">Design Your Own</a>
+      <a href="services.html">Services</a>
+      <a href="tools.html" class="active">Free Tools</a>
+      <a href="about.html">About &amp; Contact</a>
+      <a href="break-even-calculator-fr.html">FR</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Break-Even Calculator</h2>
+  <p class="sub">How many sales do you need to cover your costs? Enter your monthly fixed costs, your selling price and what each sale costs you, and see your break-even point in units and revenue — plus what you earn above it.</p>
+  <div class="tool-box">
+    <div class="tool-row" style="margin-top:0">
+      <div class="grow">
+        <label for="beFixed">Monthly fixed costs ($)</label>
+        <input type="number" id="beFixed" min="0" step="0.01" placeholder="e.g. 1200.00">
+      </div>
+      <div class="grow">
+        <label for="bePrice">Selling price per unit ($)</label>
+        <input type="number" id="bePrice" min="0" step="0.01" placeholder="e.g. 25.00">
+      </div>
+      <div class="grow">
+        <label for="beVar">Variable cost per unit ($)</label>
+        <input type="number" id="beVar" min="0" step="0.01" placeholder="e.g. 10.00">
+      </div>
+    </div>
+    <table class="res-table">
+      <tr><th>Contribution margin per unit</th><td id="beMargin">—</td></tr>
+      <tr><th>Break-even point (units / month)</th><td id="beUnits">—</td></tr>
+      <tr><th>Break-even revenue ($ / month)</th><td id="beRevenue">—</td></tr>
+    </table>
+    <p class="badge bad" id="beWarn" style="display:none">Your price doesn't cover the variable cost — you lose money on every sale. Raise your price or lower your per-unit cost.</p>
+    <h3>Profit at different sales volumes</h3>
+    <table class="res-table">
+      <tr><th>Sales volume</th><th>Units</th><th>Revenue</th><th>Profit</th></tr>
+      <tr><td>50% of break-even</td><td id="beU50">—</td><td id="beR50">—</td><td id="beP50">—</td></tr>
+      <tr><td>75% of break-even</td><td id="beU75">—</td><td id="beR75">—</td><td id="beP75">—</td></tr>
+      <tr><td>100% — break-even</td><td id="beU100">—</td><td id="beR100">—</td><td id="beP100">—</td></tr>
+      <tr><td>125% of break-even</td><td id="beU125">—</td><td id="beR125">—</td><td id="beP125">—</td></tr>
+      <tr><td>150% of break-even</td><td id="beU150">—</td><td id="beR150">—</td><td id="beP150">—</td></tr>
+    </table>
+    <p class="tool-note">Fixed costs are costs that don't change with sales (rent, insurance, subscriptions). Variable cost is what each unit costs you (materials, packaging, fees). Amounts are before tax.</p>
+  </div>
+  <div class="cta-band">
+  <h2>Shopping for custom printing?</h2>
+  <p>Every CluoPrints quote shows the full price with taxes before you commit — no surprises. Printed to order in Quebec, no minimums.</p>
+  <a class="btn" href="contact.html">Contact us for a free quote</a>
+</div>
+</section>
+<div id="toast"></div>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Original graphic apparel designs and custom design studio based in Saint-Jean-sur-Richelieu, Quebec, Canada.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="shop.html">All Products</a>
+      <a href="shop.html?kind=tee">T-Shirts</a>
+      <a href="shop.html?kind=sweatshirt">Sweatshirts</a>
+      <a href="shop.html?kind=hoodie">Hoodies</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="ip-policy.html">IP Policy</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="custom.html">Custom Design</a>
+      <a href="about.html">About Us</a>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 CluoPrints. All designs original.</div>
+</footer>
+<script src="app.js"></script>
+<script>
+function qRound(n){return Math.round((n+1e-9)*100)/100;}
+function fmtMoney(n){return '$'+qRound(n).toFixed(2);}
+function fmtInt(n){return Math.round(n).toLocaleString('en-US');}
+function beCalc(){
+  var fixed=parseFloat(document.getElementById('beFixed').value);
+  var price=parseFloat(document.getElementById('bePrice').value);
+  var vc=parseFloat(document.getElementById('beVar').value);
+  var ids=['beMargin','beUnits','beRevenue','beU50','beR50','beP50','beU75','beR75','beP75','beU100','beR100','beP100','beU125','beR125','beP125','beU150','beR150','beP150'];
+  function clearAll(){
+    ids.forEach(function(id){document.getElementById(id).textContent='—';});
+    document.getElementById('beWarn').style.display='none';
+  }
+  if(isNaN(fixed)||fixed<0)fixed=0;
+  if(isNaN(vc)||vc<0)vc=0;
+  if(isNaN(price)||price<=0){clearAll();return;}
+  var margin=price-vc;
+  if(margin<=0){
+    clearAll();
+    document.getElementById('beWarn').style.display='inline-block';
+    return;
+  }
+  document.getElementById('beWarn').style.display='none';
+  var beUnits=Math.ceil(fixed/margin-1e-9);
+  var beRevenue=beUnits*price;
+  document.getElementById('beMargin').textContent=fmtMoney(margin);
+  document.getElementById('beUnits').textContent=fmtInt(beUnits)+' units';
+  document.getElementById('beRevenue').textContent=fmtMoney(beRevenue);
+  [50,75,100,125,150].forEach(function(pct){
+    var units=Math.round(beUnits*pct/100);
+    var revenue=units*price;
+    var profit=units*margin-fixed;
+    document.getElementById('beU'+pct).textContent=fmtInt(units);
+    document.getElementById('beR'+pct).textContent=fmtMoney(revenue);
+    document.getElementById('beP'+pct).textContent=(profit<0?'-':'')+fmtMoney(Math.abs(profit));
+  });
+}
+document.getElementById('beFixed').addEventListener('input',beCalc);
+document.getElementById('bePrice').addEventListener('input',beCalc);
+document.getElementById('beVar').addEventListener('input',beCalc);
+beCalc();
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

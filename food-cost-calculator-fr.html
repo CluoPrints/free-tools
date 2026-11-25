@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/food-cost-calculator-fr.html">
+<link rel="alternate" hreflang="en" href="https://cluoprints.com/food-cost-calculator.html">
+<link rel="alternate" hreflang="fr" href="https://cluoprints.com/food-cost-calculator-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://cluoprints.com/food-cost-calculator.html">
+<title>Calculateur de coût des aliments — Outil gratuit | CluoPrints</title>
+<meta name="description" content="Calculateur gratuit de coût des aliments pour les restaurateurs : entrez le prix au menu et le coût des ingrédients par plat, et voyez le pourcentage du coût des aliments, la marge brute en pourcentage et le profit brut par plat.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Calculateur de coût des aliments — Outil gratuit | CluoPrints">
+<meta property="og:description" content="Calculateur gratuit de coût des aliments pour les restaurateurs : entrez le prix au menu et le coût des ingrédients par plat, et voyez le pourcentage du coût des aliments, la marge brute en pourcentage et le profit brut par plat.">
+<meta property="og:url" content="https://cluoprints.com/food-cost-calculator-fr.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box input[type=text],.tool-box input[type=number],.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}
+.tool-row .grow{flex:1;min-width:180px}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+.res-table{width:100%;border-collapse:collapse;margin-top:14px}
+.res-table th,.res-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.98rem}
+.res-table th{color:var(--muted);font-weight:600;width:44%}
+.res-table td{font-weight:600}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "zetbhwibk5");
+</script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index-fr.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index-fr.html">Accueil</a>
+      <a href="shop-fr.html">Boutique</a>
+      <a href="services-fr.html">Services</a>
+      <a href="about-fr.html">À propos</a>
+      <a href="design-your-own-fr.html">Créez le vôtre</a>
+      <a href="ebooks-fr.html">Livres à colorier</a>
+      <a href="tools-fr.html" class="active">Outils gratuits</a>
+      <a href="food-cost-calculator.html">EN</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Calculateur de coût des aliments</h2>
+  <p class="sub">Pour les restaurateurs : entrez le prix au menu et le coût des ingrédients pour un plat, et voyez le pourcentage du coût des aliments, la marge brute en pourcentage et le profit brut par plat.</p>
+  <div class="tool-box">
+    <div class="tool-row" style="margin-top:0">
+      <div class="grow">
+        <label for="fcPrice">Prix au menu par plat ($)</label>
+        <input type="number" id="fcPrice" min="0" step="0.01" placeholder="ex. 24,00">
+      </div>
+      <div class="grow">
+        <label for="fcCost">Coût des ingrédients par plat ($)</label>
+        <input type="number" id="fcCost" min="0" step="0.01" placeholder="ex. 7,20">
+      </div>
+      <div class="grow">
+        <label for="fcTarget">Coût des aliments visé (%)</label>
+        <input type="number" id="fcTarget" min="1" max="99" step="0.5" value="30">
+      </div>
+    </div>
+    <table class="res-table">
+      <tr><th>Pourcentage du coût des aliments</th><td id="fcPct">—</td></tr>
+      <tr><th>Profit brut par plat</th><td id="fcProfit">—</td></tr>
+      <tr><th>Marge brute (%)</th><td id="fcMargin">—</td></tr>
+      <tr><th>Prix au menu suggéré selon la cible</th><td id="fcSuggested">—</td></tr>
+    </table>
+    <p class="tool-note">Le pourcentage du coût des aliments est la part du prix au menu dépensée en ingrédients pour un plat. Le profit brut est le prix au menu moins le coût des ingrédients. La marge brute en pourcentage est la part du prix au menu qui reste après le coût des ingrédients, avant la main-d'œuvre, le loyer et les autres coûts. Vous préférez partir du coût ? Le prix au menu suggéré est votre coût des ingrédients divisé par le pourcentage visé — beaucoup de restaurants visent 28 à 35 %.</p>
+  </div>
+  <p class="tool-note"><a href="tools-fr.html">Retour à tous les outils gratuits</a> · <a href="services-fr.html">Voir nos services</a> · CluoPrints crée aussi des sites web pour entreprises : à partir de 699 $ frais uniques, puis 120 $/an tout inclus.</p>
+</section>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Designs graphiques originaux et studio de design personnalisé au Québec, Canada.</p>
+    </div>
+    <div>
+      <h4>Légal</h4>
+      <a href="terms-fr.html">Conditions</a>
+      <a href="privacy-fr.html">Confidentialité</a>
+      <a href="refund-fr.html">Remboursements</a>
+      <a href="shipping-fr.html">Livraison</a>
+      <a href="ip-policy-fr.html">Propriété intellectuelle</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a><br>
+      <a href="index.html">English version</a>
+    </div>
+  </div>
+  <p class="copy">© 2026 CluoPrints. Tous droits réservés. Chaque design est original.</p>
+</footer>
+<script src="app.js"></script>
+<script>
+function fmtMoney(n){return n.toFixed(2).replace('.',',')+' $';}
+function fmtPct(n){return n.toFixed(1).replace('.',',')+' %';}
+function fcCalc(){
+  var price=parseFloat(document.getElementById('fcPrice').value);
+  var cost=parseFloat(document.getElementById('fcCost').value);
+  var target=parseFloat(document.getElementById('fcTarget').value);
+  if(!isNaN(cost)&&cost>0&&!isNaN(target)&&target>0&&target<100){
+    document.getElementById('fcSuggested').textContent=fmtMoney(cost/(target/100));
+  }else{
+    document.getElementById('fcSuggested').textContent='—';
+  }
+  if(isNaN(price)||price<=0||isNaN(cost)||cost<0){
+    document.getElementById('fcPct').textContent='—';
+    document.getElementById('fcProfit').textContent='—';
+    document.getElementById('fcMargin').textContent='—';
+    return;
+  }
+  var profit=price-cost;
+  document.getElementById('fcPct').textContent=fmtPct(cost/price*100);
+  document.getElementById('fcProfit').textContent=fmtMoney(profit);
+  document.getElementById('fcMargin').textContent=fmtPct(profit/price*100);
+}
+document.getElementById('fcPrice').addEventListener('input',fcCalc);
+document.getElementById('fcCost').addEventListener('input',fcCalc);
+document.getElementById('fcTarget').addEventListener('input',fcCalc);
+fcCalc();
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

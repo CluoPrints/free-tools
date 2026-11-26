@@ -26,18 +26,18 @@ Browse by category. 按分类浏览。
 - [Single-color icon maker](single-color-icon-maker.html) - Create single-color icons in your browser. 在浏览器中制作单色图标。
 - [Color converter](color-converter.html) ([French version](color-converter-fr.html)) - Convert colors. 转换颜色。
 - [Print resolution checker](print-checker.html) - Check if an image is sharp enough for print at a chosen size. 检查图片在所选印制尺寸下是否够清晰。
-- [Image resizer](image-resizer.html) - Resize and compress images in the browser. 在浏览器里调整图片尺寸并压缩。
+- [Image resizer](image-resizer.html) ([French version](image-resizer-fr.html)) - Resize and compress images in the browser. 在浏览器里调整图片尺寸并压缩。
 - [Image compressor](image-compressor.html) ([French version](image-compressor-fr.html)) - Compress an image to a target file size. 把图片压缩到指定文件大小。
 - [Slogan generator](slogan-generator.html) ([French version](slogan-generator-fr.html)) - Get slogan ideas for tees, mugs and gifts. 为 T 恤、马克杯和礼品获取标语灵感。
 - [Colour palette generator](color-palette.html) ([French version](color-palette-fr.html)) - Generate harmonious 5-colour palettes with HEX codes. 生成和谐的 5 色配色方案与 HEX 代码。
 - [Contrast checker](contrast-checker.html) ([French version](contrast-checker-fr.html)) - Check colour contrast ratios for accessible design. 检查颜色对比度是否符合无障碍标准。
 - [Favicon generator](favicon-generator.html) ([French version](favicon-generator-fr.html)) - Create favicons for your website. 为网站生成 favicon 图标。
-- [Image colour picker](image-color-picker.html) - Pick colours from any image. 从图片中取色。
+- [Image colour picker](image-color-picker.html) ([French version](image-color-picker-fr.html)) - Pick colours from any image. 从图片中取色。
 - [Image to PDF](image-to-pdf.html) - Convert images to PDF. 把图片转成 PDF。 法语版 French version: [image-to-pdf-fr.html](image-to-pdf-fr.html)
 ### 小商家经营类 Small business
 
 
-- [Invoice generator](invoice-generator.html) - Create invoices. 制作发票。
+- [Invoice generator](invoice-generator.html) ([French version](invoice-generator-fr.html)) - Create invoices. 制作发票。
 - [Discount calculator](discount-calculator.html) ([French version](discount-calculator-fr.html)) - Calculate discounts and taxes. 计算折扣与税费。
 - [Tip calculator](tip-calculator.html) - Calculate tips. 计算小费。
 - [Price list generator](price-list-generator.html) - Create price lists. 制作价目表。

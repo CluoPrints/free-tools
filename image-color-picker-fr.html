@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cluoprints.com/image-color-picker-fr.html">
+<link rel="alternate" hreflang="en" href="https://cluoprints.com/image-color-picker.html">
+<link rel="alternate" hreflang="fr" href="https://cluoprints.com/image-color-picker-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://cluoprints.com/image-color-picker.html">
+<title>Pipette de couleurs sur image — Outil gratuit | CluoPrints</title>
+<meta name="description" content="Pipette de couleurs gratuite : téléversez une image, cliquez un point et obtenez sa couleur exacte en HEX, RGB et HSL. Sans inscription, aucun envoi.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CluoPrints">
+<meta property="og:title" content="Pipette de couleurs sur image — Outil gratuit | CluoPrints">
+<meta property="og:description" content="Pipette de couleurs gratuite : téléversez une image, cliquez un point et obtenez sa couleur exacte en HEX, RGB et HSL. Sans inscription, aucun envoi.">
+<meta property="og:url" content="https://cluoprints.com/image-color-picker-fr.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="motion.css">
+<style>
+.tool-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:26px}
+.tool-box label{font-weight:600;display:block;margin-bottom:8px}
+.tool-box textarea,.tool-box input[type=text],.tool-box input[type=number],.tool-box input[type=file],.tool-box select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;background:#fff;color:var(--ink)}
+.tool-box textarea{min-height:84px;resize:vertical}
+.tool-row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}
+.tool-row .grow{flex:1;min-width:180px}
+.tool-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+.tool-box h3{font-size:1.08rem;margin:6px 0 14px}
+.tool-box h3:not(:first-child){margin-top:26px;border-top:1px solid var(--line);padding-top:22px}
+.res-table{width:100%;border-collapse:collapse;margin-top:14px}
+.res-table th,.res-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.98rem}
+.res-table th{color:var(--muted);font-weight:600;width:44%}
+.res-table td{font-weight:600}
+.badge{display:inline-block;padding:7px 18px;border-radius:999px;font-weight:700;font-size:1rem;margin-top:16px}
+.badge.good{background:#dcfce7;color:#166534}
+.badge.mid{background:#fef9c3;color:#854d0e}
+.badge.bad{background:#fee2e2;color:#991b1b}
+.preview-img{display:block;max-width:100%;max-height:320px;margin:18px auto 4px;border-radius:12px;border:1px solid var(--line)}
+.copy-row{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:10px;background:var(--soft)}
+.copy-row .val{font-weight:700;font-size:1.02rem;word-break:break-all}
+.copy-row .lbl{color:var(--muted);font-size:.86rem;display:block;font-weight:600}
+.copy-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.big-swatch{height:110px;border-radius:14px;border:1px solid rgba(16,22,35,.08);margin-bottom:16px}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:10px 22px;border-radius:999px;font-size:.95rem;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+input[type=color]{width:100%;height:52px;border:1px solid var(--line);border-radius:10px;padding:4px;background:#fff;cursor:pointer}
+#pickCanvas{display:block;max-width:100%;height:auto;margin:18px auto 4px;border-radius:12px;border:1px solid var(--line);cursor:crosshair}
+.chip-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.chip{width:46px;height:46px;border-radius:10px;border:1px solid rgba(16,22,35,.15);cursor:pointer;transition:transform .15s}
+.chip:hover{transform:translateY(-2px)}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5R8PVW312D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5R8PVW312D');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840800084252278"
+     crossorigin="anonymous"></script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "zetbhwibk5");
+</script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index-fr.html">Cluo<span>Prints</span></a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="index-fr.html">Accueil</a>
+      <a href="shop-fr.html">Boutique</a>
+      <a href="services-fr.html">Services</a>
+      <a href="about-fr.html">À propos</a>
+      <a href="design-your-own-fr.html">Créez le vôtre</a>
+      <a href="ebooks-fr.html">Livres à colorier</a>
+      <a href="tools-fr.html" class="active">Outils gratuits</a>
+      <a href="image-color-picker.html">EN</a>
+    </div>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>Pipette de couleurs sur image</h2>
+  <p class="sub">Téléversez une image, cliquez n'importe quel point et obtenez la couleur exacte à cet endroit — HEX, RGB et HSL — prête pour vos designs et vos impressions. Tout se fait localement dans votre navigateur; votre image n'est jamais envoyée nulle part.</p>
+  <div class="tool-box">
+    <label for="pkFile">Choisissez une image (JPG, PNG, WebP…)</label>
+    <input type="file" id="pkFile" accept="image/*">
+    <canvas id="pickCanvas" style="display:none" title="Cliquez pour choisir une couleur"></canvas>
+    <p class="tool-note" id="pkHint" style="display:none">Cliquez n'importe où sur l'image pour choisir une couleur.</p>
+    <div id="pkResult" style="display:none">
+      <h3>Couleur choisie</h3>
+      <div class="big-swatch" id="pkSwatch"></div>
+      <div class="copy-row"><div><span class="lbl">HEX</span><span class="val" id="pkHex">—</span></div><button class="copy-btn" type="button" id="pkCopyHex">Copier</button></div>
+      <div class="copy-row"><div><span class="lbl">RGB</span><span class="val" id="pkRgb">—</span></div><button class="copy-btn" type="button" id="pkCopyRgb">Copier</button></div>
+      <div class="copy-row"><div><span class="lbl">HSL</span><span class="val" id="pkHsl">—</span></div><button class="copy-btn" type="button" id="pkCopyHsl">Copier</button></div>
+      <div id="pkHistWrap" style="display:none">
+        <h3>Dernières couleurs choisies</h3>
+        <div class="chip-row" id="pkHistory"></div>
+        <p class="tool-note">Cliquez sur un échantillon pour revoir ses valeurs.</p>
+      </div>
+    </div>
+  </div>
+  <div class="cta-band">
+  <h2>Envie de l'imprimer?</h2>
+  <p>Nous pouvons imprimer votre design sur des t-shirts, chandails, tasses, affiches et plus — imprimé sur commande au Québec, sans minimum, avec un aperçu gratuit avant de payer.</p>
+  <a class="btn" href="contact-fr.html">Contactez-nous pour un devis gratuit</a>
+</div>
+</section>
+<div id="toast"></div>
+<footer>
+  <div class="foot">
+    <div>
+      <h4>CluoPrints</h4>
+      <p style="font-size:.92rem">Designs graphiques originaux et studio de design personnalisé au Québec, Canada.</p>
+    </div>
+    <div>
+      <h4>Légal</h4>
+      <a href="terms-fr.html">Conditions</a>
+      <a href="privacy-fr.html">Confidentialité</a>
+      <a href="refund-fr.html">Remboursements</a>
+      <a href="shipping-fr.html">Livraison</a>
+      <a href="ip-policy-fr.html">Propriété intellectuelle</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="mailto:info@cluoprints.com">info@cluoprints.com</a><br>
+      <a href="index.html">English version</a>
+    </div>
+  </div>
+  <p class="copy">© 2026 CluoPrints. Tous droits réservés. Chaque design est original.</p>
+</footer>
+<script src="app.js"></script>
+<script>
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.className='show';setTimeout(function(){t.className='';},1800);}
+function copyText(txt,msg){
+  function done(){showToast(msg);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){fallback();});}
+  else{fallback();}
+  function fallback(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+}
+function rgbToHex(r,g,b){function h(v){var s=v.toString(16);return s.length===1?'0'+s:s;}return ('#'+h(r)+h(g)+h(b)).toUpperCase();}
+function rgbToHsl(r,g,b){
+  r/=255;g/=255;b/=255;
+  var max=Math.max(r,g,b),min=Math.min(r,g,b),h=0,s=0,l=(max+min)/2;
+  if(max!==min){
+    var d=max-min;
+    s=l>0.5?d/(2-max-min):d/(max+min);
+    if(max===r){h=(g-b)/d+(g<b?6:0);}
+    else if(max===g){h=(b-r)/d+2;}
+    else{h=(r-g)/d+4;}
+    h/=6;
+  }
+  return [Math.round(h*360),Math.round(s*100),Math.round(l*100)];
+}
+var pkCanvas=document.getElementById('pickCanvas');
+var pkCtx=pkCanvas.getContext('2d',{willReadFrequently:true});
+var pkHistory=[];
+function showColour(r,g,b){
+  var hex=rgbToHex(r,g,b);
+  var hsl=rgbToHsl(r,g,b);
+  document.getElementById('pkSwatch').style.background=hex;
+  document.getElementById('pkHex').textContent=hex;
+  document.getElementById('pkRgb').textContent='rgb('+r+', '+g+', '+b+')';
+  document.getElementById('pkHsl').textContent='hsl('+hsl[0]+', '+hsl[1]+'%, '+hsl[2]+'%)';
+  document.getElementById('pkResult').style.display='block';
+}
+function addHistory(r,g,b){
+  var hex=rgbToHex(r,g,b);
+  if(pkHistory.length&&pkHistory[0]===hex){renderHistory();return;}
+  pkHistory.unshift(hex);
+  if(pkHistory.length>10)pkHistory.length=10;
+  renderHistory();
+}
+function renderHistory(){
+  var wrap=document.getElementById('pkHistory');
+  wrap.innerHTML='';
+  pkHistory.forEach(function(hex){
+    var d=document.createElement('div');
+    d.className='chip'; d.style.background=hex; d.title=hex;
+    d.addEventListener('click',function(){
+      var r=parseInt(hex.substr(1,2),16),g=parseInt(hex.substr(3,2),16),b=parseInt(hex.substr(5,2),16);
+      showColour(r,g,b);
+    });
+    wrap.appendChild(d);
+  });
+  document.getElementById('pkHistWrap').style.display=pkHistory.length?'block':'none';
+}
+document.getElementById('pkFile').addEventListener('change',function(){
+  var f=this.files[0]; if(!f)return;
+  var img=new Image();
+  img.onload=function(){
+    pkCanvas.width=img.naturalWidth; pkCanvas.height=img.naturalHeight;
+    pkCtx.drawImage(img,0,0);
+    pkCanvas.style.display='block';
+    document.getElementById('pkHint').style.display='block';
+    URL.revokeObjectURL(img.src);
+  };
+  img.src=URL.createObjectURL(f);
+});
+pkCanvas.addEventListener('click',function(e){
+  var rect=pkCanvas.getBoundingClientRect();
+  var x=Math.floor((e.clientX-rect.left)*pkCanvas.width/rect.width);
+  var y=Math.floor((e.clientY-rect.top)*pkCanvas.height/rect.height);
+  x=Math.max(0,Math.min(pkCanvas.width-1,x));
+  y=Math.max(0,Math.min(pkCanvas.height-1,y));
+  var d=pkCtx.getImageData(x,y,1,1).data;
+  var a=d[3]/255, r=Math.round(d[0]*a+255*(1-a)), g=Math.round(d[1]*a+255*(1-a)), b=Math.round(d[2]*a+255*(1-a));
+  showColour(r,g,b);
+  addHistory(r,g,b);
+});
+document.getElementById('pkCopyHex').addEventListener('click',function(){copyText(document.getElementById('pkHex').textContent,'HEX copié!');});
+document.getElementById('pkCopyRgb').addEventListener('click',function(){copyText(document.getElementById('pkRgb').textContent,'RGB copié!');});
+document.getElementById('pkCopyHsl').addEventListener('click',function(){copyText(document.getElementById('pkHsl').textContent,'HSL copié!');});
+</script>
+<script src="motion.js"></script>
+</body>
+</html>

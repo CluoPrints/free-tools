@@ -22,7 +22,7 @@ Browse by category. 按分类浏览。
 - [Print cost calculator](print-cost-calculator.html) - Calculate printing costs. 计算印制成本。
 - [Business card generator](business-card-generator.html) ([French version](business-card-generator-fr.html)) - Create business cards. 制作名片。
 - [Flyer generator](flyer-generator.html) ([French version](flyer-generator-fr.html)) - Create flyers. 制作传单。
-- [Paper size converter](paper-size-converter.html) - Convert paper sizes. 转换纸张尺寸。
+- [Paper size converter](paper-size-converter.html) ([French version](paper-size-converter-fr.html)) - Convert paper sizes. 转换纸张尺寸。
 - [Single-color icon maker](single-color-icon-maker.html) - Create single-color icons in your browser. 在浏览器中制作单色图标。
 - [Color converter](color-converter.html) ([French version](color-converter-fr.html)) - Convert colors. 转换颜色。
 - [Print resolution checker](print-checker.html) - Check if an image is sharp enough for print at a chosen size. 检查图片在所选印制尺寸下是否够清晰。
@@ -43,7 +43,7 @@ Browse by category. 按分类浏览。
 - [Price list generator](price-list-generator.html) - Create price lists. 制作价目表。
 - [Food cost calculator](food-cost-calculator.html) ([French version](food-cost-calculator-fr.html)) - Calculate food cost percentage and margins for restaurants. 计算餐厅菜品成本率与毛利。
 - [Break-Even Calculator](break-even-calculator.html) ([French version](break-even-calculator-fr.html)) - Find your break-even point in units and revenue. 找出盈亏平衡点（单位数与营收）。
-- [Markup calculator](markup-calculator.html) - Calculate selling prices with markup. 计算加价后的售价。
+- [Markup calculator](markup-calculator.html) ([French version](markup-calculator-fr.html)) - Calculate selling prices with markup. 计算加价后的售价。
 - Menu tools - No corresponding file in this repository; kept as text only, without a link. 仓库中暂无对应文件，原条目仅保留文字，未加链接。
 - [Quote generator](quote-generator.html) ([French version](quote-generator-fr.html)) - Create quotes and estimates for clients. 为客户制作报价单。
 
@@ -55,7 +55,7 @@ Browse by category. 按分类浏览。
 - [Social image sizes](social-image-sizes.html) ([French version](social-image-sizes-fr.html)) - Export one image in every social media size. 一张图导出全部社媒尺寸。
 - [WiFi QR code generator](wifi-qr.html) - Create a QR code for your WiFi network. 生成 WiFi 网络二维码。
 - [Hashtag generator](hashtag-generator.html) ([French version](hashtag-generator-fr.html)) - Generate hashtags for Instagram posts. 为 Instagram 帖子生成标签。
-- [Outfit combiner](outfit-combiner.html) - Mix and match outfits. 搭配服装。
+- [Outfit combiner](outfit-combiner.html) ([French version](outfit-combiner-fr.html)) - Mix and match outfits. 搭配服装。
 
 
 ### Life & productivity 生活与效率
